@@ -78,9 +78,6 @@ const Header = (props) => {
                                 aria-describedby="modal-modal-description"
                             >
                                 <Box style={{ background: 'whitesmoke', borderRadius: '15px' }} sx={style}>
-                                    <Typography id="modal-modal-title" variant="h6" component="h2">
-                                        <h2 style={{ textAlign: 'center' }}>התחברות</h2>
-                                    </Typography>
                                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                                         <Switch>
                                             <Route path="/signin" component={Signin} />

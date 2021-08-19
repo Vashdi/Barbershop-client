@@ -14,7 +14,6 @@ import { Link } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { deepOrange } from '@material-ui/core/colors';
-import { Typography } from '@material-ui/core';
 
 
 const theme = createTheme({
@@ -48,14 +47,19 @@ const Signin = (props) => {
     const [password, setPassword] = useState("");
     const [user, setUser] = useState("");
     const [errorMessage, setErrorMessage] = useState(null);
+    const [modal, setModal] = useState(false);
     const classes = useStyles();
     const [values, setValues] = useState({
         password: '',
         showPassword: false,
     });
 
-    const handleChange = (prop) => (event) => {
-        setValues({ ...values, [prop]: event.target.value });
+    const handlePhone = (event) => {
+        setPhone(event.target.value);
+    };
+
+    const handlePassword = (event) => {
+        setPassword(event.target.value);
     };
 
     const handleClickShowPassword = () => {
@@ -65,7 +69,6 @@ const Signin = (props) => {
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
-
 
     useEffect(() => {
         const loggedUserJSON = window.localStorage.getItem('loggedUser')
@@ -77,6 +80,7 @@ const Signin = (props) => {
     }, [])
 
     const handleLogin = async (event) => {
+        console.log(phone, password);
         event.preventDefault()
         try {
             const user = await loginService.login({
@@ -87,7 +91,6 @@ const Signin = (props) => {
             setUser(user)
             props.history.push('/Appointment');
         } catch (exception) {
-            setErrorMessage('Wrong phone or password!')
             setTimeout(() => {
                 setErrorMessage(null)
             }, 3500)
@@ -102,8 +105,8 @@ const Signin = (props) => {
                     <OutlinedInput style={{ width: '200%', fontSize: 'large' }}
                         id="outlined-adornment-password"
                         type='text'
-                        // value={values.password}
-                        onChange={handleChange('password')}
+                        value={phone}
+                        onChange={handlePhone}
                         endAdornment={
                             <InputAdornment position="end">
                             </InputAdornment>
@@ -116,8 +119,8 @@ const Signin = (props) => {
                     <OutlinedInput style={{ width: '200%', fontSize: 'large' }}
                         id="outlined-adornment-password"
                         type={values.showPassword ? 'text' : 'password'}
-                        value={values.password}
-                        onChange={handleChange('password')}
+                        value={password}
+                        onChange={handlePassword}
                         endAdornment={
                             <InputAdornment position="end">
                                 <IconButton
