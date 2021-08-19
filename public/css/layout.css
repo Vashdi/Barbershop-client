@@ -9,7 +9,7 @@
    a. General Styles
    b. Header Styles
    c. About Section
-   d. Resume Section
+   d. Gallery Section
    e. Portfolio Section
    f. Call To Action Section
    g. Testimonials Section
@@ -54,6 +54,7 @@ header .banner {
    width: 85%;
    padding-bottom: 30px;
    text-align: center;
+   padding-left: 10%;
 }
 
 header .banner-text { width: 100%; }
@@ -236,33 +237,33 @@ ul#nav li.current a { color: #F06000; }
 
 
 /* ------------------------------------------------------------------ */
-/* d. Resume Section
+/* d. Gallery Section
 /* ------------------------------------------------------------------ */
 
-#resume {
-   background: #fff;
+#Gallery {
+   background: white;
    padding-top: 90px;
    padding-bottom: 72px;
    overflow: hidden;
    text-align: left;
 }
 
-#resume a, #resume a:visited  { color: #11ABB0; }
-#resume a:hover, #resume a:focus { color: #313131; }
+#Gallery a, #Gallery a:visited  { color: #11ABB0; }
+#Gallery a:hover, #Gallery a:focus { color: #313131; }
 
-#resume h1 {
+#Gallery h1 {
    font: 18px/24px 'opensans-bold', sans-serif;
    text-transform: uppercase;
    letter-spacing: 1px;
 }
-#resume h1 span {
+#Gallery h1 span {
    border-bottom: 3px solid rgb(204, 56, 19);
    padding-bottom: 6px;
 }
-#resume h3 {
+#Gallery h3 {
    font: 25px/30px 'opensans-bold', sans-serif;
 }
-#resume h5 {
+#Gallery h5 {
    color: #313131;
    font-family: 'opensans-bold', sans-serif;
    font-weight: normal;
@@ -274,43 +275,43 @@ ul#nav li.current a { color: #F06000; }
    margin-inline-end: 0px;
 }
 
-#resume .feature-item {
+#Gallery .feature-item {
    text-align: center;
    margin-top: 2.5em;
    padding-left: 2em;
    padding-right: 2em;
 }
-#resume .skills {
+#Gallery .skills {
    max-width: 65%;
 }
-#resume .bgrid-quarters 
+#Gallery .bgrid-quarters 
 [class*="column"]{
    max-width: 65%;
 }
-#resume .header-col { padding-top: 9px; }
-#resume .main-col { padding-right: 10%; }
+#Gallery .header-col { padding-top: 9px; }
+#Gallery .main-col { padding-right: 10%; }
 
 .education, .work , .skill ,.technology{
    margin-bottom: 48px;
    padding-bottom: 24px;
    border-bottom: 1px solid #E8E8E8;
 }
-#resume .info {
+#Gallery .info {
    font: 16px/24px 'librebaskerville-italic', serif;
    color: #6E7881;
    margin-bottom: 18px;
    margin-top: 9px;
 }
-#resume .info span {
+#Gallery .info span {
    margin-right: 5px;
    margin-left: 5px;
 }
-#resume .date {
+#Gallery .date {
    font: 15px/24px 'opensans-regular', sans-serif;
    margin-top: 6px;
 }
 
-#resume div.description{
+#Gallery div.description{
    margin: 0 0 30px 0;
    font-size: 100%;
    display: block;
@@ -360,114 +361,46 @@ ul#nav li.current a { color: #F06000; }
    line-height: 42px;
    border-radius: 3px 0 0 3px;
 }
-/*
-.git {
-  	-moz-animation: git 2s ease;
-  	-webkit-animation: git 2s ease;
-}
-.illustrator {
-  	-moz-animation: illustrator 2s ease;
-  	-webkit-animation: illustrator 2s ease;
-}
-.reactjs {
-  	-moz-animation: reactjs 2s ease;
-  	-webkit-animation: reactjs 2s ease;
-}
-.css {
-  	-moz-animation: css 2s ease;
-  	-webkit-animation: css 2s ease;
-}
-.html5 {
-  	-moz-animation: html5 2s ease;
-  	-webkit-animation: html5 2s ease;
-}
-.vuejs {
-  	-moz-animation: vuejs 2s ease;
-  	-webkit-animation: vuejs 2s ease;
-}
-.mongodb {
-  	-moz-animation: mongodb 2s ease;
-  	-webkit-animation: mongodb 2s ease;
-}
 
-@-moz-keyframes git {
-  0%   { width: 0px;  }
-  100% { width: 60%;  }
-}
-@-moz-keyframes illustrator {
-  0%   { width: 0px;  }
-  100% { width: 55%;  }
-}
-@-moz-keyframes reactjs {
-  0%   { width: 0px;  }
-  100% { width: 50%;  }
-}
-@-moz-keyframes css {
-  0%   { width: 0px;  }
-  100% { width: 90%;  }
-}
-@-moz-keyframes html5 {
-  0%   { width: 0px;  }
-  100% { width: 80%;  }
-}
-@-moz-keyframes vuejs {
-  0%   { width: 0px;  }
-  100% { width: 50%;  }
-}
-@-moz-keyframes mongodb {
-  0%   { width: 0px;  }
-  100% { width: 80%;  }
-}
-
-@-webkit-keyframes photoshop {
-  0%   { width: 0px;  }
-  100% { width: 60%;  }
-}
-@-webkit-keyframes illustrator {
-  0%   { width: 0px;  }
-  100% { width: 55%;  }
-}
-@-webkit-keyframes reactjs {
-  0%   { width: 0px;  }
-  100% { width: 50%;  }
-}
-@-webkit-keyframes css {
-  0%   { width: 0px;  }
-  100% { width: 90%;  }
-}
-@-webkit-keyframes html5 {
-  0%   { width: 0px;  }
-  100% { width: 80%;  }
-}
-@-webkit-keyframes vuejs {
-  0%   { width: 0px;  }
-  100% { width: 50%;  }
-}
-@-webkit-keyframes mongodb {
-  0%   { width: 0px;  }
-  100% { width: 80%;  }
-}  */
 
 /* ------------------------------------------------------------------ */
 /* e. Portfolio Section
 /* ------------------------------------------------------------------ */
 
-#portfolio {
-   background: #ebeeee;
-   padding-top: 90px;
+#price {
+   background: white;
+   padding-top: 20px;
    padding-bottom: 60px;
 }
+
+#price h1 {
+   font-family: "Times New Roman", Times, serif;
+   text-transform: uppercase;
+   letter-spacing: 1px;
+   text-align: center;
+   right: 10%;
+   margin-top: 0px;
+   color: black;
+   margin: 20px;
+}
+
+ 
+#portfolio {
+   background: #2B2B2B;
+   padding-top: 80px;
+   padding-bottom: 60px;
+} 
 #portfolio h1 {
    font: 30px/20px 'opensans-semibold', sans-serif;
    text-transform: uppercase;
    letter-spacing: 1px;
    text-align: center;
    margin-bottom: 48px;
-   color: #95A3A3;
+   color: white;
 }
 
 /* Portfolio Content */
-#portfolio-wrapper .columns { margin-bottom: 36px; }
+/* #portfolio-wrapper .columns { margin-bottom: 36px; }
 .portfolio-item .item-wrap {
    background: #fff;
    overflow: hidden;
@@ -500,7 +433,7 @@ ul#nav li.current a { color: #F06000; }
 }
 
 /* overlay */
-.portfolio-item .item-wrap .overlay {
+/* .portfolio-item .item-wrap .overlay {
    position: absolute;
    left: 0;
    top: 0;
@@ -554,10 +487,10 @@ ul#nav li.current a { color: #F06000; }
    font: 12px/18px 'opensans-light', sans-serif;
    color: #c6c7c7;
    margin-bottom: 0;
-}
+} */
 
 /* on hover */
-.portfolio-item:hover .overlay {
+/* .portfolio-item:hover .overlay {
 	opacity: 1;
 	-moz-opacity: 1;
 	filter:alpha(opacity=100);
@@ -566,11 +499,11 @@ ul#nav li.current a { color: #F06000; }
    opacity: 1;
 	-moz-opacity: 1;
 	filter:alpha(opacity=100);
-}
+}  */
 
 /* popup modal */
-.popup-modal {
-	max-width: 550px;
+/* .popup-modal { */
+	/* max-width: 550px;
 	background: #fff;
 	position: relative;
 	margin: 0 auto;
@@ -617,7 +550,7 @@ ul#nav li.current a { color: #F06000; }
 /* ------------------------------------------------------------------ */
 
 /* content at start */
-.mfp-fade.mfp-wrap .mfp-content .popup-modal {
+/* .mfp-fade.mfp-wrap .mfp-content .popup-modal {
    opacity: 0;
    -webkit-transition: all 200ms ease-in-out;
 	-moz-transition: all 200ms ease-in-out;
@@ -626,13 +559,13 @@ ul#nav li.current a { color: #F06000; }
    transition: all 200ms ease-in-out;
 }
 /* content fadein */
-.mfp-fade.mfp-wrap.mfp-ready .mfp-content .popup-modal {
+/* .mfp-fade.mfp-wrap.mfp-ready .mfp-content .popup-modal {
    opacity: 1;
-}
+} */
 /* content fadeout */
-.mfp-fade.mfp-wrap.mfp-removing .mfp-content .popup-modal {
+/* .mfp-fade.mfp-wrap.mfp-removing .mfp-content .popup-modal {
    opacity: 0;
-}
+}  */
 
 /* ------------------------------------------------------------------ */
 /* f. Call To Action Section

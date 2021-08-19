@@ -1,0 +1,8 @@
+.appointment{
+    position: absolute;
+    top: 26%;
+    right: 36%;
+    height: 10%;
+    width: 12%;
+    border-radius: 50px;
+}

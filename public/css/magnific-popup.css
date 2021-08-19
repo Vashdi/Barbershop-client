@@ -292,7 +292,7 @@ img.mfp-img {
 .mfp-image-holder .mfp-content {
   max-width: 100%; }
 
-.mfp-gallery .mfp-image-holder .mfp-figure {
+.mfp-Resume .mfp-image-holder .mfp-figure {
   cursor: pointer; }
 
 @media screen and (max-width: 800px) and (orientation: landscape), screen and (max-height: 300px) {
