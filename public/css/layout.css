@@ -33,7 +33,7 @@ header {
    height: 800px;
    min-height: 500px;
    width: 100%;
-   background: #161415 url(../images/glenn-carstens-peters-P1qyEf1g0HU-unsplash.jpg) no-repeat top center;
+   background: #161415 url(../images/start.jfif) no-repeat top center;
    background-size: cover !important;
 	-webkit-background-size: cover !important;
    text-align: center;
@@ -244,6 +244,13 @@ ul#nav li.current a { color: #F06000; }
    background: rgb(175, 174, 174);
    padding-top: 20px;
    padding-bottom: 20px;
+   overflow: hidden;
+   text-align: left;
+}
+#shop {
+   background: black;
+   padding-top: 20px;
+   padding-bottom: 80px;
    overflow: hidden;
    text-align: left;
 }

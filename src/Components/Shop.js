@@ -5,44 +5,36 @@ import React from 'react';
 const Shop = () => {
     const data = [
         {
-            image: "images/picture1.jpg",
-            caption: "Snir-Barbershop"
+            image: "images/all.png",
+            caption: "שלושה מוצרים במבצע - 120 שקל"
         },
         {
-            image: "images/picture2.jpg",
-            caption: "Snir-Barbershop"
+            image: "images/body-cream.png",
+            caption: "ממרח לגוף - 80 שקל"
         },
         {
-            image: "images/picture3.jpg",
-            caption: "Snir-Barbershop"
+            image: "images/BodyWash2.png",
+            caption: "שוטף גוף - 60 שקל"
         },
         {
-            image: "images/picture4.jpg",
-            caption: "Snir-Barbershop"
+            image: "images/Bread-Wash.png",
+            caption: "שוטף זקן - 40 שקל"
         },
         {
-            image: "images/picture5.jpg",
-            caption: "Snir-Barbershop"
+            image: "images/Cleaner.png",
+            caption: "מנקה - 50 שקל"
         },
         {
-            image: "images/picture6.jpg",
-            caption: "Snir-Barbershop"
+            image: "images/Oil.png",
+            caption: "שמן - 20 שקל"
         },
         {
-            image: "images/picture7.jpg",
-            caption: "Snir-Barbershop"
+            image: "images/shampoo.png",
+            caption: "שמפו - 100 שקל"
         },
         {
-            image: "images/picture8.jpg",
-            caption: "Snir-Barbershop"
-        },
-        {
-            image: "images/picture9.jpg",
-            caption: "Snir-Barbershop"
-        },
-        {
-            image: "images/picture10.jpg",
-            caption: "Snir-Barbershop"
+            image: "images/swatch.png",
+            caption: "swatch"
         },
     ];
 
@@ -68,8 +60,8 @@ const Shop = () => {
                     thumbnails={true}
                     style={{
                         textAlign: "center",
-                        maxWidth: "850px",
-                        maxHeight: "700px",
+                        maxWidth: "500px",
+                        maxHeight: "500px",
                         margin: "40px auto",
                     }}
                 />
