@@ -22,7 +22,8 @@
     "react-id-swiper": "^4.0.0",
     "react-particle-effect-button": "^1.0.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "react-whirligig": "^6.6.15"
   },
   "scripts": {
     "start": "react-scripts start",

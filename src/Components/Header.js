@@ -66,9 +66,11 @@ const Header = (props) => {
                 <a className="mobile-btn" href="#home" title="Hide navigation">Hide navigation</a>
                 <ul id="nav" className="nav">
                     <h2><li className="current"><a className="smoothscroll" href="#home">בית</a></li>
-                        <li><a className="smoothscroll" href="#about">קבע פגישה</a></li>
+                        <li><a className="smoothscroll" href="#about">קצת על עצמי</a></li>
                         <li><a className="smoothscroll" href="#Gallery">גלריה</a></li>
-                        <li><a className="smoothscroll" href="#portfolio">חנות</a></li>
+                        <li><a className="smoothscroll" href="#price">מחירים</a></li>
+                        <li><a className="smoothscroll" href="#about">קבע פגישה</a></li>
+                        <li><a className="smoothscroll" href="#shop">חנות</a></li>
                         <li><a className="smoothscroll" href="#contact">צור קשר</a></li>
                         {logged ? <li><a href="#home" onClick={logout}>התנתק</a></li> : <li><Link onClick={handleOpen} to="/signin">התחבר</Link>
                             <Modal

@@ -7,6 +7,7 @@ import Gallery from './Components/Gallery';
 import Contact from './Components/Contact';
 import Price from './Components/Price';
 import { useEffect, useState } from 'react'
+import Shop from './Components/Shop';
 
 function App() {
 
@@ -65,6 +66,7 @@ function App() {
         <About data={main} />
         <Gallery />
         <Price />
+        <Shop />
         <Contact data={main} />
         <Footer data={main} />
       </div>

@@ -70,11 +70,21 @@ const Signup = (props) => {
             alert("כבר קיים משתמש עם מספר זה!");
         }
         else {
-            alert(firstName + " " + lastName + " נרשם בהצלחה!");
-            const user = { firstname: firstName, lastname: lastName, password: password, phone: phone };
-            await SignupService.addUser(user);
-            const newUsers = users.concat(user);
-            setUsers(newUsers);
+            if (phone.length < 10) {
+                alert("מספר פלאפון שגוי!");
+            }
+            else {
+                if (firstName === " " || lastName === " ") {
+                    alert("חייב למלא את השם!");
+                }
+                else {
+                    alert(firstName + " " + lastName + " נרשם בהצלחה!");
+                    const user = { firstname: firstName, lastname: lastName, password: password, phone: phone };
+                    await SignupService.addUser(user);
+                    const newUsers = users.concat(user);
+                    setUsers(newUsers);
+                }
+            }
         }
     }
 
