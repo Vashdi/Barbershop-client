@@ -14,9 +14,10 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
 const Header = (props) => {
-    const [logged, setLogged] = useState(window.localStorage['loggedUser'] ? true : false);
+    const [logged, setLogged] = useState(false);
     const [admin, setAdmin] = useState(false);
     const [open, setOpen] = useState(false);
+    const [username, setUserName] = useState(" ");
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const dispatch = useDispatch();
@@ -35,28 +36,12 @@ const Header = (props) => {
     };
 
     useEffect(() => {
+        if (storeData.user) {
+            setUserName(storeData.user.name);
+        }
         setLogged(storeData.user ? true : false);
         setAdmin(storeData.user?.phone === "0523679033" ? true : false);
     }, [storeData.user])
-
-    // useEffect(() => {
-    //     setLogged(window.localStorage['loggedUser'] ? true : false)
-    //     console.log("Hey@@@")
-    // }, [window.localStorage['loggedUser']])
-
-    // useEffect(() => {
-    //     if (window.localStorage['loggedUser']) {
-    //         const values = JSON.parse(window.localStorage.getItem('loggedUser'));
-    //         if (values.phone === "0523679033")
-    //             setAdmin(true);
-    //         else {
-    //             setAdmin(false);
-    //         }
-    //     }
-    //     else {
-    //         setAdmin(false);
-    //     }
-    // }, [window.localStorage['loggedUser']])
 
     const logout = () => {
         dispatch({ type: "LOGOUT" });
@@ -80,7 +65,7 @@ const Header = (props) => {
                         <li><a className="smoothscroll" href="#about">קבע פגישה</a></li>
                         <li><a className="smoothscroll" href="#shop">חנות</a></li>
                         <li><a className="smoothscroll" href="#contact">צור קשר</a></li>
-                        {logged ? <li><a href="#home" onClick={logout}>התנתק</a></li> : <li><Link onClick={handleOpen} to="/signin">התחבר</Link>
+                        {logged ? <li><a href="/" onClick={logout}>התנתק ,{username}</a></li> : <li><Link onClick={handleOpen} to="/signin">התחבר</Link>
                             <Modal
                                 open={open}
                                 onClose={handleClose}

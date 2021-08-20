@@ -82,13 +82,11 @@ const Signin = (props) => {
     }, [])
 
     const handleLogin = async (event) => {
-        console.log(phone, password);
         event.preventDefault()
         try {
             const user = await loginService.login({
                 phone, password,
             })
-            console.log(user);
             dispatch({ type: "LOGIN", payload: user });
             // window.localStorage.setItem('loggedUser', JSON.stringify(user))
             appService.setToken(user.token)
