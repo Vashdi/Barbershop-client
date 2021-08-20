@@ -8,8 +8,10 @@ import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
 import './Resume.css'
 import Signin from './Signin';
-import Signup from './Signup'
+import Signup from './Signup';
 import { Route, Switch, Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 const Header = (props) => {
     const [logged, setLogged] = useState(window.localStorage['loggedUser'] ? true : false);
@@ -17,6 +19,8 @@ const Header = (props) => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const dispatch = useDispatch();
+    const storeData = useSelector(state => state);
 
     const style = {
         position: 'absolute',
@@ -31,27 +35,31 @@ const Header = (props) => {
     };
 
     useEffect(() => {
-        setLogged(window.localStorage['loggedUser'] ? true : false)
-        console.log("Hey@@@")
-    }, [window.localStorage['loggedUser']])
+        setLogged(storeData.user ? true : false);
+        setAdmin(storeData.user?.phone === "0523679033" ? true : false);
+    }, [storeData.user])
 
-    useEffect(() => {
-        if (window.localStorage['loggedUser']) {
-            const values = JSON.parse(window.localStorage.getItem('loggedUser'));
-            if (values.phone === "0523679033")
-                setAdmin(true);
-            else {
-                setAdmin(false);
-            }
-        }
-        else {
-            setAdmin(false);
-        }
-    }, [window.localStorage['loggedUser']])
+    // useEffect(() => {
+    //     setLogged(window.localStorage['loggedUser'] ? true : false)
+    //     console.log("Hey@@@")
+    // }, [window.localStorage['loggedUser']])
+
+    // useEffect(() => {
+    //     if (window.localStorage['loggedUser']) {
+    //         const values = JSON.parse(window.localStorage.getItem('loggedUser'));
+    //         if (values.phone === "0523679033")
+    //             setAdmin(true);
+    //         else {
+    //             setAdmin(false);
+    //         }
+    //     }
+    //     else {
+    //         setAdmin(false);
+    //     }
+    // }, [window.localStorage['loggedUser']])
 
     const logout = () => {
-        window.localStorage.removeItem('loggedUser')
-        window.localStorage.removeItem('hour')
+        dispatch({ type: "LOGOUT" });
     }
 
     let name = " ";

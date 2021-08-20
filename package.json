@@ -21,9 +21,11 @@
     "react-ga": "^2.7.0",
     "react-id-swiper": "^4.0.0",
     "react-particle-effect-button": "^1.0.1",
+    "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
-    "react-whirligig": "^6.6.15"
+    "react-whirligig": "^6.6.15",
+    "redux": "^4.1.1"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -14,6 +14,8 @@ import { Link } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { deepOrange } from '@material-ui/core/colors';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 
 const theme = createTheme({
@@ -53,6 +55,8 @@ const Signin = (props) => {
         password: '',
         showPassword: false,
     });
+    const storeData = useSelector(state => state);
+    const dispatch = useDispatch();
 
     const handlePhone = (event) => {
         setPhone(event.target.value);
@@ -71,11 +75,9 @@ const Signin = (props) => {
     };
 
     useEffect(() => {
-        const loggedUserJSON = window.localStorage.getItem('loggedUser')
-        if (loggedUserJSON) {
-            const user = JSON.parse(loggedUserJSON)
-            setUser(user)
-            appService.setToken(user.token)
+        if (storeData.user) {
+            setUser(storeData);
+            appService.setToken(user.token);
         }
     }, [])
 
@@ -86,10 +88,12 @@ const Signin = (props) => {
             const user = await loginService.login({
                 phone, password,
             })
-            window.localStorage.setItem('loggedUser', JSON.stringify(user))
+            console.log(user);
+            dispatch({ type: "LOGIN", payload: user });
+            // window.localStorage.setItem('loggedUser', JSON.stringify(user))
             appService.setToken(user.token)
             setUser(user)
-            props.history.push('/Appointment');
+            // props.history.push('/Appointment');
         } catch (exception) {
             setTimeout(() => {
                 setErrorMessage(null)
