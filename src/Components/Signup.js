@@ -8,6 +8,7 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { createTheme } from '@material-ui/core/styles';
 import { deepOrange } from '@material-ui/core/colors';
+import { useForm } from 'react-hook-form';
 
 const theme = createTheme({
     palette: {
@@ -47,7 +48,7 @@ const Signup = (props) => {
         showPassword: false,
     });
     const classes = useStyles();
-
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const handleClickShowPassword = () => {
         setValues({ ...values, showPassword: !values.showPassword });
     };
@@ -70,75 +71,92 @@ const Signup = (props) => {
             alert("כבר קיים משתמש עם מספר זה!");
         }
         else {
-            if (phone.length < 10) {
-                alert("מספר פלאפון שגוי!");
-            }
-            else {
-                if (firstName === " " || lastName === " ") {
-                    alert("חייב למלא את השם!");
-                }
-                else {
-                    alert(firstName + " " + lastName + " נרשם בהצלחה!");
-                    const user = { firstname: firstName, lastname: lastName, password: password, phone: phone };
-                    await SignupService.addUser(user);
-                    const newUsers = users.concat(user);
-                    setUsers(newUsers);
-                }
-            }
+            // if (phone.length < 10) {
+            //     alert("מספר פלאפון שגוי!");
+            // }
+            // else {
+            //     if (firstName === " " || lastName === " ") {
+            //         alert("חייב למלא את השם!");
+            //     }
+            //     else {
+            alert(firstName + " " + lastName + " נרשם בהצלחה!");
+            const user = { firstname: firstName, lastname: lastName, password: password, phone: phone };
+            await SignupService.addUser(user);
+            const newUsers = users.concat(user);
+            setUsers(newUsers);
         }
+        // }
+        // }
     }
 
     return (<section id="signup">
         <div className={classes.root}>
-            <form onSubmit={CheckIfExist}>
+            <form onSubmit={handleSubmit(CheckIfExist)}>
                 <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
                     <InputLabel style={{ fontSize: 'medium' }} htmlFor="outlined-adornment-password">מספר פלאפון</InputLabel>
                     <OutlinedInput style={{ width: '200%', fontSize: 'large' }}
                         id="outlined-adornment-password"
                         type='text'
-                        value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         endAdornment={
                             <InputAdornment position="end">
                             </InputAdornment>
                         }
                         labelWidth={50}
+                        {...register("phone", {
+                            required: { value: true, message: "הכנס מספר פלאפון" },
+                            maxLength: { value: 10, message: "מספר הפלאפון ארוך מדי" },
+                            minLength: { value: 10, message: "מספר הפלאפון קצר מדי" },
+                            pattern: { value: /^[0-9]*$/i, message: "מספר פלאפון יכול להכיל רק מספרים" }
+                        })}
                     />
                 </FormControl>
+                {errors.phone && <span style={{ color: 'red' }}>{errors.phone.message}</span>}
                 <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
                     <InputLabel style={{ fontSize: 'medium' }} htmlFor="outlined-adornment-password">שם פרטי</InputLabel>
                     <OutlinedInput style={{ width: '200%', fontSize: 'large' }}
                         id="outlined-adornment-password"
                         type='text'
-                        value={firstName}
                         onChange={(e) => setFirstName(e.target.value)}
                         endAdornment={
                             <InputAdornment position="end">
                             </InputAdornment>
                         }
                         labelWidth={50}
+                        {...register("firstName", {
+                            required: { value: true, message: "הכנס שם פרטי" },
+                            maxLength: { value: 20, message: "שם ארוך מדי" },
+                            minLength: { value: 2, message: "שם קצר מדי" },
+                            pattern: { value: /^[a-z\u0590-\u05fe]+$/i, message: "שם פרטי לא יכול להכיל מספרים או תווים מיוחדים" }
+                        })}
                     />
                 </FormControl>
+                {errors.firstName && <span style={{ color: 'red' }}>{errors.firstName.message}</span>}
                 <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
                     <InputLabel style={{ fontSize: 'medium' }} htmlFor="outlined-adornment-password">שם משפחה</InputLabel>
                     <OutlinedInput style={{ width: '200%', fontSize: 'large' }}
                         id="outlined-adornment-password"
                         type='text'
-                        value={lastName}
                         onChange={(e) => setLastName(e.target.value)}
                         endAdornment={
                             <InputAdornment position="end">
                             </InputAdornment>
                         }
                         labelWidth={50}
+                        {...register("lastName", {
+                            required: { value: true, message: "הכנס שם משפחה" },
+                            maxLength: { value: 20, message: "שם ארוך מדי" },
+                            minLength: { value: 2, message: "שם קצר מדי" },
+                            pattern: { value: /^[a-z\u0590-\u05fe]+$/i, message: "שם משפחה לא יכול להכיל מספרים או תווים מיוחדים" }
+                        })}
                     />
                 </FormControl>
+                {errors.lastName && <span style={{ color: 'red' }}>{errors.lastName.message}</span>}
                 <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
                     <InputLabel style={{ fontSize: 'medium' }} htmlFor="outlined-adornment-password">סיסמא</InputLabel>
                     <OutlinedInput style={{ width: '200%', fontSize: 'large' }}
                         id="outlined-adornment-password"
                         type={values.showPassword ? 'text' : 'password'}
-                        value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         endAdornment={
                             <InputAdornment position="end">
@@ -153,8 +171,14 @@ const Signup = (props) => {
                             </InputAdornment>
                         }
                         labelWidth={75}
+                        {...register("password", {
+                            required: { value: true, message: "הכנס סיסמה" },
+                            maxLength: { value: 25, message: "סיסמה ארוכה מדי" },
+                            minLength: { value: 6, message: "סיסמה קצרה מדי" },
+                        })}
                     />
                 </FormControl>
+                {errors.password && <span style={{ color: 'red' }}>{errors.password.message}</span>}
                 <ThemeProvider theme={theme}>
                     <Button style={{ width: '100%', left: '-5%' }} type="submit" variant="contained" color="primary" className={classes.margin}>
                         <span style={{ fontSize: "large" }}>הרשם עכשיו</span>

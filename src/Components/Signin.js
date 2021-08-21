@@ -116,7 +116,10 @@ const Signin = (props) => {
                             </InputAdornment>
                         }
                         labelWidth={50}
-                        {...register("phone", { required: { value: true, message: "הכנס מספר פלאפון" } })}
+                        {...register("phone", {
+                            required: { value: true, message: "הכנס מספר פלאפון" },
+                            pattern: { value: /^[0-9]*$/i, message: "מספר פלאפון יכול להכיל רק מספרים" }
+                        })}
                     />
                 </FormControl>
                 {errors.phone && <span style={{ color: 'red' }}>{errors.phone.message}</span>}
