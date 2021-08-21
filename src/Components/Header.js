@@ -43,7 +43,8 @@ const Header = (props) => {
         setAdmin(storeData.user?.phone === "0523679033" ? true : false);
     }, [storeData.user])
 
-    const logout = () => {
+    const logout = (e) => {
+        e.preventDefault();
         dispatch({ type: "LOGOUT" });
         handleClose();
     }
