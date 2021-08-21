@@ -46,8 +46,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Signin = (props) => {
-    const [phone, setPhone] = useState("");
-    const [password, setPassword] = useState("");
     const [user, setUser] = useState("");
     const [errorMessage, setErrorMessage] = useState(null);
     const [modal, setModal] = useState(false);
@@ -60,14 +58,6 @@ const Signin = (props) => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const storeData = useSelector(state => state);
     const dispatch = useDispatch();
-
-    const handlePhone = (event) => {
-        setPhone(event.target.value);
-    };
-
-    const handlePassword = (event) => {
-        setPassword(event.target.value);
-    };
 
     const handleClickShowPassword = () => {
         setValues({ ...values, showPassword: !values.showPassword });
@@ -84,12 +74,13 @@ const Signin = (props) => {
         }
     }, [])
 
-    const handleLogin = async (event) => {
+    const handleLogin = async (data) => {
         // event.preventDefault()
         try {
             const user = await loginService.login({
-                phone, password,
-            })
+                phone: data.phone,
+                password: data.password
+            });
             dispatch({ type: "LOGIN", payload: user });
             appService.setToken(user.token)
             setUser(user)
@@ -103,14 +94,12 @@ const Signin = (props) => {
 
     return (<section id="signin">
         <div className={classes.root}>
-            <form onSubmit={handleSubmit(handleLogin)}>
+            <form onSubmit={handleSubmit((data => handleLogin(data)))}>
                 <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
                     <InputLabel style={{ fontSize: 'medium' }} htmlFor="outlined-adornment-password">Phone</InputLabel>
                     <OutlinedInput style={{ width: '200%', fontSize: 'large' }}
                         id="outlined-adornment-password"
-                        type='text'
-
-                        onChange={handlePhone}
+                        type='number'
                         endAdornment={
                             <InputAdornment position="end">
                             </InputAdornment>
@@ -128,8 +117,6 @@ const Signin = (props) => {
                     <OutlinedInput style={{ width: '200%', fontSize: 'large' }}
                         id="outlined-adornment-password"
                         type={values.showPassword ? 'text' : 'password'}
-
-                        onChange={handlePassword}
                         endAdornment={
                             <InputAdornment position="end">
                                 <IconButton
