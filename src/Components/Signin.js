@@ -16,6 +16,7 @@ import Button from '@material-ui/core/Button';
 import { deepOrange } from '@material-ui/core/colors';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { useForm } from 'react-hook-form';
 
 
 const theme = createTheme({
@@ -55,6 +56,8 @@ const Signin = (props) => {
         password: '',
         showPassword: false,
     });
+
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const storeData = useSelector(state => state);
     const dispatch = useDispatch();
 
@@ -82,13 +85,12 @@ const Signin = (props) => {
     }, [])
 
     const handleLogin = async (event) => {
-        event.preventDefault()
+        // event.preventDefault()
         try {
             const user = await loginService.login({
                 phone, password,
             })
             dispatch({ type: "LOGIN", payload: user });
-            // window.localStorage.setItem('loggedUser', JSON.stringify(user))
             appService.setToken(user.token)
             setUser(user)
             // props.history.push('/Appointment');
@@ -101,27 +103,29 @@ const Signin = (props) => {
 
     return (<section id="signin">
         <div className={classes.root}>
-            <form onSubmit={handleLogin}>
+            <form onSubmit={handleSubmit(handleLogin)}>
                 <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
                     <InputLabel style={{ fontSize: 'medium' }} htmlFor="outlined-adornment-password">Phone</InputLabel>
                     <OutlinedInput style={{ width: '200%', fontSize: 'large' }}
                         id="outlined-adornment-password"
                         type='text'
-                        value={phone}
+
                         onChange={handlePhone}
                         endAdornment={
                             <InputAdornment position="end">
                             </InputAdornment>
                         }
                         labelWidth={50}
+                        {...register("phone", { required: { value: true, message: "הכנס מספר פלאפון" } })}
                     />
                 </FormControl>
+                {errors.phone && <span style={{ color: 'red' }}>{errors.phone.message}</span>}
                 <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
                     <InputLabel style={{ fontSize: 'medium' }} htmlFor="outlined-adornment-password">Password</InputLabel>
                     <OutlinedInput style={{ width: '200%', fontSize: 'large' }}
                         id="outlined-adornment-password"
                         type={values.showPassword ? 'text' : 'password'}
-                        value={password}
+
                         onChange={handlePassword}
                         endAdornment={
                             <InputAdornment position="end">
@@ -136,8 +140,10 @@ const Signin = (props) => {
                             </InputAdornment>
                         }
                         labelWidth={75}
+                        {...register("password", { required: { value: true, message: "הכנס סיסמה" } })}
                     />
                 </FormControl>
+                {errors.password && <span style={{ color: 'red' }}>{errors.password.message}</span>}
                 <ThemeProvider theme={theme}>
                     <Button style={{ width: '300%', left: 70 }} type="submit" variant="contained" color="primary" className={classes.margin}>
                         <span style={{ fontSize: "large" }}>התחבר</span>
