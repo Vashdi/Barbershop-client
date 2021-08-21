@@ -45,6 +45,7 @@ const Header = (props) => {
 
     const logout = () => {
         dispatch({ type: "LOGOUT" });
+        handleClose();
     }
 
     let name = " ";
@@ -65,23 +66,28 @@ const Header = (props) => {
                         <li><a className="smoothscroll" href="#about">קבע פגישה</a></li>
                         <li><a className="smoothscroll" href="#shop">חנות</a></li>
                         <li><a className="smoothscroll" href="#contact">צור קשר</a></li>
-                        {logged ? <li><a href="/" onClick={logout}>התנתק ,{username}</a></li> : <li><Link onClick={handleOpen} to="/signin">התחבר</Link>
-                            <Modal
-                                open={open}
-                                onClose={handleClose}
-                                aria-labelledby="modal-modal-title"
-                                aria-describedby="modal-modal-description"
-                            >
-                                <Box style={{ background: 'whitesmoke', borderRadius: '15px' }} sx={style}>
-                                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                                        <Switch>
-                                            <Route path="/signin" component={Signin} />
-                                            <Route path="/signup" component={Signup} />
-                                        </Switch>
-                                    </Typography>
-                                </Box>
-                            </Modal>
-                        </li>}</h2>
+                        {logged ?
+                            <li><a href="/" onClick={logout}>התנתק ,{username}</a></li>
+                            :
+                            <li><Link onClick={handleOpen} to="/signin">התחבר</Link>
+                                <Modal
+                                    open={open}
+                                    onClose={handleClose}
+                                    aria-labelledby="modal-modal-title"
+                                    aria-describedby="modal-modal-description"
+                                >
+                                    <Box style={{ background: 'whitesmoke', borderRadius: '15px' }} sx={style}>
+                                        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                                            <Switch>
+                                                <Route path="/signin" component={Signin} />
+                                                <Route path="/signup" component={Signup} />
+                                            </Switch>
+                                        </Typography>
+                                    </Box>
+                                </Modal>
+                            </li>
+                        }
+                    </h2>
                 </ul>
             </nav>
 
