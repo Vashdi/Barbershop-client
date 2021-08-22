@@ -7,8 +7,15 @@ import { BrowserRouter } from 'react-router-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import AuthReducer from './Components/Redux/AuthReducer';
+import AppointmentReducer from './Components/Redux/appointmentReducer';
+import { combineReducers } from 'redux'
 
-const appStore = createStore(AuthReducer);
+
+const appStore = createStore(combineReducers({
+    AuthReducer,
+    AppointmentReducer
+})
+);
 
 ReactDOM.render(
     <BrowserRouter>

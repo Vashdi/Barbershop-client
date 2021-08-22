@@ -1,5 +1,4 @@
 import React from 'react'
-
 const About = (props) => {
     if (props.data) {
         var profilepic = "images/" + props.data.image;
@@ -14,7 +13,7 @@ const About = (props) => {
                 </div>
                 <div className="nine columns main-col">
                     <h2>קצת על עצמי</h2>
-                    {bio}
+                    {bio}<br />
                 </div>
 
             </div>

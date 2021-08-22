@@ -5,8 +5,10 @@ import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import './Portfolio.css'
 import SingleAppointment from '../Components/SingleApp/SingleAppointment';
+import { useSelector } from 'react-redux';
 
 const Portfolio = (props) => {
+    const storeData = useSelector(state => state);
     const [selectedDay, setSelectedDay] = useState(" ");
     const hours = ["pick a time..", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00"];
     const [hoursToShow, setHoursToShow] = useState(hours);
@@ -15,36 +17,14 @@ const Portfolio = (props) => {
     const [appToShow, setAppToShow] = useState([]);
     const [phone, setPhone] = useState("");
     const [newStrict, setNewStrict] = useState([{ before: new Date() }, { daysOfWeek: [1, 6] }]);
-    const [admin, setAdmin] = useState(false);
-    const [adminSelectedDay, setAdminSelectedDay] = useState(" ");
-    const userFromStorage = window.localStorage['loggedUser'];
+    // const [admin, setAdmin] = useState(false);
+    // const [adminSelectedDay, setAdminSelectedDay] = useState(" ");
+    // const userFromStorage = window.localStorage['loggedUser'];
 
-    const handleAdminDayClick = async (day, { selected }) => {
-        if (selected)
-            setAdminSelectedDay(" ");
-        else {
-            setAdminSelectedDay(day);
-        }
-    }
-
-    const strictDays = () => {
-        const newStrictDays = newStrict.concat(adminSelectedDay);
-        setNewStrict(newStrictDays);
-    }
-
-    useEffect(() => {
-        if (userFromStorage) {
-            const values = JSON.parse(window.localStorage.getItem('loggedUser'));
-            if (values.phone === "0523679033")
-                setAdmin(true);
-            else {
-                setAdmin(false);
-            }
-        }
-        else {
-            setAdmin(false);
-        }
-    }, [userFromStorage])
+    // const strictDays = () => {
+    //     const newStrictDays = newStrict.concat(adminSelectedDay);
+    //     setNewStrict(newStrictDays);
+    // }
 
     useEffect(() => {
         const now = new Date();
@@ -92,33 +72,45 @@ const Portfolio = (props) => {
     }
     return (<section id="portfolio">
         <h1>קבע פגישה עכשיו</h1>
-        <select className="time_button" onChange={(e) => {
-            setMyHour(e.target.value)
-        }}>
-            {
-                hoursToShow.map((ourHour, index) => {
-                    return <option key={index} value={ourHour}> {ourHour}</option>
-                })
-            }
-        </select>
-        <DayPicker className="time" disabledDays={newStrict} onDayClick={handleDayClick} selectedDays={selectedDay} /><br /><br />
-        <input type="button" disabled={disable ? true : false} className={disable ? "closed" : "book_now"} value="קבע תור" onClick={addAppointment} />
         {
-            <ul className="nextApp">
-                <p className="header">:הפגישות הקרובות שלך</p>
+            storeData.AppointmentReducer.step === 1 && <select className="time_button" onChange={(e) => {
+                setMyHour(e.target.value)
+            }}>
                 {
-                    appToShow.map((apps, index) => {
-                        return <SingleAppointment userPhone={phone} appointment={apps} key={index} />
+                    hoursToShow.map((ourHour, index) => {
+                        return <option key={index} value={ourHour}> {ourHour}</option>
                     })
                 }
-            </ul>
+            </select>
         }
         {
+            console.log(storeData)
+
+        }
+        {
+            storeData.AppointmentReducer.step === 0 &&
+            <>
+                <DayPicker className="time" disabledDays={newStrict} onDayClick={handleDayClick} selectedDays={selectedDay} /><br /><br />
+                <input type="button" disabled={disable ? true : false} className={disable ? "closed" : "book_now"} value="קבע תור" onClick={addAppointment} />
+                {
+                    <ul className="nextApp">
+                        <p className="header">:הפגישות הקרובות שלך</p>
+                        {
+                            appToShow.map((apps, index) => {
+                                return <SingleAppointment userPhone={phone} appointment={apps} key={index} />
+                            })
+                        }
+                    </ul>
+                }
+            </>
+        }
+
+        {/* {
             admin ? <div>
-                <DayPicker className="time_table" onDayClick={handleAdminDayClick} selectedDays={adminSelectedDay} />
+                <DayPicker className="time_table" selectedDays={adminSelectedDay} />
                 <input type="button" value="edit" onClick={strictDays} />
             </div> : null
-        }
+        } */}
     </section>)
 }
 

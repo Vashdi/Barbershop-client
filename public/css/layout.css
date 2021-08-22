@@ -784,6 +784,15 @@ call-to-action .button {
 /* h. Contact Section
 /* ------------------------------------------------------------------ */
 
+#appointment {
+   background: white;
+   padding-top: 96px;
+   padding-bottom: 102px;
+   color:black;
+   text-align: center ;
+   font-size: x-large;
+}
+
 #contact {
    background: #191919;
    padding-top: 96px;

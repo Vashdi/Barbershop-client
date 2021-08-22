@@ -8,6 +8,7 @@ import Contact from './Components/Contact';
 import Price from './Components/Price';
 import { useEffect, useState } from 'react'
 import Shop from './Components/Shop';
+import Appointment from './Components/Appointment';
 
 function App() {
 
@@ -41,6 +42,7 @@ function App() {
                 <Price />
                 <Shop />
                 <Contact data={main} />
+                <Appointment />
                 <Footer data={main} />
             </div>
         </>
