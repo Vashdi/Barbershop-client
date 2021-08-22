@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import SignupService from '../services/Signup'
+import SignupService from '../services/register'
 import FormControl from '@material-ui/core/FormControl';
 import { Button, IconButton, InputAdornment, InputLabel, OutlinedInput, ThemeProvider } from '@material-ui/core';
 import clsx from 'clsx';
@@ -9,6 +9,10 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { createTheme } from '@material-ui/core/styles';
 import { deepOrange } from '@material-ui/core/colors';
 import { useForm } from 'react-hook-form';
+import Swal from 'sweetalert2'
+import { useDispatch } from 'react-redux';
+import appService from '../services/appointment'
+
 
 const theme = createTheme({
     palette: {
@@ -36,17 +40,24 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+const Toast = Swal.mixin({
+    toast: true,
+    position: 'bottom-left',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+})
 
 const Signup = (props) => {
-    const [phone, setPhone] = useState("");
-    const [users, setUsers] = useState([]);
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [password, setPassword] = useState("");
     const [values, setValues] = useState({
         password: '',
         showPassword: false,
     });
+    const dispatch = useDispatch();
     const classes = useStyles();
     const { register, handleSubmit, formState: { errors } } = useForm();
     const handleClickShowPassword = () => {
@@ -57,47 +68,37 @@ const Signup = (props) => {
         event.preventDefault();
     };
 
-    useEffect(() => {
-        async function getData() {
-            const ourUsers = await SignupService.getUsers();
-            setUsers(ourUsers);
-        }
-        getData();
-    }, [])
 
-    const CheckIfExist = async () => {
-        const ourUser = users.find(user => user.phone === phone);
-        if (ourUser) {
-            alert("כבר קיים משתמש עם מספר זה!");
+    const send = async (data) => {
+        try {
+            const user = await SignupService.register({
+                firstname: data.firstName,
+                lastname: data.lastName,
+                phone: data.phone,
+                password: data.password,
+            });
+            dispatch({ type: "LOGIN", payload: user });
+            appService.setToken(user.token)
+            Toast.fire({
+                icon: 'success',
+                title: '!ההרשמה בוצעה בהצלחה'
+            })
+        } catch (exception) {
+            Toast.fire({
+                icon: 'error',
+                title: exception
+            })
         }
-        else {
-            // if (phone.length < 10) {
-            //     alert("מספר פלאפון שגוי!");
-            // }
-            // else {
-            //     if (firstName === " " || lastName === " ") {
-            //         alert("חייב למלא את השם!");
-            //     }
-            //     else {
-            alert(firstName + " " + lastName + " נרשם בהצלחה!");
-            const user = { firstname: firstName, lastname: lastName, password: password, phone: phone };
-            await SignupService.addUser(user);
-            const newUsers = users.concat(user);
-            setUsers(newUsers);
-        }
-        // }
-        // }
     }
 
     return (<section id="signup">
         <div className={classes.root}>
-            <form onSubmit={handleSubmit(CheckIfExist)}>
+            <form onSubmit={handleSubmit(send)}>
                 <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
                     <InputLabel style={{ fontSize: 'medium' }} htmlFor="outlined-adornment-password">מספר פלאפון</InputLabel>
                     <OutlinedInput style={{ width: '200%', fontSize: 'large' }}
                         id="outlined-adornment-password"
                         type='text'
-                        onChange={(e) => setPhone(e.target.value)}
                         endAdornment={
                             <InputAdornment position="end">
                             </InputAdornment>
@@ -117,7 +118,6 @@ const Signup = (props) => {
                     <OutlinedInput style={{ width: '200%', fontSize: 'large' }}
                         id="outlined-adornment-password"
                         type='text'
-                        onChange={(e) => setFirstName(e.target.value)}
                         endAdornment={
                             <InputAdornment position="end">
                             </InputAdornment>
@@ -137,7 +137,6 @@ const Signup = (props) => {
                     <OutlinedInput style={{ width: '200%', fontSize: 'large' }}
                         id="outlined-adornment-password"
                         type='text'
-                        onChange={(e) => setLastName(e.target.value)}
                         endAdornment={
                             <InputAdornment position="end">
                             </InputAdornment>
@@ -157,7 +156,6 @@ const Signup = (props) => {
                     <OutlinedInput style={{ width: '200%', fontSize: 'large' }}
                         id="outlined-adornment-password"
                         type={values.showPassword ? 'text' : 'password'}
-                        onChange={(e) => setPassword(e.target.value)}
                         endAdornment={
                             <InputAdornment position="end">
                                 <IconButton

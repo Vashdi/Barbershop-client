@@ -17,6 +17,7 @@ import { deepOrange } from '@material-ui/core/colors';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
+import Swal from 'sweetalert2'
 
 
 const theme = createTheme({
@@ -45,9 +46,20 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+const Toast = Swal.mixin({
+    toast: true,
+    position: 'bottom-left',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+})
+
 const Signin = (props) => {
     const [user, setUser] = useState("");
-    const [errorMessage, setErrorMessage] = useState(null);
     const [modal, setModal] = useState(false);
     const classes = useStyles();
     const [values, setValues] = useState({
@@ -75,7 +87,6 @@ const Signin = (props) => {
     }, [])
 
     const handleLogin = async (data) => {
-        // event.preventDefault()
         try {
             const user = await loginService.login({
                 phone: data.phone,
@@ -84,11 +95,15 @@ const Signin = (props) => {
             dispatch({ type: "LOGIN", payload: user });
             appService.setToken(user.token)
             setUser(user)
-            // props.history.push('/Appointment');
+            Toast.fire({
+                icon: 'success',
+                title: '!ההתחברות בוצעה בהצלחה'
+            })
         } catch (exception) {
-            setTimeout(() => {
-                setErrorMessage(null)
-            }, 3500)
+            Toast.fire({
+                icon: 'error',
+                title: '!ההתחברות נכשלה'
+            })
         }
     }
 
@@ -96,7 +111,7 @@ const Signin = (props) => {
         <div className={classes.root}>
             <form onSubmit={handleSubmit((data => handleLogin(data)))}>
                 <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
-                    <InputLabel style={{ fontSize: 'medium' }} htmlFor="outlined-adornment-password">Phone</InputLabel>
+                    <InputLabel style={{ fontSize: 'medium' }} htmlFor="outlined-adornment-password">פלאפון</InputLabel>
                     <OutlinedInput style={{ width: '200%', fontSize: 'large' }}
                         id="outlined-adornment-password"
                         type='number'
@@ -113,7 +128,7 @@ const Signin = (props) => {
                 </FormControl>
                 {errors.phone && <span style={{ color: 'red' }}>{errors.phone.message}</span>}
                 <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
-                    <InputLabel style={{ fontSize: 'medium' }} htmlFor="outlined-adornment-password">Password</InputLabel>
+                    <InputLabel style={{ fontSize: 'medium' }} htmlFor="outlined-adornment-password">סיסמא</InputLabel>
                     <OutlinedInput style={{ width: '200%', fontSize: 'large' }}
                         id="outlined-adornment-password"
                         type={values.showPassword ? 'text' : 'password'}
