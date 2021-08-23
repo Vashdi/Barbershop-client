@@ -17,7 +17,7 @@ const Header = (props) => {
     const [logged, setLogged] = useState(false);
     const [admin, setAdmin] = useState(false);
     const [open, setOpen] = useState(false);
-    const [username, setUserName] = useState(" ");
+    const [username, setUserName] = useState("");
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const dispatch = useDispatch();
@@ -36,12 +36,12 @@ const Header = (props) => {
     };
 
     useEffect(() => {
-        if (storeData.user) {
-            setUserName(storeData.user.name);
+        if (storeData.AuthReducer.user) {
+            setUserName(storeData.AuthReducer.user.name);
         }
-        setLogged(storeData.user ? true : false);
-        setAdmin(storeData.user?.phone === "0523679033" ? true : false);
-    }, [storeData.user])
+        setLogged(storeData.AuthReducer.user ? true : false);
+        setAdmin(storeData.AuthReducer.user?.phone === "0523679033" ? true : false);
+    }, [storeData.AuthReducer.user])
 
     const logout = (e) => {
         e.preventDefault();

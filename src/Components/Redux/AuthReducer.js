@@ -1,4 +1,4 @@
-const AuthReducer = (state = { user: window.localStorage.getItem('loggedUser') }, action) => {
+const AuthReducer = (state = { user: JSON.parse(window.localStorage.getItem('loggedUser')) }, action) => {
     switch (action.type) {
         case "LOGIN":
             window.localStorage.setItem('loggedUser', JSON.stringify(action.payload));
