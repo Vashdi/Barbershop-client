@@ -7,17 +7,159 @@ import Button from '@material-ui/core/Button';
 import { useState } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Portfolio from './Portfolio';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import clsx from 'clsx';
+import Check from '@material-ui/icons/Check';
+import StepConnector from '@material-ui/core/StepConnector';
+import ScheduleIcon from '@material-ui/icons/Schedule';
+import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
+import CheckCircle from '@material-ui/icons/CheckCircle';
+
+const useQontoStepIconStyles = makeStyles({
+    root: {
+        color: '#eaeaf0',
+        display: 'flex',
+        height: 30,
+        alignItems: 'center',
+    },
+    active: {
+        color: '#784af4',
+    },
+    circle: {
+        width: 8,
+        height: 8,
+        borderRadius: '50%',
+        backgroundColor: 'currentColor',
+    },
+    completed: {
+        color: '#784af4',
+        zIndex: 1,
+        fontSize: 18,
+    },
+});
+
+function QontoStepIcon(props) {
+    const classes = useQontoStepIconStyles();
+    const { active, completed } = props;
+
+    return (
+        <div
+            className={clsx(classes.root, {
+                [classes.active]: active,
+            })}
+        >
+            {completed ? <Check className={classes.completed} /> : <div className={classes.circle} />}
+        </div>
+    );
+}
+
+QontoStepIcon.propTypes = {
+    /**
+     * Whether this step is active.
+     */
+    active: PropTypes.bool,
+    /**
+     * Mark the step as completed. Is passed to child components.
+     */
+    completed: PropTypes.bool,
+};
+
+const ColorlibConnector = withStyles({
+    alternativeLabel: {
+        top: 22,
+    },
+    active: {
+        '& $line': {
+            backgroundImage:
+                'linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)',
+        },
+    },
+    completed: {
+        '& $line': {
+            backgroundImage:
+                'linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)',
+        },
+    },
+    line: {
+        height: 5,
+        border: 0,
+        backgroundColor: '#eaeaf0',
+        borderRadius: 1,
+    },
+})(StepConnector);
+
+const useColorlibStepIconStyles = makeStyles({
+    root: {
+        backgroundColor: '#ccc',
+        zIndex: 1,
+        color: '#fff',
+        width: 75,
+        height: 75,
+        display: 'flex',
+        borderRadius: '50%',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    active: {
+        backgroundImage:
+            'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)',
+        boxShadow: '0 4px 10px 0 rgba(0,0,0,.25)',
+    },
+    completed: {
+        backgroundImage:
+            'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)',
+    },
+});
+
+function ColorlibStepIcon(props) {
+    const classes = useColorlibStepIconStyles();
+    const { active, completed } = props;
+
+    const icons = {
+        1: <ScheduleIcon fontSize="large" />,
+        2: <CalendarTodayIcon fontSize="large" />,
+        3: <CheckCircle fontSize="large" />,
+    };
+
+    return (
+        <div
+            className={clsx(classes.root, {
+                [classes.active]: active,
+                [classes.completed]: completed,
+            })}
+        >
+            {icons[String(props.icon)]}
+        </div>
+    );
+}
+
+ColorlibStepIcon.propTypes = {
+    /**
+     * Whether this step is active.
+     */
+    active: PropTypes.bool,
+    /**
+     * Mark the step as completed. Is passed to child components.
+     */
+    completed: PropTypes.bool,
+    /**
+     * The label displayed in the step icon.
+     */
+    icon: PropTypes.node,
+};
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: '70%',
+        width: '100%',
     },
-    customLabelStyle: {
-        fontSize: "24px"
+    step_label_root: {
+        fontSize: '20px',
     },
-    backButton: {
+    button: {
         marginRight: theme.spacing(1),
+        fontSize: "15px"
     },
     instructions: {
         marginTop: theme.spacing(1),
@@ -26,19 +168,19 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-    return ['בחר תאריך', 'בחר שעה', 'סיכום'];
+    return ['בחר יום לפגישה', 'בחר שעה לפגישה', 'סיכום'];
 }
 
-function getStepContent(stepIndex) {
-    switch (stepIndex) {
+function getStepContent(step) {
+    switch (step) {
         case 0:
-            return 'בחר תאריך לקביעת תור...';
+            return 'קבע יום לפגישה';
         case 1:
-            return 'בחר שעה שתרצה להסתפר ';
+            return 'קבע שעה לפגישה';
         case 2:
-            return '!סיכום הפגישה';
+            return 'סיכום';
         default:
-            return 'Unknown stepIndex';
+            return 'Unknown step';
     }
 }
 
@@ -46,6 +188,7 @@ export default function Appointment() {
     const classes = useStyles();
     const [activeStep, setActiveStep] = useState(0);
     const steps = getSteps();
+    const storeData = useSelector(state => state);
     const dispatch = useDispatch();
 
     const handleNext = () => {
@@ -66,38 +209,32 @@ export default function Appointment() {
     return (
         <section id="appointment">
             <div className={classes.root}>
-                <Stepper activeStep={activeStep} alternativeLabel>
+                <Stepper alternativeLabel activeStep={storeData.AppointmentReducer.step} connector={<ColorlibConnector />}>
                     {steps.map((label) => (
-                        <Step style={{ fontSize: "large" }} key={label}>
-                            <StepLabel classes={{ label: classes.customLabelStyle }}>{label}</StepLabel>
+                        <Step key={label}>
+                            <StepLabel classes={{ label: classes.step_label_root }} StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>
                         </Step>
                     ))}
                 </Stepper>
                 <Portfolio step={activeStep} />
-                <div>
-                    {activeStep === steps.length ? (
+                {
+                    storeData.AppointmentReducer.step !== steps.length - 1 && <div>
+                        <Typography className={classes.instructions}></Typography>
                         <div>
-                            <Typography className={classes.instructions}>All steps completed</Typography>
-                            <Button onClick={handleReset}>קבע פגישה חדשה</Button>
+                            <Button disabled={storeData.AppointmentReducer.step === 0} onClick={handleBack} className={classes.button}>
+                                Back
+                            </Button>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                onClick={handleNext}
+                                className={classes.button}
+                            >
+                                Next
+                            </Button>
                         </div>
-                    ) : (
-                        <div>
-                            <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
-                            <div>
-                                <Button
-                                    disabled={activeStep === 0}
-                                    onClick={handleBack}
-                                    className={classes.backButton}
-                                >
-                                    Back
-                                </Button>
-                                <Button variant="contained" color="primary" onClick={handleNext}>
-                                    {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                                </Button>
-                            </div>
-                        </div>
-                    )}
-                </div>
+                    </div>
+                }
             </div>
         </section >
     );
