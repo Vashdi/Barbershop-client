@@ -5,10 +5,18 @@ import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import './Portfolio.css'
 import SingleAppointment from '../Components/SingleApp/SingleAppointment';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Button, FormControl, InputLabel, makeStyles, Select } from '@material-ui/core';
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import { red } from '@material-ui/core/colors';
+import { useSelector } from 'react-redux';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItemText from '@material-ui/core/ListItemText';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -20,6 +28,16 @@ const useStyles = makeStyles((theme) => ({
     },
     selectEmpty: {
         marginTop: theme.spacing(2),
+    },
+    root: {
+        flexGrow: 1,
+        maxWidth: 752,
+    },
+    demo: {
+        backgroundColor: theme.palette.background.paper,
+    },
+    title: {
+        margin: theme.spacing(4, 0, 2),
     },
 }));
 
@@ -36,11 +54,17 @@ const Portfolio = (props) => {
     const [phone, setPhone] = useState("");
     const [newStrict, setNewStrict] = useState([{ before: new Date() }, { daysOfWeek: [1, 6] }]);
     const classes = useStyles();
+    const [dense, setDense] = React.useState(false);
+    const [secondary, setSecondary] = React.useState(false);
 
     const handlefinish = () => {
-        dispatch({ type: "ADD", payload: { day: selectedDay, hour: myHour } });
+        addAppointment();
         dispatch({ type: "RESET" });
     };
+
+    const handleReset = () => {
+        dispatch({ type: "RESET" });
+    }
     // const [admin, setAdmin] = useState(false);
     // const [adminSelectedDay, setAdminSelectedDay] = useState(" ");
     // const userFromStorage = window.localStorage['loggedUser'];
@@ -58,19 +82,30 @@ const Portfolio = (props) => {
             setDisable(false);
     }, [])
 
+    const whenLogged = async () => {
+        const user = storeData.AuthReducer.user;
+        setPhone(user.phone);
+        appService.setToken(user.token);
+        const allAppointments = await appointmentService.getAllAppointments(user);
+        dispatch({ type: 'REPLACEALL', payload: allAppointments })
+        const sortedAppointments = appointmentService.sortAppointments(allAppointments);
+        const appointmentsToShowByString = appointmentService.stringAppointments(sortedAppointments);
+        setAppToShow(appointmentsToShowByString);
+    }
+
     useEffect(() => {
-        async function whenLogged() {
-            const loggedUserJSON = window.localStorage.getItem('loggedUser')
-            if (loggedUserJSON) {
-                const user = JSON.parse(loggedUserJSON)
-                setPhone(user.phone);
-                appService.setToken(user.token)
-                const appointmentsToShowByString = await appointmentService.sortAppointments(user);
-                setAppToShow(appointmentsToShowByString);
-            }
+        const allAppointments = storeData.AppointmentReducer.appointments;
+        const sortedAppointments = appointmentService.sortAppointments(allAppointments);
+        setAppToShow(appointmentService.stringAppointments(sortedAppointments));
+    }, [storeData.AppointmentReducer.appointments])
+
+    useEffect(() => {
+        if (!storeData.AuthReducer.user) {
+            dispatch({ type: 'REPLACEALL', payload: [] });
+        } else {
+            whenLogged();
         }
-        whenLogged();
-    }, [])
+    }, [storeData.AuthReducer.user])
 
     useEffect(() => {
         appService.checkHours(selectedDay, hours, setHoursToShow);
@@ -81,8 +116,8 @@ const Portfolio = (props) => {
             window.alert("Pick An Hour or Date!")
         else {
             const appointment = { year: selectedDay.getFullYear(), month: selectedDay.getMonth() + 1, day: selectedDay.getDate(), hour: myHour }
-            await appService.create(appointment);
-            window.location.reload();
+            const resp = await appService.create(appointment);
+            dispatch({ type: "ADD", payload: resp });
             window.alert(" הפגישה נקבעה לתאריך ה" + appointment.day + "/" + appointment.month + "/" + appointment.year + " בשעה " + appointment.hour + " בהצלחה");
         }
     }
@@ -94,6 +129,11 @@ const Portfolio = (props) => {
             setSelectedDay(day);
         }
     }
+
+    const handleDelete = async () => {
+        // appointmentService.deleteAppointment(user.phone, )
+    }
+
     return (<section id="portfolio">
         {
             storeData.AppointmentReducer.step === 1 && <FormControl className={classes.formControl}>
@@ -122,16 +162,16 @@ const Portfolio = (props) => {
             storeData.AppointmentReducer.step === 0 &&
             <>
                 <DayPicker className="time" disabledDays={newStrict} onDayClick={handleDayClick} selectedDays={selectedDay} /><br /><br />
-                {
-                    //     <ul className="nextApp">
-                    //         <p className="header">:הפגישות הקרובות שלך</p>
-                    //         {
-                    //             appToShow.map((apps, index) => {
-                    //                 return <SingleAppointment userPhone={phone} appointment={apps} key={index} />
-                    //             })
-                    //         }
-                    //     </ul>
-                }
+                {/* {
+                    <ul className="nextApp">
+                        <p className="header">:הפגישות הקרובות שלך</p>
+                        {
+                            appToShow.map((apps, index) => {
+                                return <SingleAppointment userPhone={phone} appointment={apps} key={index} />
+                            })
+                        }
+                    </ul>
+                } */}
             </>
         }
 
@@ -151,20 +191,56 @@ const Portfolio = (props) => {
                     onClick={handlefinish}
                 >
                     Send
+                </Button><br />
+                <Button
+                    variant="contained"
+                    color="secondary"
+                    className={classes.button}
+                    onClick={handleReset}
+                >
+                    Reset
                 </Button>
             </>
         }
         {
-            <ul className="nextApp">
+            <>
+                <Typography variant="h6" className={classes.title}>
+                    :הפגישות הבאות שלך
+                </Typography>
+                <div className="nextApp">
+                    <div className={classes.demo}>
+                        <List dense={dense}>
+                            {appToShow.map((apps, index) => {
+                                return (
+                                    <>
+                                        <ListItem key={index}>
+                                            <ListItemText
+                                                primary={apps}
+                                            />
+                                            <ListItemSecondaryAction>
+                                                <IconButton edge="end" aria-label="delete">
+                                                    <DeleteIcon color='secondary' />
+                                                </IconButton>
+                                            </ListItemSecondaryAction>
+                                        </ListItem>
+                                    </>
+                                )
+                            })}
+                        </List>
+                    </div>
+                </div>
+            </>
+
+        }
+        {//{apps.day?.getDate() + "/" + (apps.day?.getMonth() + 1) + "/" + apps.day?.getFullYear() + "  " + "בשעה " + apps.hour}
+            /* <ul className="nextApp">
                 <p className="header">:הפגישות הקרובות שלך</p>
                 {
-                    storeData.AppointmentReducer.appointments
-                        .map((apps, index) => {
-                            return <li key={index}>{apps.day.getDate() + "/" + (apps.day.getMonth() + 1) + "/" + apps.day.getFullYear() + "  " + "בשעה " + apps.hour} </li>
-                        })
+                    storeData.AppointmentReducer.appointments.map((apps, index) => {
+                        return <li key={index}>{apps}</li>
+                    })
                 }
-            </ul>
-        }
+            </ul> */}
 
         {/* {
             admin ? <div>

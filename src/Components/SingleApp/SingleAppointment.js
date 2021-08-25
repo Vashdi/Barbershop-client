@@ -15,12 +15,13 @@ const SingleAppointment = ({ userPhone, appointment }) => {
         const appToDeleteInArr = getUser[0].appointments.filter(app => app.day === day && app.month === month && app.year === year && app.hour === hour);
         const appToDelete = appToDeleteInArr[0];
         window.alert(" הפגישה שנקבעה לתאריך ה" + day + "/" + month + "/" + year + " בשעה " + hour + " נמחקה בהצלחה");
-        window.location.reload();
         await appService.deleteApp(appToDelete.id);
     }
-    return (<div style={{ color: "black", fontSize: "125%" }}>
-        {appointment} <DeleteIcon fontSize="medium" color="secondary" onClick={deleteAppointment} />
-    </div>)
+    return (
+        <div style={{ color: "black", fontSize: "125%" }}>
+            {appointment} <DeleteIcon fontSize="medium" color="secondary" onClick={deleteAppointment} />
+        </div>
+    )
 }
 
 export default SingleAppointment;
