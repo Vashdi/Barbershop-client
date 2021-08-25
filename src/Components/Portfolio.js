@@ -17,6 +17,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import DeleteIcon from '@material-ui/icons/Delete';
+import Swal from 'sweetalert2';
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -112,13 +113,27 @@ const Portfolio = (props) => {
     }, [selectedDay])
 
     const addAppointment = async () => {
-        if (myHour === "pick a time.." || selectedDay === " ")
-            window.alert("Pick An Hour or Date!")
-        else {
-            const appointment = { year: selectedDay.getFullYear(), month: selectedDay.getMonth() + 1, day: selectedDay.getDate(), hour: myHour }
-            const resp = await appService.create(appointment);
-            dispatch({ type: "ADD", payload: resp });
-            window.alert(" הפגישה נקבעה לתאריך ה" + appointment.day + "/" + appointment.month + "/" + appointment.year + " בשעה " + appointment.hour + " בהצלחה");
+        if (myHour === "pick a time.." || selectedDay === " ") {
+            Swal.fire({
+                icon: 'error',
+                title: 'Pick An Hour or Date!'
+            })
+        } else {
+            try {
+                const appointment = { year: selectedDay.getFullYear(), month: selectedDay.getMonth() + 1, day: selectedDay.getDate(), hour: myHour }
+                const resp = await appService.create(appointment);
+                dispatch({ type: "ADD", payload: resp });
+                Swal.fire({
+                    icon: 'success',
+                    title: " הפגישה נקבעה לתאריך" + appointment.day + "/" + appointment.month + "/" + appointment.year + " בשעה " + appointment.hour + " בהצלחה"
+                })
+            } catch (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Ooops, something went wrong',
+                    text: error.text,
+                })
+            }
         }
     }
 
@@ -212,18 +227,16 @@ const Portfolio = (props) => {
                         <List dense={dense}>
                             {appToShow.map((apps, index) => {
                                 return (
-                                    <>
-                                        <ListItem key={index}>
-                                            <ListItemText
-                                                primary={apps}
-                                            />
-                                            <ListItemSecondaryAction>
-                                                <IconButton edge="end" aria-label="delete">
-                                                    <DeleteIcon color='secondary' />
-                                                </IconButton>
-                                            </ListItemSecondaryAction>
-                                        </ListItem>
-                                    </>
+                                    <ListItem key={index}>
+                                        <ListItemText
+                                            primary={apps}
+                                        />
+                                        <ListItemSecondaryAction>
+                                            <IconButton edge="end" aria-label="delete">
+                                                <DeleteIcon color='secondary' />
+                                            </IconButton>
+                                        </ListItemSecondaryAction>
+                                    </ListItem>
                                 )
                             })}
                         </List>
