@@ -9,8 +9,15 @@ import Price from './Components/Price';
 import { useEffect, useState } from 'react'
 import Shop from './Components/Shop';
 import Appointment from './Components/Appointment';
+import { useSelector } from 'react-redux';
 
 function App() {
+    const storeData = useSelector(state => state);
+    const [logged, setLogged] = useState(false);
+
+    useEffect(() => {
+        setLogged(storeData.AuthReducer.user ? true : false);
+    }, [storeData.AuthReducer.user])
 
     const main = {
         name: "BARBER SHOP",
@@ -42,7 +49,7 @@ function App() {
                 <Price />
                 <Shop />
                 <Contact data={main} />
-                <Appointment />
+                {logged ? <Appointment /> : null}
                 <Footer data={main} />
             </div>
         </>

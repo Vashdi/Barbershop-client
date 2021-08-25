@@ -64,7 +64,7 @@ const Header = (props) => {
                         <li><a className="smoothscroll" href="#about">קצת על עצמי</a></li>
                         <li><a className="smoothscroll" href="#Gallery">גלריה</a></li>
                         <li><a className="smoothscroll" href="#price">מחירים</a></li>
-                        <li><a className="smoothscroll" href="#about">קבע פגישה</a></li>
+                        {logged ? <li><a className="smoothscroll" href="#about">קבע פגישה</a></li> : null}
                         <li><a className="smoothscroll" href="#shop">חנות</a></li>
                         <li><a className="smoothscroll" href="#contact">צור קשר</a></li>
                         {logged ?
@@ -99,15 +99,20 @@ const Header = (props) => {
                     <hr />
                 </div>
             </div>
-            <a className="smoothscroll" href="#portfolio"><Button className="appointment" variant="contained" startIcon={<CalendarTodayIcon fontSize="large" />}>
-                <h3>קבע תור</h3>
-            </Button>
-            </a>
-
+            {
+                logged ? <a className="smoothscroll" href="#portfolio"><Button className="appointment" variant="contained" startIcon={<CalendarTodayIcon fontSize="large" />}>
+                    < h3 > קבע תור</h3>
+                </Button >
+                </a > :
+                    <a href=" "><Link onClick={handleOpen} to="/signin"><Button className="appointment" variant="contained" startIcon={<CalendarTodayIcon fontSize="large" />}>
+                        < h3 >קבע תור</h3>
+                    </Button >
+                    </Link></a >
+            }
             <p className="scrolldown">
                 <a className="smoothscroll" href="#about"><i className="icon-down-circle"></i></a>
             </p>
-        </header>
+        </header >
     )
 
 }

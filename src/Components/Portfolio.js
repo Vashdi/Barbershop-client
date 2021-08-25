@@ -145,9 +145,9 @@ const Portfolio = (props) => {
         }
     }
 
-    const handleDelete = async () => {
-        // appointmentService.deleteAppointment(user.phone, )
-    }
+    // const handleDelete = async () => {
+    //     appointmentService.deleteAppointment()
+    // }
 
     return (<section id="portfolio">
         {
@@ -226,18 +226,7 @@ const Portfolio = (props) => {
                     <div className={classes.demo}>
                         <List dense={dense}>
                             {appToShow.map((apps, index) => {
-                                return (
-                                    <ListItem key={index}>
-                                        <ListItemText
-                                            primary={apps}
-                                        />
-                                        <ListItemSecondaryAction>
-                                            <IconButton edge="end" aria-label="delete">
-                                                <DeleteIcon color='secondary' />
-                                            </IconButton>
-                                        </ListItemSecondaryAction>
-                                    </ListItem>
-                                )
+                                return (<SingleAppointment key={index} appointment={apps} />)
                             })}
                         </List>
                     </div>
