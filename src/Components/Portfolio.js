@@ -157,8 +157,8 @@ const Portfolio = (props) => {
         }
     }
 
-    const handleDayClick = async (day, { selected }) => {
-        if (selected) {
+    const handleDayClick = async (day, selected) => {
+        if (selected.disabled) {
             setSelectedDay(" ");
             props.disableCallback(true);
         }
