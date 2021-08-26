@@ -64,7 +64,7 @@ const Header = (props) => {
                         <li><a className="smoothscroll" href="#about">קצת על עצמי</a></li>
                         <li><a className="smoothscroll" href="#Gallery">גלריה</a></li>
                         <li><a className="smoothscroll" href="#price">מחירים</a></li>
-                        {logged ? <li><a className="smoothscroll" href="#about">קבע פגישה</a></li> : null}
+                        {logged ? <li><a className="smoothscroll" href="#appointment">קבע פגישה</a></li> : null}
                         <li><a className="smoothscroll" href="#shop">חנות</a></li>
                         <li><a className="smoothscroll" href="#contact">צור קשר</a></li>
                         {logged ?
@@ -104,7 +104,7 @@ const Header = (props) => {
                     < h3 > קבע תור</h3>
                 </Button >
                 </a > :
-                    <a href=" "><Link onClick={handleOpen} to="/signin"><Button className="appointment" variant="contained" startIcon={<CalendarTodayIcon fontSize="large" />}>
+                    <a className="smoothscroll" href=" "><Link onClick={handleOpen} to="/signin"><Button className="appointment" variant="contained" startIcon={<CalendarTodayIcon fontSize="large" />}>
                         < h3 >קבע תור</h3>
                     </Button >
                     </Link></a >

@@ -188,6 +188,7 @@ export default function Appointment() {
     const classes = useStyles();
     const [activeStep, setActiveStep] = useState(0);
     const steps = getSteps();
+    const [disableNext, setDisableNext] = useState(true);
     const storeData = useSelector(state => state);
     const dispatch = useDispatch();
 
@@ -216,7 +217,9 @@ export default function Appointment() {
                         </Step>
                     ))}
                 </Stepper>
-                <Portfolio step={activeStep} />
+                <Portfolio step={activeStep} disableCallback={(isDisable) => {
+                    setDisableNext(isDisable)
+                }} />
                 {
                     storeData.AppointmentReducer.step !== steps.length - 1 && <div>
                         <Typography className={classes.instructions}></Typography>
@@ -229,6 +232,7 @@ export default function Appointment() {
                                 color="primary"
                                 onClick={handleNext}
                                 className={classes.button}
+                                disabled={disableNext}
                             >
                                 Next
                             </Button>

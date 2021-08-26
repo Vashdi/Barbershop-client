@@ -101,6 +101,26 @@ const Portfolio = (props) => {
     }, [storeData.AppointmentReducer.appointments])
 
     useEffect(() => {
+        const step = storeData.AppointmentReducer.step;
+        if (step === 0) {
+            if (selectedDay === " ") {
+                props.disableCallback(true);
+            }
+            else {
+                props.disableCallback(false);
+            }
+        } else if (step === 1) {
+            if (myHour === "" || myHour === "בחר שעה" || myHour === "pick a time.." || myHour === " " || !hoursToShow.includes(myHour)) {
+                props.disableCallback(true);
+            }
+            else {
+                props.disableCallback(false);
+            }
+        }
+
+    }, [storeData.AppointmentReducer.step])
+
+    useEffect(() => {
         if (!storeData.AuthReducer.user) {
             dispatch({ type: 'REPLACEALL', payload: [] });
         } else {
@@ -138,10 +158,13 @@ const Portfolio = (props) => {
     }
 
     const handleDayClick = async (day, { selected }) => {
-        if (selected)
+        if (selected) {
             setSelectedDay(" ");
+            props.disableCallback(true);
+        }
         else {
             setSelectedDay(day);
+            props.disableCallback(false);
         }
     }
 
@@ -151,12 +174,18 @@ const Portfolio = (props) => {
 
     return (<section id="portfolio">
         {
-            storeData.AppointmentReducer.step === 1 && <FormControl className={classes.formControl}>
+            storeData.AppointmentReducer.step === 1 &&
+            <FormControl className={classes.formControl}>
                 <InputLabel htmlFor="age-native-simple">בחר שעה</InputLabel>
                 <Select
                     native
                     value={myHour}
                     onChange={(e) => {
+                        if (e.target.value === "" || e.target.value === "בחר שעה" || e.target.value === "pick a time.." || e.target.value === " ") {
+                            props.disableCallback(true);
+                        } else {
+                            props.disableCallback(false);
+                        }
                         setMyHour(e.target.value)
                     }}
                     inputProps={{
