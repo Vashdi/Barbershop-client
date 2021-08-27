@@ -33,9 +33,9 @@ header {
    height: 800px;
    min-height: 500px;
    width: 100%;
-   background: #161415 url(../images/start.jfif) no-repeat top center;
+   /* background: #161415 url(../images/start.jfif) no-repeat top center;
    background-size: cover !important;
-	-webkit-background-size: cover !important;
+	-webkit-background-size: cover !important; */
    text-align: center;
    overflow: hidden;
 }
@@ -79,7 +79,10 @@ header .banner-text h3 a {
    color: #fff;
 }
 header .banner-text hr {
-   width: 60%;
+   position: absolute;
+   top: 340px;
+   left: 420px;
+   width: 40%;
    margin: 18px auto 24px auto;
    border-color: #2F2D2E;
    border-color: rgba(150, 150, 150, .1);

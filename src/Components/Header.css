@@ -1,8 +1,16 @@
 .appointment{
     position: absolute;
-    top: 26%;
-    right: 36%;
+    top: 14%;
+    right: 35.5%;
     height: 10%;
     width: 12%;
     border-radius: 50px;
+}
+
+.fullscreen-bg{
+    position:absolute;
+    left: -150px;
+    top: 50px;
+    width: 120%;
+    opacity: 0.5;
 }

@@ -118,8 +118,8 @@ const sortAppFromOurDate = (datesInString) => {
 }
 
 const stringAppointments = (appointments) => {
-    return appointments.map((apps, index) => {
-        return apps.getDate() + "/" + (apps.getMonth() + 1) + "/" + apps.getFullYear() + " on " + (apps.getHours() > 9 ? apps.getHours() : "0" + apps.getHours()) + ":" + (apps.getMinutes() === 0 ? "00" : "30");
+    return appointments.map((apps) => {
+        return apps.getDate() + "/" + (apps.getMonth() + 1) + "/" + apps.getFullYear() + " בשעה " + (apps.getHours() > 9 ? apps.getHours() : "0" + apps.getHours()) + ":" + (apps.getMinutes() === 0 ? "00" : "30") + " בתאריך ";
     })
 }
 

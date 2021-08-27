@@ -248,10 +248,10 @@ const Portfolio = (props) => {
         }
         {
             <>
-                <Typography variant="h6" className={classes.title}>
-                    :הפגישות הבאות שלך
-                </Typography>
                 <div className="nextApp">
+                    <Typography variant="h6" className={classes.title}>
+                        <p className="clientNextApp"> התורים הקרובים שלך</p>
+                    </Typography>
                     <div className={classes.demo}>
                         <List dense={dense}>
                             {appToShow.map((apps, index) => {

@@ -1,9 +1,8 @@
-import userService from '../../services/user'
 import appService from '../../services/appointment'
 import React from 'react'
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useDispatch, useSelector } from 'react-redux';
-import { IconButton, ListItem, ListItemSecondaryAction, ListItemText } from '@material-ui/core';
+import { IconButton, ListItem, ListItemSecondaryAction, ListItemText, Typography } from '@material-ui/core';
 
 const SingleAppointment = ({ appointment }) => {
     const storeData = useSelector(state => state);
@@ -24,11 +23,11 @@ const SingleAppointment = ({ appointment }) => {
     return (
         <ListItem>
             <ListItemText
-                primary={appointment}
+                primary={<Typography style={{ color: 'black', fontSize: 'x-large' }}>{appointment}</Typography>}
             />
             <ListItemSecondaryAction>
                 <IconButton edge="end" aria-label="delete">
-                    <DeleteIcon color='secondary' onClick={deleteAppointment} />
+                    <DeleteIcon style={{ transform: 'scale(1.5)' }} color='secondary' onClick={deleteAppointment} />
                 </IconButton>
             </ListItemSecondaryAction>
         </ListItem>
