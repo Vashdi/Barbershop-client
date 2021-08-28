@@ -92,26 +92,26 @@ const Header = (props) => {
                 </ul>
             </nav>
             <div class="fullscreen-bg">
-                <video loop muted autoPlay class="fullscreen-bg__video">
+                <video loop muted autoPlay>
                     <source src="images/sample.mp4" type="video/mp4" />
                 </video>
             </div>
             <div className="row banner">
                 <div className="banner-text">
-                    <a className="smoothscroll name" href="#about"><h1 style={{ position: 'absolute', top: 200, left: 450 }} className="responsive-headline">{name}<i style={{ transform: "rotate(270deg)" }} className="fa fa-cut"></i><br />
-                        <i style={{ position: 'absolute', top: 80, left: 110, transform: "rotate(180deg)" }} className="fa fa-cut"></i><span style={{ position: 'absolute', left: 180 }}> SNIR </span><i style={{ position: 'absolute', top: 80, left: 340, transform: "rotate(0deg)" }} className="fa fa-cut"></i><br /></h1></a>
+                    <a className="smoothscroll name" href="#about"><h1 className="title">{name}<i style={{ transform: "rotate(270deg)" }} className="fa fa-cut"></i><br />
+                        <span><i className="fa fa-cut"></i> SNIR <i className="fa fa-cut"></i><br /></span></h1></a>
                     <hr />
                 </div>
             </div>
             {
-                logged ? <a className="smoothscroll" href="#portfolio"><Button className="appointment" variant="contained" startIcon={<CalendarTodayIcon fontSize="large" />}>
-                    < h3 > קבע תור</h3>
+                logged ? <div className="appointment"><a className="smoothscroll" href="#portfolio"><Button className="appointment" variant="contained" startIcon={<CalendarTodayIcon fontSize="large" />}>
+                    <h3> קבע תור</h3>
                 </Button >
-                </a > :
-                    <a className="smoothscroll" href=" "><Link onClick={handleOpen} to="/signin"><Button className="appointment" variant="contained" startIcon={<CalendarTodayIcon fontSize="large" />}>
+                </a ></div> :
+                    <div className="appointment"><a className="smoothscroll" href=" "><Link onClick={handleOpen} to="/signin"><Button className="appointment" variant="contained" startIcon={<CalendarTodayIcon fontSize="large" />}>
                         < h3 >קבע תור</h3>
                     </Button >
-                    </Link></a >
+                    </Link></a ></div>
             }
             <p className="scrolldown">
                 <a className="smoothscroll" href="#about"><i className="icon-down-circle"></i></a>

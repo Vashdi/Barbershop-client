@@ -5,3 +5,11 @@
 .waze :hover{
     color:white
 }
+
+.wazeAnimation{
+    animation: moves 1s infinite;
+}
+@keyframes moves {
+   from {position: absolute;top: 420%; left: 49.2%}
+   to {position: absolute;top:422%; left: 49.2%}
+ }

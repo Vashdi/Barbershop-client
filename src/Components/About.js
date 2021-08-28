@@ -13,7 +13,9 @@ const About = (props) => {
                 </div>
                 <div className="nine columns main-col">
                     <h2>קצת על עצמי</h2>
-                    {bio}<br />
+                    ,אני שניר<br />
+                    ספר מתחיל מראשון לציון<br />
+                    תבואו נדאג לכם
                 </div>
 
             </div>

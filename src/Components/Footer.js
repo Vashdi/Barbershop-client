@@ -14,7 +14,7 @@ const Footer = (props) => {
                 <li className="social-links" key="instagram"><a href="http://www.instagram.com/snirmishaelof_barbershop/"><i className="fa fa-instagram"></i></a></li>
                 <li><a href="https://wa.me/+972526662146"><WhatsAppIcon fontSize='large' /></a></li>
                 <li>
-                    <a style={{ position: 'absolute', bottom: '43%', left: '56%' }}
+                    <a className="waze"
                         href={`https://waze.com/ul?ll=32.8539957,35.0709409navigate=yes`}>
                         <Icon style={{ top: 40 }} icon="mdi:waze" width="35" height="35" />
                     </a>

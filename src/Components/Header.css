@@ -1,11 +1,16 @@
 .appointment{
     position: absolute;
-    top: 14%;
-    right: 35.5%;
-    height: 10%;
-    width: 12%;
+    top: 45%;
+    right: 25%;
+    height: 32%;
+    width: 32%;
     border-radius: 50px;
+    animation: animateButton 3s;
 }
+@keyframes animateButton {
+    from { left: -1000px;}
+    to {left: 245px;}
+  }
 
 .fullscreen-bg{
     position:absolute;
@@ -13,4 +18,58 @@
     top: 50px;
     width: 120%;
     opacity: 0.5;
+    animation: animateMovie 2s;
+}
+@keyframes animateMovie {
+   from {transform: scale(0.01);}
+   to {transform: scale(1);}
+ }
+
+
+.container {
+    position: absolute;
+    animation: mymove 5s;
+  }
+  
+
+.title{
+    position: absolute;
+    top: 160px;
+    left: 360px;
+}
+
+.secondtitle{
+    position: 'absolute';
+    left: 200;
+}
+
+.nameTitle{
+    position: absolute;
+    top: 80; 
+    left: 110;
+    transform: rotate(180deg);
+}
+
+@media screen and ( max-width: 960px){
+    .appointment{
+        position: absolute;
+        top: 41%;
+        left: 14%;
+        height: 30%;
+        width: 60%;
+        border-radius: 50px;
+    }    
+    .title{
+        position: absolute;
+        top: 35%;
+        left: 15%;
+    }
+    .fullscreen-bg{
+        position:absolute;
+        top: 60px;
+        left:0;
+        height: 350px;
+        width: 5%;
+        opacity: 0.5;
+    }
 }

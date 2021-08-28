@@ -24,7 +24,6 @@ function App() {
         occupation: "Computer Science BSc student",
         description: "Have knowledge and experience in Java, C++, and Python with a high level of self-learning skills. \n Looking for a student position",
         image: "profile.jpg",
-        bio: "I'm a barber",
         contactmessage: "Have a job for me? Want to invite me to an interview? You can give me a shout by email or by using the contact form below.",
         email: "ericsabag@gmail.com",
         phone: "050-324-4471",
