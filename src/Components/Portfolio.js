@@ -12,6 +12,7 @@ import { useSelector } from 'react-redux';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Swal from 'sweetalert2';
+import SingleHour from './SingleHour';
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -34,6 +35,10 @@ const useStyles = makeStyles((theme) => ({
     title: {
         margin: theme.spacing(4, 0, 2),
     },
+    button: {
+        marginLeft: '500px'
+
+    }
 }));
 
 
@@ -52,11 +57,15 @@ const Portfolio = (props) => {
     const [dense, setDense] = React.useState(false);
 
     const handlefinish = () => {
+        setSelectedDay(" ");
+        setMyHour("");
         addAppointment();
         dispatch({ type: "RESET" });
     };
 
     const handleReset = () => {
+        setSelectedDay(" ");
+        setMyHour("");
         dispatch({ type: "RESET" });
     }
     // const [admin, setAdmin] = useState(false);
@@ -75,6 +84,14 @@ const Portfolio = (props) => {
         else
             setDisable(false);
     }, [])
+    useEffect(() => {
+        console.log(myHour);
+        if (myHour === "" || myHour === "בחר שעה" || myHour === "pick a time.." || myHour === " ") {
+            props.disableCallback(true);
+        } else {
+            dispatch({ type: "NEXT" });
+        }
+    }, [myHour])
 
     const whenLogged = async () => {
         const user = storeData.AuthReducer.user;
@@ -168,32 +185,18 @@ const Portfolio = (props) => {
     return (<section id="portfolio">
         {
             storeData.AppointmentReducer.step === 1 &&
-            <FormControl className={classes.formControl}>
-                <InputLabel htmlFor="age-native-simple">בחר שעה</InputLabel>
-                <Select
-                    native
-                    value={myHour}
-                    onChange={(e) => {
-                        if (e.target.value === "" || e.target.value === "בחר שעה" || e.target.value === "pick a time.." || e.target.value === " ") {
-                            props.disableCallback(true);
-                        } else {
-                            props.disableCallback(false);
-                        }
-                        setMyHour(e.target.value)
-                    }}
-                    inputProps={{
-                        name: 'age',
-                        id: 'age-native-simple',
-                    }}
-                >
-                    <option aria-label="None" value="" />
+            <div>
+                <h1>בחר שעה</h1>
+                <div style={{ position: 'absolute', top: '490%', left: '45%', columnCount: 5, gap: '100px', marginTop: '25px' }}>
                     {
                         hoursToShow.map((ourHour, index) => {
-                            return <option key={index} value={ourHour}>{ourHour}</option>
+                            return <SingleHour key={index} hour={ourHour} callback={(data) => setMyHour(data)} />
                         })
                     }
-                </Select>
-            </FormControl>
+                </div>
+
+            </div>
+
         }
         {
             storeData.AppointmentReducer.step === 0 &&
@@ -205,11 +208,11 @@ const Portfolio = (props) => {
         {
             storeData.AppointmentReducer.step === 2 &&
             <>
-                <h1>:התור שנבחר</h1>
+                <h1 style={{ marginBottom: '40px' }}>:התור שנבחר</h1>
                 <h3>:תאריך</h3>
-                {selectedDay.getDate() + "/" + (selectedDay.getMonth() + 1) + "/" + selectedDay.getFullYear()}<br />
+                <h3 style={{ color: 'white' }}>{selectedDay.getDate() + "/" + (selectedDay.getMonth() + 1) + "/" + selectedDay.getFullYear()}</h3>
                 <h3>:שעה</h3>
-                {myHour}<br /><br />
+                <h3 style={{ color: 'white' }}>{myHour}</h3><br />
                 <Button
                     variant="contained"
                     color="primary"

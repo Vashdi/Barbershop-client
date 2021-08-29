@@ -1,0 +1,21 @@
+.distance{
+    margin-bottom: 20px;
+}
+
+.hourButton{
+    border-radius: 30px;
+    height: 40px;
+    width: 60px;
+    border: 2px solid orange ;
+}
+
+.hourButton:hover{
+    cursor: pointer;
+    box-shadow: 0 2px 2px 0 orange, 0 2px 2px 0 orange;
+}
+
+.hourButton:active {
+    background-color: orange;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
