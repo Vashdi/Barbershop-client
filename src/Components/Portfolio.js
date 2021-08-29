@@ -8,15 +8,9 @@ import SingleAppointment from '../Components/SingleApp/SingleAppointment';
 import { useDispatch } from 'react-redux';
 import { Button, FormControl, InputLabel, makeStyles, Select } from '@material-ui/core';
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
-import { red } from '@material-ui/core/colors';
 import { useSelector } from 'react-redux';
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import ListItemText from '@material-ui/core/ListItemText';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import DeleteIcon from '@material-ui/icons/Delete';
 import Swal from 'sweetalert2';
 
 const useStyles = makeStyles((theme) => ({
@@ -24,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
         position: 'absolute',
         margin: theme.spacing(1),
         minWidth: 320,
-        color: red
+        minHeight: 520,
 
     },
     selectEmpty: {
@@ -56,7 +50,6 @@ const Portfolio = (props) => {
     const [newStrict, setNewStrict] = useState([{ before: new Date() }, { daysOfWeek: [1, 6] }]);
     const classes = useStyles();
     const [dense, setDense] = React.useState(false);
-    const [secondary, setSecondary] = React.useState(false);
 
     const handlefinish = () => {
         addAppointment();
@@ -206,16 +199,6 @@ const Portfolio = (props) => {
             storeData.AppointmentReducer.step === 0 &&
             <>
                 <DayPicker className="time" disabledDays={newStrict} onDayClick={handleDayClick} selectedDays={selectedDay} /><br /><br />
-                {/* {
-                    <ul className="nextApp">
-                        <p className="header">:הפגישות הקרובות שלך</p>
-                        {
-                            appToShow.map((apps, index) => {
-                                return <SingleAppointment userPhone={phone} appointment={apps} key={index} />
-                            })
-                        }
-                    </ul>
-                } */}
             </>
         }
 
