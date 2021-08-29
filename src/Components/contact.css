@@ -1,22 +1,112 @@
-.waze{
-    color: red;
+@import url('https://fonts.googleapis.com/css2?family=poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+
+.contact{
+    position: relative;
+    min-height: 70vh;
+    padding: 50px 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* background: url(./Pictuers/contactbg.jpeg);
+    background-size: cover; */
 }
 
-.waze :hover{
-    color:white
+.contact .content{    
+    max-width: 800px;
+    text-align: center;
 }
 
-.wazeAnimation{
-    animation: moves 1s infinite;
-}
-@keyframes moves {
-   from {position: absolute;top: 420%; left: 49.2%}
-   to {position: absolute;top:422%; left: 49.2%}
- }
+.contact .content h2{
+    position: absolute;
+    top:12%;
+    left: 45.2%;
+    font-size: 36px;
+    font-weight: 500;
+    color: grey;
 
- @media screen and ( max-width: 960px){
-    @keyframes moves {
-        from {position: absolute;top: 298%; left: 47%}
-        to {position: absolute;top:300%; left: 47%}
-      }
- }
+}
+
+.contact .content p{
+    position: absolute;
+    top: 22%;
+    left: 39%;
+    font-weight: 300;
+    color: grey;
+}
+.icon{
+    position: absolute;
+    color: black;
+    left: 55%;
+    top: 33%;
+    min-width: 60px;
+    height: 60px;
+    background: orange;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 22px;
+}
+.icon2{
+    position: absolute;
+    color: black;
+    left: 55%;
+    top: 47%;
+    min-width: 60px;
+    height: 60px;
+    background: orange;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 22px;
+}
+.icon3{
+    position: absolute;
+    color: black;
+    left: 55%;
+    top: 62%;
+    min-width: 60px;
+    height: 60px;
+    background: orange;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 22px;
+}
+
+.text{
+    position:absolute;
+    top: 32%;
+    left: 44%;
+    margin-left: 20px;
+    font-size: 16px;
+    color: black;
+}
+.text2{
+    position:absolute;
+    top: 47%;
+    left: 44%;
+    margin-left: 20px;
+    font-size: 16px;
+    color: black;
+}
+.text3{
+    position:absolute;
+    top: 62%;
+    left: 41%;
+    margin-left: 20px;
+    font-size: 16px;
+    color: black;
+}
+
+.box{
+    position: absolute;
+    top: 10%;
+    height: 435px;
+    width: 400px;
+    border-radius: 50px;
+    background-color: rgba(255, 255, 255, 0.945);
+}

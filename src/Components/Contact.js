@@ -1,21 +1,30 @@
 import React from 'react'
-import LocationOnIcon from '@material-ui/icons/LocationOn';
 import './contact.css'
 
 const Contact = (props) => {
-
     return (
-        <section id="contact" style={{ textAlign: "center" }}>
-            <span className="mark">צור קשר</span><br />
-            פלאפון: 0523679033 <br />
-            Vashdi7002@gmail.com :אימייל <br /><br /><br />
-            <div className="wazeAnimation">
-                <LocationOnIcon fontSize="large" color="secondary" /> <br />
+        <section class="contact" id="contact">
+            <img src="images/contactbg.jpeg" alt="name" style={{ position: 'absolute', top: 10, left: 0, width: '100%', height: '570px' }} />
+            <div class="box"></div>
+            <div class="content">
+                <h2>צור קשר</h2>
+                <p>אם אתה נתקל בבעיה, מוזמן לצור איתי קשר בכל דרך</p>
             </div>
-            כתובת: לחי 2, קרית ים <br />
-            <a className="waze" href={`https://waze.com/ul?ll=32.8539957,35.0709409navigate=yes`}>
-                Waze נווט באמצעות
-            </a>
+            <div class="icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+            <div class="text">
+                <h3 style={{ color: 'orange' }}>כתובת</h3>
+                <p>לחי 2, קרית ים</p>
+            </div>
+            <div class="icon2"><i class="fa fa-phone" aria-hidden="true"></i></div>
+            <div class="text2">
+                <h3 style={{ color: 'orange' }}>פלאפון</h3>
+                <p>0523679033</p>
+            </div>
+            <div class="icon3"><i class="fa fa-envelope-o" aria-hidden="true"></i></div>
+            <div class="text3">
+                <h3 style={{ color: 'orange' }}>אימייל</h3>
+                <p>Vashdi7002@gmail.com</p>
+            </div>
         </section >
     )
 }

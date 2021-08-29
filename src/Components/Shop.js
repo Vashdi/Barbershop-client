@@ -1,5 +1,4 @@
 import { Carousel } from 'react-carousel-minimal';
-
 import React from 'react';
 
 const Shop = () => {
@@ -44,14 +43,13 @@ const Shop = () => {
     }
     return (
         <section id="shop">
-            <div>
+            <div style={{ position: 'absolute', left: '35%' }}>
                 <Carousel
                     data={data}
                     time={2000}
-                    width="850px"
+                    width="900px"
                     height="500px"
                     captionStyle={captionStyle}
-                    radius="50px"
                     captionPosition="bottom"
                     automatic={true}
                     dots={true}
