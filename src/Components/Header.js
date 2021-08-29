@@ -108,10 +108,10 @@ const Header = (props) => {
                     <h3> קבע תור</h3>
                 </Button >
                 </a ></div> :
-                    <div className="appointment"><a className="smoothscroll" href=" "><Link onClick={handleOpen} to="/signin"><Button className="appointment" variant="contained" startIcon={<CalendarTodayIcon fontSize="large" />}>
-                        < h3 >התחבר וקבע תור</h3>
+                    <div className="appointment"><Link onClick={handleOpen} to="/signin"><Button className="appointment" variant="contained" startIcon={<CalendarTodayIcon fontSize="large" />}>
+                        < h3 > קבע תור</h3>
                     </Button >
-                    </Link></a ></div>
+                    </Link></div>
             }
             <p className="scrolldown">
                 <a className="smoothscroll" href="#about"><i className="icon-down-circle"></i></a>
