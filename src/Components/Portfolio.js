@@ -6,7 +6,7 @@ import 'react-day-picker/lib/style.css';
 import './Portfolio.css'
 import SingleAppointment from '../Components/SingleApp/SingleAppointment';
 import { useDispatch } from 'react-redux';
-import { Button, FormControl, InputLabel, makeStyles, Select } from '@material-ui/core';
+import { Button, makeStyles } from '@material-ui/core';
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import { useSelector } from 'react-redux';
 import List from '@material-ui/core/List';
@@ -85,7 +85,6 @@ const Portfolio = (props) => {
             setDisable(false);
     }, [])
     useEffect(() => {
-        console.log(myHour);
         if (myHour === "" || myHour === "בחר שעה" || myHour === "pick a time.." || myHour === " ") {
             props.disableCallback(true);
         } else {

@@ -13,3 +13,10 @@
    from {position: absolute;top: 420%; left: 49.2%}
    to {position: absolute;top:422%; left: 49.2%}
  }
+
+ @media screen and ( max-width: 960px){
+    @keyframes moves {
+        from {position: absolute;top: 298%; left: 47%}
+        to {position: absolute;top:300%; left: 47%}
+      }
+ }

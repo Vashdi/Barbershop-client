@@ -71,6 +71,12 @@ header .banner-text h1 {
    from { left: -1000px;}
    to {left: 360px;}
  }
+ @media screen and ( max-width: 960px){
+   @keyframes mymove {
+      from { left: -1000px;}
+      to {left: 60px;}
+    }
+ }
 header .banner-text h1:hover { color: #11ABB0; }
 
 header .banner-text h3 {

@@ -5,11 +5,13 @@
     height: 32%;
     width: 32%;
     border-radius: 50px;
-    animation: animateButton 3s;
+    transition: transform 1s;
+    animation: animateButton 5s;
 }
+
 @keyframes animateButton {
-    from { left: -1000px;}
-    to {left: 245px;}
+    from { opacity: 0.01;}
+    to {opacity: 1;}
   }
 
 .fullscreen-bg{

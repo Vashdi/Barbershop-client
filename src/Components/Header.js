@@ -109,7 +109,7 @@ const Header = (props) => {
                 </Button >
                 </a ></div> :
                     <div className="appointment"><a className="smoothscroll" href=" "><Link onClick={handleOpen} to="/signin"><Button className="appointment" variant="contained" startIcon={<CalendarTodayIcon fontSize="large" />}>
-                        < h3 >קבע תור</h3>
+                        < h3 >התחבר וקבע תור</h3>
                     </Button >
                     </Link></a ></div>
             }
