@@ -1,69 +1,109 @@
-import { Carousel } from 'react-carousel-minimal';
-import React from 'react';
+import React from 'react'
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Typography from '@material-ui/core/Typography';
+import './Shop.css'
+
+const useStyles = makeStyles({
+    root: {
+        maxWidth: 345,
+        borderRadius: '50px'
+    },
+});
 
 const Shop = () => {
-    const data = [
-        {
-            image: "images/all.png",
-            caption: "שלושה מוצרים במבצע - 120 שקל"
+    const classes = useStyles();
+    const responsive = {
+        superLargeDesktop: {
+            // the naming can be any, depends on you.
+            breakpoint: { max: 4000, min: 3000 },
+            items: 5
         },
-        {
-            image: "images/body-cream.png",
-            caption: "ממרח לגוף - 80 שקל"
+        desktop: {
+            breakpoint: { max: 3000, min: 1024 },
+            items: 3
         },
-        {
-            image: "images/BodyWash2.png",
-            caption: "שוטף גוף - 60 שקל"
+        tablet: {
+            breakpoint: { max: 1024, min: 464 },
+            items: 2
         },
-        {
-            image: "images/Bread-Wash.png",
-            caption: "שוטף זקן - 40 שקל"
-        },
-        {
-            image: "images/Cleaner.png",
-            caption: "מנקה - 50 שקל"
-        },
-        {
-            image: "images/Oil.png",
-            caption: "שמן - 20 שקל"
-        },
-        {
-            image: "images/shampoo.png",
-            caption: "שמפו - 100 שקל"
-        },
-        {
-            image: "images/swatch.png",
-            caption: "swatch"
-        },
-    ];
+        mobile: {
+            breakpoint: { max: 464, min: 0 },
+            items: 1
+        }
+    };
+    const images = [{
+        url: "/images/all.png",
+        name: "all",
+        price: "60 Shekel"
+    },
+    {
+        url: "/images/body-cream.png",
+        name: "body Cream",
+        price: "45 Shekel"
+    },
+    {
+        url: "/images/bodyWash2.png",
+        name: "body Wash",
+        price: "19.90 Shekel"
+    },
+    {
+        url: "/images/bread-Wash.png",
+        name: "bread-Wash",
+        price: "30 Shekel"
+    },
+    {
+        url: "/images/Cleaner.png",
+        name: "Cleaner",
+        price: "200 Shekel"
+    },
+    {
+        url: "/images/oil.png",
+        name: "oil",
+        price: "100 Shekel"
+    }]
 
-    const captionStyle = {
-        fontSize: '2em',
-        fontWeight: 'bold',
-    }
     return (
         <section id="shop">
-            <div style={{ position: 'absolute', left: '0%' }}>
-                <Carousel
-                    data={data}
-                    time={2000}
-                    width="900px"
-                    height="500px"
-                    captionStyle={captionStyle}
-                    captionPosition="bottom"
-                    automatic={true}
-                    dots={true}
-                    slideBackgroundColor="black"
-                    slideImageFit="cover"
-                    thumbnails={true}
-                    style={{
-                        textAlign: "center",
-                        maxWidth: "500px",
-                        maxHeight: "500px",
-                        margin: "40px auto",
-                    }}
-                />
-            </div>
+            <Carousel centerMode={true} responsive={responsive}>
+                {
+                    images.map((image, index) => {
+                        return <Card key={index} className={classes.root}>
+                            <CardActionArea>
+                                <CardMedia
+                                    component="img"
+                                    alt="Contemplative Reptile"
+                                    height="140"
+                                    image={image.url}
+                                    title="Contemplative Reptile"
+                                />
+                                <CardContent style={{ textAlign: 'center' }}>
+                                    <Typography gutterBottom variant="h5" component="h2">
+                                        <h1>{image.name}</h1>
+                                    </Typography>
+                                    <Typography variant="body2" color="textSecondary" component="p">
+                                        <h3>{image.price}</h3>
+                                    </Typography>
+                                </CardContent>
+                            </CardActionArea>
+                            <CardActions>
+                            </CardActions>
+                        </Card>
+                    })
+                }
+            </Carousel>
+            <body>
+                <div class="sign">
+                    <span class="fast-flicker">!</span>בחנות<span class="flicker">המוצרים</span>כל
+                </div>
+            </body>
+
         </section>
     );
 }
