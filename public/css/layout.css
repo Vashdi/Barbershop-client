@@ -301,8 +301,9 @@ ul#nav li.current a { color: #F06000; }
 @media screen and ( max-width: 960px){
    #shop {
       background: black;
+      height: 600px;
       padding-top: 100px;
-      padding-bottom: 80px;
+      padding-bottom: 10px;
       overflow: hidden;
       text-align: left;
    }
@@ -878,8 +879,9 @@ call-to-action .button {
 @media screen and ( max-width: 960px){
    #contact {
       background: #191919;
-      padding-top: 48px;
-      padding-bottom: 102px;
+      height: 500px;
+      padding-top: 0px;
+      padding-bottom: 0px;
       color: #636363;
       text-align: left ;
    }

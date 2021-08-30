@@ -43,7 +43,7 @@ const Shop = () => {
     }
     return (
         <section id="shop">
-            <div style={{ position: 'absolute', left: '35%' }}>
+            <div style={{ position: 'absolute', left: '0%' }}>
                 <Carousel
                     data={data}
                     time={2000}

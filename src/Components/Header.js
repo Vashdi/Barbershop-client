@@ -91,6 +91,7 @@ const Header = (props) => {
                     </h2>
                 </ul>
             </nav>
+
             <div class="fullscreen-bg">
                 <video loop muted autoPlay>
                     <source src="images/sample.mp4" type="video/mp4" />
