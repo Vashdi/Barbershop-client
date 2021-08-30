@@ -12,6 +12,7 @@ import './Shop.css'
 
 const useStyles = makeStyles({
     root: {
+        marginLeft: 30,
         maxWidth: 345,
         borderRadius: '50px'
     },
@@ -34,7 +35,7 @@ const Shop = () => {
             items: 2
         },
         mobile: {
-            breakpoint: { max: 464, min: 0 },
+            breakpoint: { max: 960, min: 0 },
             items: 1
         }
     };
@@ -71,7 +72,7 @@ const Shop = () => {
 
     return (
         <section id="shop">
-            <Carousel centerMode={true} responsive={responsive}>
+            <Carousel className="carousel" responsive={responsive}>
                 {
                     images.map((image, index) => {
                         return <Card key={index} className={classes.root}>
@@ -98,11 +99,9 @@ const Shop = () => {
                     })
                 }
             </Carousel>
-            <body>
-                <div class="sign">
-                    <span class="fast-flicker">!</span>בחנות<span class="flicker">המוצרים</span>כל
-                </div>
-            </body>
+            <div class="sign">
+                <span class="fast-flicker">!</span>בחנות<span class="flicker">המוצרים</span>כל
+            </div>
 
         </section>
     );

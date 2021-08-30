@@ -200,3 +200,35 @@
       opacity: 1;
     }
   }
+  @media screen and ( max-width: 960px){
+    .sign {
+      position: absolute;
+      justify-content: center;
+      align-items: center;
+      width: 10%;
+      height: 10%;
+      background-image: radial-gradient(
+        ellipse 50% 35% at 50% 50%,
+        #6b4718,
+        transparent
+      );
+      transform: translate(-50%, -50%);
+      letter-spacing: 2;
+      left: 50%;
+      top: 267%;
+      font-family: "Clip";
+      text-transform: uppercase;
+      font-size: 3.6em;
+      color: #ffe6ff;
+      text-shadow: 0 0 0.6rem #fff4e6, 0 0 1.5rem #ffb765,
+          -0.2rem 0.1rem 1rem #ffbc65, 0.2rem 0.1rem 1rem #ffbc65,
+          0 -0.5rem 2rem #ff8724, 0 0.5rem 3rem #ff7c24;
+      animation: shine 2s forwards, flicker 3s infinite;
+    }
+    .carousel{
+      position: relative;
+      top: 0%;
+      left: 0%;
+    }
+    
+  }

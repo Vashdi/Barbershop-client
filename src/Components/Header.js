@@ -35,6 +35,7 @@ const Header = (props) => {
         p: 4,
     };
 
+
     useEffect(() => {
         if (storeData.AuthReducer.user) {
             setUserName(storeData.AuthReducer.user.name);
@@ -97,10 +98,16 @@ const Header = (props) => {
                     <source src="images/sample.mp4" type="video/mp4" />
                 </video>
             </div>
+
+            <div id="wrapper">
+                <div id="container">
+                    <h4><a className="smoothscroll name" href="#about"><h1 className="title"><p className="font">{name}<i style={{ transform: "rotate(270deg)" }} className="fa fa-cut"></i></p><br />
+                        <span><p className="font"><i className="fa fa-cut"></i>SNIR <i className="fa fa-cut"></i></p><br /></span></h1></a></h4>
+                </div>
+            </div>
+            <div className="testing"><p>HELLO</p></div>
             <div className="row banner">
                 <div className="banner-text">
-                    <a className="smoothscroll name" href="#about"><h1 className="title">{name}<i style={{ transform: "rotate(270deg)" }} className="fa fa-cut"></i><br />
-                        <span><i className="fa fa-cut"></i> SNIR <i className="fa fa-cut"></i><br /></span></h1></a>
                     <hr />
                 </div>
             </div>
