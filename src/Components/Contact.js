@@ -4,7 +4,7 @@ import './contact.css'
 const Contact = (props) => {
     return (
         <section class="contact" id="contact">
-            <img src="images/contactbg.jpeg" alt="name" className="imageContact" />
+            {/* <img src="images/contactbg.jpeg" alt="name" className="imageContact" /> */}
             <div class="box"></div>
             <div>
                 <h2 className="content">צור קשר</h2>

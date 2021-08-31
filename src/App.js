@@ -44,11 +44,11 @@ function App() {
             <div className="App">
                 <Header data={main} />
                 <About data={main} />
+                {logged ? <Appointment /> : null}
                 <Gallery />
                 <Price />
                 <Shop />
                 <Contact data={main} />
-                {logged ? <Appointment /> : null}
                 <Footer data={main} />
             </div>
         </>

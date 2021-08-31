@@ -102,7 +102,6 @@ const Shop = () => {
             <div class="sign">
                 <span class="fast-flicker">!</span>בחנות<span class="flicker">המוצרים</span>כל
             </div>
-
         </section>
     );
 }

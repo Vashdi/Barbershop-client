@@ -63,9 +63,9 @@ const Header = (props) => {
                 <ul id="nav" className="nav">
                     <h2><li className="current"><a className="smoothscroll" href="#home">בית</a></li>
                         <li><a className="smoothscroll" href="#about">קצת על עצמי</a></li>
+                        {logged ? <li><a className="smoothscroll" href="#appointment">קבע פגישה</a></li> : null}
                         <li><a className="smoothscroll" href="#Gallery">גלריה</a></li>
                         <li><a className="smoothscroll" href="#price">מחירים</a></li>
-                        {logged ? <li><a className="smoothscroll" href="#appointment">קבע פגישה</a></li> : null}
                         <li><a className="smoothscroll" href="#shop">חנות</a></li>
                         <li><a className="smoothscroll" href="#contact">צור קשר</a></li>
                         {logged ?
@@ -98,14 +98,10 @@ const Header = (props) => {
                     <source src="images/sample.mp4" type="video/mp4" />
                 </video>
             </div>
-
             <div id="wrapper">
-                <div id="container">
-                    <h4><a className="smoothscroll name" href="#about"><h1 className="title"><p className="font">{name}<i style={{ transform: "rotate(270deg)" }} className="fa fa-cut"></i></p><br />
-                        <span><p className="font"><i className="fa fa-cut"></i>SNIR <i className="fa fa-cut"></i></p><br /></span></h1></a></h4>
-                </div>
+                <h4><a className="smoothscroll name" href="#about"><h1 className="title"><p className="font">{name}<i style={{ transform: "rotate(270deg)" }} className="fa fa-cut"></i></p><br />
+                    <span><p className="font"><i className="fa fa-cut"></i>SNIR <i className="fa fa-cut"></i></p><br /></span></h1></a></h4>
             </div>
-            <div className="testing"><p>HELLO</p></div>
             <div className="row banner">
                 <div className="banner-text">
                     <hr />

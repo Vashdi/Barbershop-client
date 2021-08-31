@@ -33,9 +33,6 @@ header {
    height: 800px;
    min-height: 500px;
    width: 100%;
-   /* background: #161415 url(../images/start.jfif) no-repeat top center;
-   background-size: cover !important;
-	-webkit-background-size: cover !important; */
    text-align: center;
    overflow: hidden;
 }
@@ -92,7 +89,7 @@ header .banner-text h3 a {
 }
 header .banner-text hr {
    position: absolute;
-   top: 340px;
+   top: 370px;
    left: 420px;
    width: 40%;
    margin: 18px auto 24px auto;
@@ -107,7 +104,7 @@ header .banner-text hr {
 @media screen and ( max-width: 960px){
    header .banner-text hr {
       position: absolute;
-      top: 350px;
+      top: 370px;
       left: 50px;
       width: 20%;
       margin: 18px auto 24px auto;
@@ -214,7 +211,7 @@ ul#nav li a {
 }
 
 ul#nav li a:active { color: #11ABB0 !important; }
-ul#nav li a:hover { color: #11ABB0 !important; }
+ul#nav li a:hover { color: wheat !important; }
 ul#nav li.current a { color: #F06000; }
 
 
@@ -223,7 +220,7 @@ ul#nav li.current a { color: #F06000; }
 /* ------------------------------------------------------------------ */
 
 #about {
-   background: #2B2B2B;
+   background:#2B2B2B;
    padding-top: 96px;
    padding-bottom: 66px;
    overflow: hidden;
@@ -283,14 +280,14 @@ ul#nav li.current a { color: #F06000; }
 /* ------------------------------------------------------------------ */
 
 #Gallery {
-   background: black;
+   background: white;
    padding-top: 20px;
    padding-bottom: 20px;
    overflow: hidden;
    text-align: left;
 }
 #shop {
-   background: black;
+   background: #ebeeee;
    padding-top: 20px;
    height: 750px;
    padding-bottom: 80px;
@@ -429,7 +426,7 @@ ul#nav li.current a { color: #F06000; }
 /* ------------------------------------------------------------------ */
 
 #price {
-   background: white;
+   background: #2B2B2B;
    padding-top: 20px;
    padding-bottom: 60px;
    text-align: center;
@@ -460,7 +457,7 @@ ul#nav li.current a { color: #F06000; }
       margin-left: 0%;
       padding-top: 10px;
       padding-bottom: 0px;
-      min-height: 720px;
+      min-height: 530px;
       width: 100%;
    } 
 }
@@ -870,7 +867,7 @@ call-to-action .button {
 }
 
 #contact {
-   background: black;
+   background: #2B2B2B;
    padding-top: 0px;
    height: 590px;
    color: #636363;

@@ -13,6 +13,23 @@ import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Swal from 'sweetalert2';
 import SingleHour from './SingleHour';
+import Modal from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
+
+const useStylesModal = makeStyles((theme) => ({
+    modal: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    paper: {
+        backgroundColor: theme.palette.background.paper,
+        border: '2px solid #000',
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing(2, 4, 3),
+    },
+}));
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -46,7 +63,7 @@ const Portfolio = (props) => {
     const storeData = useSelector(state => state);
     const dispatch = useDispatch();
     const [selectedDay, setSelectedDay] = useState(" ");
-    const hours = ["pick a time..", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00"];
+    const hours = ["08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00"];
     const [hoursToShow, setHoursToShow] = useState(hours);
     const [myHour, setMyHour] = useState("");
     const [disable, setDisable] = useState(false);
@@ -55,6 +72,16 @@ const Portfolio = (props) => {
     const [newStrict, setNewStrict] = useState([{ before: new Date() }, { daysOfWeek: [1, 6] }]);
     const classes = useStyles();
     const [dense, setDense] = React.useState(false);
+    const classesModal = useStylesModal();
+    const [openModal, setOpenModal] = React.useState(false);
+    const handleOpenModal = () => {
+        setOpenModal(true);
+    };
+
+    const handleCloseModal = () => {
+        setOpenModal(false);
+    };
+
 
     const handlefinish = () => {
         setSelectedDay(" ");
@@ -185,8 +212,8 @@ const Portfolio = (props) => {
         {
             storeData.AppointmentReducer.step === 1 &&
             <div>
-                <h1>בחר שעה</h1>
-                <div style={{ position: 'absolute', top: '490%', left: '45%', columnCount: 5, gap: '100px', marginTop: '25px' }}>
+                <h1 style={{ marginLeft: 0 }}>בחר שעה</h1>
+                <div className="hoursShow">
                     {
                         hoursToShow.map((ourHour, index) => {
                             return <SingleHour key={index} hour={ourHour} callback={(data) => setMyHour(data)} />
@@ -195,7 +222,6 @@ const Portfolio = (props) => {
                 </div>
 
             </div>
-
         }
         {
             storeData.AppointmentReducer.step === 0 &&
@@ -206,7 +232,8 @@ const Portfolio = (props) => {
 
         {
             storeData.AppointmentReducer.step === 2 &&
-            <>
+            <div className="sum">
+                <div class="boxApp"></div>
                 <h1 style={{ marginBottom: '40px' }}>:התור שנבחר</h1>
                 <h3>:תאריך</h3>
                 <h3 style={{ color: 'white' }}>{selectedDay.getDate() + "/" + (selectedDay.getMonth() + 1) + "/" + selectedDay.getFullYear()}</h3>
@@ -229,34 +256,39 @@ const Portfolio = (props) => {
                 >
                     Reset
                 </Button>
-            </>
+            </div>
         }
-        {
-            <>
-                <div className="nextApp">
-                    <Typography variant="h6" className={classes.title}>
-                        <p className="clientNextApp"> התורים הקרובים שלך</p>
-                    </Typography>
-                    <div className={classes.demo}>
-                        <List dense={dense}>
-                            {appToShow.map((apps, index) => {
-                                return (<SingleAppointment key={index} appointment={apps} />)
-                            })}
-                        </List>
+        <div>
+            <button className="showApp" onClick={handleOpenModal}>
+                התורים הקרובים שלי
+            </button>
+            <Modal
+                aria-labelledby="transition-modal-title"
+                aria-describedby="transition-modal-description"
+                className={classesModal.modal}
+                open={openModal}
+                onClose={handleCloseModal}
+                closeAfterTransition
+                BackdropComponent={Backdrop}
+                BackdropProps={{
+                    timeout: 500,
+                }}
+            >
+                <Fade in={openModal}>
+                    <div className={classesModal.paper}>
+                        <h2 id="transition-modal-title"><p className="clientNextApp"> התורים הקרובים שלי</p></h2>
+                        <p id="transition-modal-description"><div className={classes.demo}>
+                            <List dense={dense}>
+                                {appToShow.map((apps, index) => {
+                                    return (<SingleAppointment key={index} appointment={apps} />)
+                                })}
+                            </List>
+                        </div></p>
                     </div>
-                </div>
-            </>
+                </Fade>
+            </Modal>
+        </div>
 
-        }
-        {//{apps.day?.getDate() + "/" + (apps.day?.getMonth() + 1) + "/" + apps.day?.getFullYear() + "  " + "בשעה " + apps.hour}
-            /* <ul className="nextApp">
-                <p className="header">:הפגישות הקרובות שלך</p>
-                {
-                    storeData.AppointmentReducer.appointments.map((apps, index) => {
-                        return <li key={index}>{apps}</li>
-                    })
-                }
-            </ul> */}
 
         {/* {
             admin ? <div>

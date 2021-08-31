@@ -4,7 +4,7 @@
   }
   
   .sign {
-    position: absolute;
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,8 +17,8 @@
     );
     transform: translate(-50%, -50%);
     letter-spacing: 2;
-    left: 50%;
-    top: 525%;
+    left: 48%;
+    top: 15%;
     font-family: "Clip";
     text-transform: uppercase;
     font-size: 6em;
@@ -202,7 +202,8 @@
   }
   @media screen and ( max-width: 960px){
     .sign {
-      position: absolute;
+      position: relative;
+      display: flex;
       justify-content: center;
       align-items: center;
       width: 10%;
@@ -215,7 +216,7 @@
       transform: translate(-50%, -50%);
       letter-spacing: 2;
       left: 50%;
-      top: 267%;
+      top: -110%;
       font-family: "Clip";
       text-transform: uppercase;
       font-size: 3.6em;

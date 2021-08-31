@@ -4,7 +4,8 @@
     background-color: white;
     width: 30%;
     height: 75%;
-    margin-left: 30%;
+    margin-left: 1.5%;
+    margin-top: -2%;
     font-size: 2rem;
    }
 .app_img{
@@ -104,9 +105,59 @@
 }
 .clientNextApp{
     color:orange;
-    transform: scale(3);
+    transform: scale(1);
+    text-align: center;
     margin-bottom: 10px;
 }
+
+.sum{
+    position: absolute;
+    left: 8.5%;
+}
+
+.showApp{
+    position: absolute;
+    top: 243%;
+    left: 41.5%;
+    padding: 10px 20px;
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: orange;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+}
+
+  
+  .showApp:hover {background-color:rgb(255, 115, 0)}
+  
+  .showApp:active {
+    background-color: rgb(255, 115, 0);
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+
+.boxApp{
+    position: absolute;
+    top: -12%;
+    left: 61%;
+    height: 350px;
+    width: 350px;
+    border-radius: 50px;
+    background-color: rgba(255, 255, 255, 0.377);
+}
+.hoursShow{
+    position: absolute;
+    top:195%;
+    left: 25%;
+    column-count: 5; 
+    gap: 90px;
+    margin-top: 25px;
+}
+  
 @media screen and ( max-width: 960px){
     .time{
         background-color: white;
@@ -128,5 +179,42 @@
         border-radius: 10px;
         top: 750vw;
     }
-
+    .boxApp{
+        position: absolute;
+        top: -15%;
+        left: 61%;
+        height: 350px;
+        width: 350px;
+        border-radius: 50px;
+        background-color: rgba(255, 255, 255, 0.377);
+    }
+.sum{
+    position: absolute;
+    margin-top: 20%;
+    left: -92%;
+}
+.showApp{
+    position: absolute;
+    top: 220%;
+    left: 24%;
+    padding: 7px 10px;
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: orange;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 5px #999;
+}
+    .hoursShow{
+        position: absolute;
+        top: 161%;
+        left: 8%;
+        column-count: 4; 
+        gap: 40px;
+        margin-top: 25px;
+        max-height: 420px;
+    }
 }

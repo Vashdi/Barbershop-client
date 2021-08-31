@@ -71,8 +71,6 @@ const checkHours = async (selectedDay, hours, setHoursToShow) => {
         let newHouresToShowFromCurrHour = newHoursToShow;
         if (currDay === ourDay && currMonth === ourMonth && currYear === ourYear) {
             newHouresToShowFromCurrHour = newHoursToShow.filter(theHours => theHours.split(":", 2)[0] - '0' > currHour + 1);
-            const emptyArr = ["pick a time.."];
-            newHouresToShowFromCurrHour = emptyArr.concat(newHouresToShowFromCurrHour);
         }
         setHoursToShow(newHouresToShowFromCurrHour);
     }
