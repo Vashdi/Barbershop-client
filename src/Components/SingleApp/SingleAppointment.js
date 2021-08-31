@@ -3,6 +3,7 @@ import React from 'react'
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useDispatch, useSelector } from 'react-redux';
 import { IconButton, ListItem, ListItemSecondaryAction, ListItemText, Typography } from '@material-ui/core';
+import './SingleAppointment.css'
 
 const SingleAppointment = ({ appointment }) => {
     const storeData = useSelector(state => state);
@@ -23,7 +24,7 @@ const SingleAppointment = ({ appointment }) => {
     return (
         <ListItem>
             <ListItemText
-                primary={<Typography style={{ color: 'black', fontSize: 'x-large' }}>{appointment}</Typography>}
+                primary={<h1 className="appText">{appointment}</h1>}
             />
             <ListItemSecondaryAction>
                 <IconButton edge="end" aria-label="delete">

@@ -1,0 +1,11 @@
+.appText{
+    color: black;
+    font-size: x-large;
+}
+
+@media screen and ( max-width: 960px){
+    .appText{
+        color: black;
+        font-size: large;
+    }    
+}

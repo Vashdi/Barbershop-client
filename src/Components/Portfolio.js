@@ -10,7 +10,6 @@ import { Button, makeStyles } from '@material-ui/core';
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import { useSelector } from 'react-redux';
 import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
 import Swal from 'sweetalert2';
 import SingleHour from './SingleHour';
 import Modal from '@material-ui/core/Modal';
@@ -19,9 +18,11 @@ import Fade from '@material-ui/core/Fade';
 
 const useStylesModal = makeStyles((theme) => ({
     modal: {
-        display: 'flex',
+        marginTop: 150,
         alignItems: 'center',
-        justifyContent: 'center',
+        overflow: 'auto',
+        maxHeight: '440px',
+        borderRadius: '25px'
     },
     paper: {
         backgroundColor: theme.palette.background.paper,
@@ -203,10 +204,6 @@ const Portfolio = (props) => {
             props.disableCallback(false);
         }
     }
-
-    // const handleDelete = async () => {
-    //     appointmentService.deleteAppointment()
-    // }
 
     return (<section id="portfolio">
         {
