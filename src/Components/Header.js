@@ -12,8 +12,26 @@ import Signup from './Signup';
 import { Route, Switch, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+import { makeStyles } from '@material-ui/core/styles';
+
+
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+const useStyles = makeStyles((theme) => ({
+    root: {
+        width: '100%',
+        '& > * + *': {
+            marginTop: theme.spacing(2),
+        },
+    },
+}));
+
 
 const Header = (props) => {
+    const classes = useStyles();
     const [logged, setLogged] = useState(false);
     const [admin, setAdmin] = useState(false);
     const [open, setOpen] = useState(false);
@@ -22,6 +40,19 @@ const Header = (props) => {
     const handleClose = () => setOpen(false);
     const dispatch = useDispatch();
     const storeData = useSelector(state => state);
+    const [openError, setOpenError] = React.useState(false);
+
+    const handleClickError = () => {
+        setOpenError(true);
+    };
+
+    const handleCloseError = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpenError(false);
+    };
 
     const style = {
         position: 'absolute',
@@ -63,13 +94,18 @@ const Header = (props) => {
                 <ul id="nav" className="nav">
                     <h2><li className="current"><a className="smoothscroll" href="#home">בית</a></li>
                         <li><a className="smoothscroll" href="#about">קצת על עצמי</a></li>
-                        {logged ? <li><a className="smoothscroll" href="#appointment">קבע פגישה</a></li> : null}
+                        <li><a className="smoothscroll" href={logged ? "#appointment" : "#login"} onClick={logged ? null : handleClickError}>קבע פגישה</a></li>
                         <li><a className="smoothscroll" href="#Gallery">גלריה</a></li>
                         <li><a className="smoothscroll" href="#price">מחירים</a></li>
                         <li><a className="smoothscroll" href="#shop">חנות</a></li>
                         <li><a className="smoothscroll" href="#contact">צור קשר</a></li>
+                        <Snackbar open={openError} autoHideDuration={2000} onClose={handleCloseError}>
+                            <Alert onClose={handleCloseError} severity="error">
+                                <h6 style={{ marginTop: '-3.5px' }}>!אתה צריך להתחבר קודם</h6>
+                            </Alert>
+                        </Snackbar>
                         {logged ?
-                            <li><a href="/" onClick={logout}>התנתק ,{username}</a></li>
+                            <li><a className="smoothscroll" href="#home" onClick={logout}>התנתק ,{username}</a></li>
                             :
                             <li><Link onClick={handleOpen} to="/signin">התחבר</Link>
                                 <Modal
