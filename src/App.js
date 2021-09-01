@@ -40,18 +40,16 @@ function App() {
     }
 
     return (
-        <>
-            <div className="App">
-                <Header data={main} />
-                <About data={main} />
-                {logged ? <Appointment /> : null}
-                <Gallery />
-                <Price />
-                <Shop />
-                <Contact data={main} />
-                <Footer data={main} />
-            </div>
-        </>
+        <div className="App">
+            <Header data={main} />
+            <About data={main} />
+            {logged ? <Appointment /> : null}
+            <Gallery />
+            <Price />
+            <Shop />
+            <Contact data={main} />
+            <Footer data={main} />
+        </div>
     );
 }
 

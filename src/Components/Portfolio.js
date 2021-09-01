@@ -16,7 +16,6 @@ import SingleHour from './SingleHour';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import xtype from 'xtypejs'
 
 const useStylesModal = makeStyles((theme) => ({
     modal: {
@@ -114,7 +113,7 @@ const Portfolio = (props) => {
             const strictsToDates = strictsForWholeDay.map(strict => new Date(strict.day));
             const newStrictsToShow = newStrict.concat(strictsToDates);
             setHoursToStrict(hoursToStrict);
-            // setNewStrict(newStrictsToShow);
+            setNewStrict(newStrictsToShow);
         }
         start();
     }, [])
@@ -216,7 +215,7 @@ const Portfolio = (props) => {
         {
             storeData.AppointmentReducer.step === 1 &&
             <div>
-                <h1 style={{ marginLeft: 0 }}>בחר שעה</h1>
+                <h1 className="hourTitle">בחר שעה</h1>
                 <div className="hoursShow">
                     {
                         hoursToShow.map((ourHour, index) => {

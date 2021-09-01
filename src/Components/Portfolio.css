@@ -151,11 +151,17 @@
 }
 .hoursShow{
     position: absolute;
-    top:195%;
+    top:185%;
     left: 25%;
     column-count: 5; 
     gap: 90px;
     margin-top: 25px;
+}
+
+.hourTitle{
+    position: absolute;
+    left: 10%;
+    top: 182.5%;
 }
   
 @media screen and ( max-width: 960px){
@@ -217,4 +223,10 @@
         margin-top: 25px;
         max-height: 420px;
     }
+.hourTitle{
+    position: absolute;
+    top: 160%;
+    left: -85%;
+}
+  
 }

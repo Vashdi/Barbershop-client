@@ -127,20 +127,14 @@ const Header = (props) => {
                     </h2>
                 </ul>
             </nav>
-
-            <div class="fullscreen-bg">
-                <video loop muted autoPlay>
-                    <source src="images/sample.mp4" type="video/mp4" />
-                </video>
-            </div>
             <div id="wrapper">
+                <h2 className="titleForSmallMobile"><p className="font">BARBER&nbsp;SHOP&nbsp;SNIR</p></h2>
                 <h4><a className="smoothscroll name" href="#about"><h1 className="title"><p className="font">{name}<i style={{ transform: "rotate(270deg)" }} className="fa fa-cut"></i></p><br />
                     <span><p className="font"><i className="fa fa-cut"></i>SNIR <i className="fa fa-cut"></i></p><br /></span></h1></a></h4>
-            </div>
-            <div className="row banner">
-                <div className="banner-text">
-                    <hr />
-                </div>
+                <hr />
+                <video class="fullscreen-bg" loop muted autoPlay>
+                    <source src="images/sample.mp4" type="video/mp4" />
+                </video>
             </div>
             {
                 logged ? <div className="appointment"><a className="smoothscroll" href="#portfolio"><Button className="appointment" variant="contained" startIcon={<CalendarTodayIcon fontSize="large" />}>

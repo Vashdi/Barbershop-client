@@ -30,11 +30,11 @@ body { background: #0f0f0f; }
 
 header {
    position: relative;
-   height: 800px;
-   min-height: 500px;
    width: 100%;
    text-align: center;
    overflow: hidden;
+   /* display: flex; */
+   /* flex-direction: column; */
 }
 
 
