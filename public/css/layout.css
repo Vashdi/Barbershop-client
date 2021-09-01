@@ -427,7 +427,8 @@ ul#nav li.current a { color: #F06000; }
 
 #price {
    background: #2B2B2B;
-   padding-top: 20px;
+   padding-top: 10px;
+   min-height: 570px;
    padding-bottom: 60px;
    text-align: center;
 }

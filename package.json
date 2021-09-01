@@ -30,7 +30,8 @@
     "react-scripts": "3.4.1",
     "react-whirligig": "^6.6.15",
     "redux": "^4.1.1",
-    "sweetalert2": "^11.1.4"
+    "sweetalert2": "^11.1.4",
+    "xtypejs": "^0.7.1"
   },
   "scripts": {
     "start": "react-scripts start",

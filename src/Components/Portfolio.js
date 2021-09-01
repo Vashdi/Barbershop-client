@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import appService from '../services/appointment';
+import strictService from '../services/Strict';
 import appointmentService from '../services/appointment';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
@@ -15,6 +16,7 @@ import SingleHour from './SingleHour';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
+import xtype from 'xtypejs'
 
 const useStylesModal = makeStyles((theme) => ({
     modal: {
@@ -67,14 +69,15 @@ const Portfolio = (props) => {
     const hours = ["08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00"];
     const [hoursToShow, setHoursToShow] = useState(hours);
     const [myHour, setMyHour] = useState("");
-    const [disable, setDisable] = useState(false);
     const [appToShow, setAppToShow] = useState([]);
     const [phone, setPhone] = useState("");
     const [newStrict, setNewStrict] = useState([{ before: new Date() }, { daysOfWeek: [1, 6] }]);
     const classes = useStyles();
-    const [dense, setDense] = React.useState(false);
+    const [dense, setDense] = useState(false);
     const classesModal = useStylesModal();
-    const [openModal, setOpenModal] = React.useState(false);
+    const [openModal, setOpenModal] = useState(false);
+    const [allStrict, setAllStrict] = useState(" ");
+    const [hoursToStrict, setHoursToStrict] = useState([]);
     const handleOpenModal = () => {
         setOpenModal(true);
     };
@@ -82,7 +85,6 @@ const Portfolio = (props) => {
     const handleCloseModal = () => {
         setOpenModal(false);
     };
-
 
     const handlefinish = () => {
         setSelectedDay(" ");
@@ -97,21 +99,26 @@ const Portfolio = (props) => {
         dispatch({ type: "RESET" });
     }
     // const [admin, setAdmin] = useState(false);
-    // const [adminSelectedDay, setAdminSelectedDay] = useState(" ");
+    const [adminSelectedDay, setAdminSelectedDay] = useState(" ");
     // const userFromStorage = window.localStorage['loggedUser'];
 
-    // const strictDays = () => {
-    //     const newStrictDays = newStrict.concat(adminSelectedDay);
-    //     setNewStrict(newStrictDays);
-    // }
-
+    const strictDays = () => {
+        const newStrictDays = newStrict.concat(adminSelectedDay);
+        setNewStrict(newStrictDays);
+    }
     useEffect(() => {
-        const now = new Date();
-        if (now.getHours() >= 0 && now.getHours() < 0)
-            setDisable(true);
-        else
-            setDisable(false);
+        const start = async () => {
+            const stricts = await strictService.getAllStricts();
+            const strictsForWholeDay = stricts.filter(strict => strict.start === "none" && strict.end === "none");
+            const hoursToStrict = stricts.filter(strict => strict.start !== "none" || strict.end !== "none");
+            const strictsToDates = strictsForWholeDay.map(strict => new Date(strict.day));
+            const newStrictsToShow = newStrict.concat(strictsToDates);
+            setHoursToStrict(hoursToStrict);
+            // setNewStrict(newStrictsToShow);
+        }
+        start();
     }, [])
+
     useEffect(() => {
         if (myHour === "" || myHour === "בחר שעה" || myHour === "pick a time.." || myHour === " ") {
             props.disableCallback(true);
@@ -166,7 +173,7 @@ const Portfolio = (props) => {
     }, [storeData.AuthReducer.user])
 
     useEffect(() => {
-        appService.checkHours(selectedDay, hours, setHoursToShow);
+        appService.checkHours(selectedDay, hours, setHoursToShow, hoursToStrict);
     }, [selectedDay])
 
     const addAppointment = async () => {

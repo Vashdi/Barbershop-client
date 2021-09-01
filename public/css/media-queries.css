@@ -157,7 +157,7 @@
       top: 12px;
       right: 0;
    }
-
+   
    /* display menu panels */
 	#nav-wrap:target > ul#nav	{
 	   display: block;

@@ -66,7 +66,6 @@ const Header = (props) => {
         p: 4,
     };
 
-
     useEffect(() => {
         if (storeData.AuthReducer.user) {
             setUserName(storeData.AuthReducer.user.name);

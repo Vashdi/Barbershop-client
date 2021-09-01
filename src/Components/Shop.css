@@ -1,9 +1,4 @@
-@font-face {
-    font-family: Clip;
-    src: url("https://acupoftee.github.io/fonts/Clip.ttf");
-  }
-  
-  .sign {
+    .sign {
     position: relative;
     display: flex;
     justify-content: center;

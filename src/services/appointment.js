@@ -53,8 +53,11 @@ const update = (id, newObject) => {
     return request.then(response => response.data)
 }
 
-const checkHours = async (selectedDay, hours, setHoursToShow) => {
+const checkHours = async (selectedDay, hours, setHoursToShow, hoursToStrict) => {
     if (selectedDay !== " ") {
+        let newHours = " ";
+        let newHoursToShowAfterAdminStrict = " ";
+        const strictHours = ["10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00"];
         const currDay = new Date().getDate();
         const currMonth = new Date().getMonth() + 1;
         const currYear = new Date().getFullYear();
@@ -62,16 +65,37 @@ const checkHours = async (selectedDay, hours, setHoursToShow) => {
         const ourDay = selectedDay.getDate();
         const ourMonth = selectedDay.getMonth() + 1;
         const ourYear = selectedDay.getFullYear();
+        const searchForHour = hoursToStrict.find(date => new Date(date.day).getDate() === ourDay && new Date(date.day).getFullYear() === ourYear && new Date(date.day).getMonth() === (ourMonth - 1));
+        if (searchForHour != null) {
+            const start = searchForHour.start;
+            const end = searchForHour.end;
+            const startIndex = hours.indexOf(start);
+            const endIndex = hours.indexOf(end);
+            newHours = hours.slice(startIndex, endIndex);
+        }
         const resp = await axios.get(`/appointments/day/${ourDay}`);
         const appForDay = resp.data;
         const appForDayAndMonth = appForDay.filter(app => app.month === ourMonth);
         const appForDayAndMonthAndYear = appForDayAndMonth.filter(app => app.year = ourYear);
         const hoursForDate = appForDayAndMonthAndYear.map(appointment => appointment.hour);
-        const newHoursToShow = hours.filter(theHours => !hoursForDate.includes(theHours));
-        let newHouresToShowFromCurrHour = newHoursToShow;
-        if (currDay === ourDay && currMonth === ourMonth && currYear === ourYear) {
-            newHouresToShowFromCurrHour = newHoursToShow.filter(theHours => theHours.split(":", 2)[0] - '0' > currHour + 1);
+        if (currDay === ourDay && currMonth === ourMonth && currYear === ourYear && currHour >= 0 && currHour < 8) {
+            const newHoursToShow = strictHours.filter(theHours => !hoursForDate.includes(theHours));
+            if (newHours !== " ") {
+                newHoursToShowAfterAdminStrict = newHours.filter(theHours => newHoursToShow.includes(theHours))
+            }
         }
+        else {
+            newHoursToShowAfterAdminStrict = hours.filter(theHours => !hoursForDate.includes(theHours));
+            if (newHours !== " ") {
+                newHoursToShowAfterAdminStrict = newHours.filter(theHours => newHoursToShowAfterAdminStrict.includes(theHours));
+            }
+
+        }
+        let newHouresToShowFromCurrHour = newHoursToShowAfterAdminStrict;
+        if (currDay === ourDay && currMonth === ourMonth && currYear === ourYear) {
+            newHouresToShowFromCurrHour = newHoursToShowAfterAdminStrict.filter(theHours => theHours.split(":", 2)[0] - '0' > currHour + 1);
+        }
+        console.log(newHoursToShowAfterAdminStrict);
         setHoursToShow(newHouresToShowFromCurrHour);
     }
 }
@@ -150,5 +174,6 @@ const deleteAppointment = async (userPhone, appointment) => {
     window.alert(" הפגישה שנקבעה לתאריך ה" + day + "/" + month + "/" + year + " בשעה " + hour + " נמחקה בהצלחה");
     await deleteApp(appToDelete.id);
 }
+
 
 export default { getAll, deleteAppointment, getAllAppointments, sortAppointments, create, update, setToken, checkHours, getByPhone, stringAppointments, deleteApp, sortAppByStringDate, getByDate }
