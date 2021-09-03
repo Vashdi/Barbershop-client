@@ -1,29 +1,6 @@
-    .sign {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
-    height: 50%;
-    background-image: radial-gradient(
-      ellipse 50% 35% at 50% 50%,
-      #6b4718,
-      transparent
-    );
-    transform: translate(-50%, -50%);
-    letter-spacing: 2;
-    left: 48%;
-    top: 15%;
-    font-family: "Clip";
-    text-transform: uppercase;
-    font-size: 6em;
-    color: #ffe6ff;
-    text-shadow: 0 0 0.6rem #fff4e6, 0 0 1.5rem #ffb765,
-        -0.2rem 0.1rem 1rem #ffbc65, 0.2rem 0.1rem 1rem #ffbc65,
-        0 -0.5rem 2rem #ff8724, 0 0.5rem 3rem #ff7c24;
-    animation: shine 2s forwards, flicker 3s infinite;
-  }
-  
+.shopContainer{
+  display: flex;
+}
   @keyframes blink {
     0%,
     22%,
@@ -45,6 +22,32 @@
       text-shadow: none;
     }
   }
+    .sign {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 50%;
+      height: 50%;
+      background-image: radial-gradient(
+        ellipse 50% 35% at 50% 50%,
+        #6b4718,
+        transparent
+      );
+      transform: translate(-50%, -50%);
+      letter-spacing: 2;
+      left: 47%;
+      top: 15%;
+      font-family: "Clip";
+      text-transform: uppercase;
+      font-size: 6em;
+      color: #ffe6ff;
+      text-shadow: 0 0 0.6rem #fff4e6, 0 0 1.5rem #ffb765,
+          -0.2rem 0.1rem 1rem #ffbc65, 0.2rem 0.1rem 1rem #ffbc65,
+          0 -0.5rem 2rem #ff8724, 0 0.5rem 3rem #ff7c24;
+      animation: shine 2s forwards, flicker 3s infinite;
+    }
+  
   
   .flicker {
     animation: shine 2s forwards, blink 3s 2s infinite;
@@ -195,7 +198,7 @@
       opacity: 1;
     }
   }
-  @media screen and ( max-width: 960px){
+  @media screen and (max-width: 960px){
     .sign {
       position: relative;
       display: flex;
@@ -210,7 +213,7 @@
       );
       transform: translate(-50%, -50%);
       letter-spacing: 2;
-      left: 50%;
+      left: 47%;
       top: -110%;
       font-family: "Clip";
       text-transform: uppercase;
@@ -221,10 +224,121 @@
           0 -0.5rem 2rem #ff8724, 0 0.5rem 3rem #ff7c24;
       animation: shine 2s forwards, flicker 3s infinite;
     }
-    .carousel{
-      position: relative;
-      top: 0%;
-      left: 0%;
-    }
-    
   }
+
+  @media screen and ( max-width: 700px){
+    .sign {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 10%;
+      height: 10%;
+      background-image: radial-gradient(
+        ellipse 50% 35% at 50% 50%,
+        #6b4718,
+        transparent
+      );
+      transform: translate(-50%, -50%);
+      letter-spacing: 2;
+      left: 47%;
+      top: -107%;
+      font-family: "Clip";
+      text-transform: uppercase;
+      font-size: 3.6em;
+      color: #ffe6ff;
+      text-shadow: 0 0 0.6rem #fff4e6, 0 0 1.5rem #ffb765,
+          -0.2rem 0.1rem 1rem #ffbc65, 0.2rem 0.1rem 1rem #ffbc65,
+          0 -0.5rem 2rem #ff8724, 0 0.5rem 3rem #ff7c24;
+      animation: shine 2s forwards, flicker 3s infinite;
+    }
+  }
+    @media screen and ( max-width: 620px){
+      .sign {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 10%;
+        height: 10%;
+        background-image: radial-gradient(
+          ellipse 50% 35% at 50% 50%,
+          #6b4718,
+          transparent
+        );
+        transform: translate(-50%, -50%);
+        letter-spacing: 2;
+        left: 47%;
+        top: -100%;
+        font-family: "Clip";
+        text-transform: uppercase;
+        font-size: 3.6em;
+        color: #ffe6ff;
+        text-shadow: 0 0 0.6rem #fff4e6, 0 0 1.5rem #ffb765,
+            -0.2rem 0.1rem 1rem #ffbc65, 0.2rem 0.1rem 1rem #ffbc65,
+            0 -0.5rem 2rem #ff8724, 0 0.5rem 3rem #ff7c24;
+        animation: shine 2s forwards, flicker 3s infinite;
+      }
+      .titleSize{
+        font-size: 3rem;
+      }
+    }
+    @media screen and ( max-width: 540px){
+      .sign {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 10%;
+        height: 10%;
+        background-image: radial-gradient(
+          ellipse 50% 35% at 50% 50%,
+          #6b4718,
+          transparent
+        );
+        transform: translate(-50%, -50%);
+        letter-spacing: 2;
+        left: 47%;
+        top: -90%;
+        font-family: "Clip";
+        text-transform: uppercase;
+        font-size: 3.6em;
+        color: #ffe6ff;
+        text-shadow: 0 0 0.6rem #fff4e6, 0 0 1.5rem #ffb765,
+            -0.2rem 0.1rem 1rem #ffbc65, 0.2rem 0.1rem 1rem #ffbc65,
+            0 -0.5rem 2rem #ff8724, 0 0.5rem 3rem #ff7c24;
+        animation: shine 2s forwards, flicker 3s infinite;
+      }
+    }
+
+    @media screen and ( max-width: 450px){
+      .sign {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 10%;
+        height: 10%;
+        background-image: radial-gradient(
+          ellipse 50% 35% at 50% 50%,
+          #6b4718,
+          transparent
+        );
+        transform: translate(-50%, -50%);
+        letter-spacing: 2;
+        left: 47%;
+        top: -110%;
+        font-family: "Clip";
+        text-transform: uppercase;
+        font-size: 3.6em;
+        color: #ffe6ff;
+        text-shadow: 0 0 0.6rem #fff4e6, 0 0 1.5rem #ffb765,
+            -0.2rem 0.1rem 1rem #ffbc65, 0.2rem 0.1rem 1rem #ffbc65,
+            0 -0.5rem 2rem #ff8724, 0 0.5rem 3rem #ff7c24;
+        animation: shine 2s forwards, flicker 3s infinite;
+      }
+    }
+
+  
+
+  

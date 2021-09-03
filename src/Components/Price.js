@@ -3,9 +3,9 @@ import './Price.css'
 
 const Price = () => {
     return (<section id="price">
-        <p className="priceTitle">מחירון מספרה</p>
-        <div className="bPosition">
-            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+        <h1 className="priceTitle">מחירון&nbsp;מספרה</h1>
+        <div className="priceContainer">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6" className="pricingCard">
                 <div class="pricing-plan">
                     <div class="pricing-header">
                         <h4 class="pricing-title">Starter</h4>
@@ -20,9 +20,7 @@ const Price = () => {
                     </ul>
                 </div>
             </div>
-        </div>
-        <div className="cPosition">
-            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6" className="pricingCard">
                 <div class="pricing-plan">
                     <div class="pricing-header red">
                         <h4 class="pricing-title">Basic</h4>
@@ -37,10 +35,7 @@ const Price = () => {
                     </ul>
                 </div>
             </div>
-        </div>
-        <div className="aPosition">
-
-            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12" className="pricingCard">
                 <div class="pricing-plan">
                     <div class="pricing-header secondary">
                         <h4 class="pricing-title">Ultra</h4>
@@ -57,7 +52,6 @@ const Price = () => {
                 </div>
             </div>
         </div>
-
     </section >)
 }
 

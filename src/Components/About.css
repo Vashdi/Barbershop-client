@@ -1,0 +1,33 @@
+.Aboutcontainer{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: auto;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+.bio{
+    flex: 2;
+}
+.aboutImg{
+    width: 100%;
+    flex:1;
+}
+
+.barbershop{
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+
+@media only screen and (max-width: 500px) {
+    .Aboutcontainer{
+        display: flex;
+        flex-direction: column;
+        padding-left: 0;
+        margin-left: 0;
+    }
+    .bio{
+        order: 4;
+    }
+}

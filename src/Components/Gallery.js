@@ -3,9 +3,7 @@ import './Gallery.css'
 import ModalImage from "react-modal-image";
 
 const Gallery = () => {
-    let whirligig;
-    const next = () => whirligig.next()
-    const prev = () => whirligig.prev()
+
     const photos = [{
         url: "/images/picture1.jpg",
         name: "cream"

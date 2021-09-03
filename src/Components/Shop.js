@@ -12,10 +12,11 @@ import './Shop.css'
 
 const useStyles = makeStyles({
     root: {
-        marginLeft: 30,
+        marginLeft: '5%',
         maxWidth: 345,
         borderRadius: '50px'
     },
+
 });
 
 const Shop = () => {
@@ -23,19 +24,19 @@ const Shop = () => {
     const responsive = {
         superLargeDesktop: {
             // the naming can be any, depends on you.
-            breakpoint: { max: 4000, min: 3000 },
-            items: 5
+            breakpoint: { max: 2500, min: 1500 },
+            items: 4
         },
         desktop: {
-            breakpoint: { max: 3000, min: 1024 },
+            breakpoint: { max: 1500, min: 960 },
             items: 3
         },
         tablet: {
-            breakpoint: { max: 1024, min: 464 },
+            breakpoint: { max: 960, min: 450 },
             items: 2
         },
         mobile: {
-            breakpoint: { max: 960, min: 0 },
+            breakpoint: { max: 450, min: 0 },
             items: 1
         }
     };
@@ -72,7 +73,7 @@ const Shop = () => {
 
     return (
         <section id="shop">
-            <Carousel className="carousel" responsive={responsive}>
+            <Carousel className="shopContainer" responsive={responsive}>
                 {
                     images.map((image, index) => {
                         return <Card key={index} className={classes.root}>
@@ -86,7 +87,7 @@ const Shop = () => {
                                 />
                                 <CardContent style={{ textAlign: 'center' }}>
                                     <Typography gutterBottom variant="h5" component="h2">
-                                        <h1>{image.name}</h1>
+                                        <h1 className="titleSize">{image.name}</h1>
                                     </Typography>
                                     <Typography variant="body2" color="textSecondary" component="p">
                                         <h3>{image.price}</h3>

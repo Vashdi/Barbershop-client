@@ -38,13 +38,7 @@ header {
 }
 
 
-/* vertically center banner section */
-header:before {
-   content: '';
-   display: inline-block;
-   vertical-align: middle;
-   height: 100%;
-}
+
 header .banner {
    display: inline-block;
    vertical-align: middle;
@@ -55,7 +49,7 @@ header .banner {
    padding-left: 10%;
 }
 
-header .banner-text { width: 100%; }
+/* header .banner-text { width: 100%; }
 header .banner-text h1 {
    font: 90px/1.1em 'opensans-bold', sans-serif;
    color: #fff;
@@ -111,7 +105,7 @@ header .banner-text hr {
       border-color: #2F2D2E;
       border-color: rgba(150, 150, 150, .1);
    }
-}
+} */
 
 /* header social links */
 header .social {
@@ -221,13 +215,10 @@ ul#nav li.current a { color: #F06000; }
 
 #about {
    background:#2B2B2B;
-   padding-top: 96px;
-   padding-bottom: 66px;
    overflow: hidden;
-   text-align: left;
 }
 
-@media screen and ( max-width: 960px){
+/* @media screen and ( max-width: 960px){
    #about {
       background: #2B2B2B;
       padding-top: 20px;
@@ -235,9 +226,9 @@ ul#nav li.current a { color: #F06000; }
       overflow: hidden;
       text-align: left;
    }
-}
+} */
 
-#about a, #about a:visited  { color: #fff; }
+/* #about a, #about a:visited  { color: #fff; }
 #about a:hover, #about a:focus { color: rgb(212, 17, 11); }
 
 #about h2 {
@@ -273,7 +264,7 @@ ul#nav li.current a { color: #F06000; }
    margin-right: 15px;
    font-size: 20px;
 }
-
+ */
 
 /* ------------------------------------------------------------------ */
 /* d. Gallery Section
@@ -305,7 +296,7 @@ ul#nav li.current a { color: #F06000; }
       text-align: left;
    }
 }
-
+/* 
 #Gallery a, #Gallery a:visited  { color: #11ABB0; }
 #Gallery a:hover, #Gallery a:focus { color: #313131; }
 
@@ -314,11 +305,11 @@ ul#nav li.current a { color: #F06000; }
    text-transform: uppercase;
    letter-spacing: 1px;
 }
-#Gallery h1 span {
+/* #Gallery h1 span {
    border-bottom: 3px solid rgb(204, 56, 19);
    padding-bottom: 6px;
-}
-#Gallery h3 {
+} */
+/* #Gallery h3 {
    font: 25px/30px 'opensans-bold', sans-serif;
 }
 #Gallery h5 {
@@ -359,12 +350,12 @@ ul#nav li.current a { color: #F06000; }
    color: #6E7881;
    margin-bottom: 18px;
    margin-top: 9px;
-}
-#Gallery .info span {
+} */ */
+/* #Gallery .info span {
    margin-right: 5px;
    margin-left: 5px;
-}
-#Gallery .date {
+} */
+/* #Gallery .date {
    font: 15px/24px 'opensans-regular', sans-serif;
    margin-top: 6px;
 }
@@ -374,7 +365,7 @@ ul#nav li.current a { color: #F06000; }
    font-size: 100%;
    display: block;
    box-sizing: border-box;
-}
+} */
 
 /*----------------------------------------------*/
 /*	Skill Bars
@@ -426,6 +417,10 @@ ul#nav li.current a { color: #F06000; }
 /* ------------------------------------------------------------------ */
 
 #price {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
    background: #2B2B2B;
    padding-top: 10px;
    min-height: 570px;
@@ -869,19 +864,14 @@ call-to-action .button {
 
 #contact {
    background: #2B2B2B;
-   padding-top: 0px;
-   height: 590px;
+   padding-bottom: 30px;
    color: #636363;
 }
 
 @media screen and ( max-width: 960px){
    #contact {
       background: #191919;
-      height: 500px;
-      padding-top: 0px;
-      padding-bottom: 0px;
       color: #636363;
-      text-align: left ;
    }
 }
 /* ------------------------------------------------------------------ */

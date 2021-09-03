@@ -87,68 +87,75 @@ const Header = (props) => {
 
     return (
         <header id="home">
-            <nav id="nav-wrap">
-                <a className="mobile-btn" href="#nav-wrap" title="Show navigation">Show navigation</a>
-                <a className="mobile-btn" href="#home" title="Hide navigation">Hide navigation</a>
-                <ul id="nav" className="nav">
-                    <h2><li className="current"><a className="smoothscroll" href="#home">בית</a></li>
-                        <li><a className="smoothscroll" href="#about">קצת על עצמי</a></li>
-                        <li><a className="smoothscroll" href={logged ? "#appointment" : "#login"} onClick={logged ? null : handleClickError}>קבע פגישה</a></li>
-                        <li><a className="smoothscroll" href="#Gallery">גלריה</a></li>
-                        <li><a className="smoothscroll" href="#price">מחירים</a></li>
-                        <li><a className="smoothscroll" href="#shop">חנות</a></li>
-                        <li><a className="smoothscroll" href="#contact">צור קשר</a></li>
-                        <Snackbar open={openError} autoHideDuration={2000} onClose={handleCloseError}>
-                            <Alert onClose={handleCloseError} severity="error">
-                                <h6 style={{ marginTop: '-3.5px' }}>!אתה צריך להתחבר קודם</h6>
-                            </Alert>
-                        </Snackbar>
-                        {logged ?
-                            <li><a className="smoothscroll" href="#home" onClick={logout}>התנתק ,{username}</a></li>
-                            :
-                            <li><Link onClick={handleOpen} to="/signin">התחבר</Link>
-                                <Modal
-                                    open={open}
-                                    onClose={handleClose}
-                                    aria-labelledby="modal-modal-title"
-                                    aria-describedby="modal-modal-description"
-                                >
-                                    <Box style={{ background: 'whitesmoke', borderRadius: '15px' }} sx={style}>
-                                        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                                            <Switch>
-                                                <Route path="/signin" component={Signin} />
-                                                <Route path="/signup" component={Signup} />
-                                            </Switch>
-                                        </Typography>
-                                    </Box>
-                                </Modal>
-                            </li>
-                        }
-                    </h2>
-                </ul>
-            </nav>
             <div id="wrapper">
-                <h2 className="titleForSmallMobile"><p className="font">BARBER&nbsp;SHOP&nbsp;SNIR</p></h2>
-                <h4><a className="smoothscroll name" href="#about"><h1 className="title"><p className="font">{name}<i style={{ transform: "rotate(270deg)" }} className="fa fa-cut"></i></p><br />
-                    <span><p className="font"><i className="fa fa-cut"></i>SNIR <i className="fa fa-cut"></i></p><br /></span></h1></a></h4>
-                <hr />
+                <nav id="nav-wrap">
+                    <a className="mobile-btn" href="#nav-wrap" title="Show navigation">Show navigation</a>
+                    <a className="mobile-btn" href="#home" title="Hide navigation">Hide navigation</a>
+                    <ul id="nav" className="nav">
+                        <h2><li className="current"><a className="smoothscroll" href="#home">בית</a></li>
+                            <li><a className="smoothscroll" href="#about">קצת על עצמי</a></li>
+                            <li><a className="smoothscroll" href={logged ? "#appointment" : "#login"} onClick={logged ? null : handleClickError}>קבע פגישה</a></li>
+                            <li><a className="smoothscroll" href="#Gallery">גלריה</a></li>
+                            <li><a className="smoothscroll" href="#price">מחירים</a></li>
+                            <li><a className="smoothscroll" href="#shop">חנות</a></li>
+                            <li><a className="smoothscroll" href="#contact">צור קשר</a></li>
+                            <Snackbar open={openError} autoHideDuration={2000} onClose={handleCloseError}>
+                                <Alert onClose={handleCloseError} severity="error">
+                                    <h6 style={{ marginTop: '-3.5px' }}>!אתה צריך להתחבר קודם</h6>
+                                </Alert>
+                            </Snackbar>
+                            {logged ?
+                                <li><a className="smoothscroll" href="#home" onClick={logout}>התנתק ,{username}</a></li>
+                                :
+                                <li><Link onClick={handleOpen} to="/signin">התחבר</Link>
+                                    <Modal
+                                        open={open}
+                                        onClose={handleClose}
+                                        aria-labelledby="modal-modal-title"
+                                        aria-describedby="modal-modal-description"
+                                    >
+                                        <Box style={{ background: 'whitesmoke', borderRadius: '15px' }} sx={style}>
+                                            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                                                <Switch>
+                                                    <Route path="/signin" component={Signin} />
+                                                    <Route path="/signup" component={Signup} />
+                                                </Switch>
+                                            </Typography>
+                                        </Box>
+                                    </Modal>
+                                </li>
+                            }
+                        </h2>
+                    </ul>
+                </nav>
                 <video class="fullscreen-bg" loop muted autoPlay>
                     <source src="images/sample.mp4" type="video/mp4" />
                 </video>
-            </div>
-            {
-                logged ? <div className="appointment"><a className="smoothscroll" href="#portfolio"><Button className="appointment" variant="contained" startIcon={<CalendarTodayIcon fontSize="large" />}>
-                    <h3> קבע תור</h3>
-                </Button >
-                </a ></div> :
-                    <div className="appointment"><Link onClick={handleOpen} to="/signin"><Button className="appointment" variant="contained" startIcon={<CalendarTodayIcon fontSize="large" />}>
-                        < h3 > קבע תור</h3>
+                {/* <h2 className="titleForSmallMobile"><p className="font">BARBER&nbsp;SHOP&nbsp;SNIR</p></h2> */}
+                <div className="title">
+                    <a className="smoothscroll" href="#about">
+                        <h1 className="font">
+                            SNIR&nbsp;BARBER&nbsp;SHOP
+                        </h1>
+                    </a>
+                    {/* <hr /> */}
+                </div>
+
+                {
+                    logged ? <div className="appointment"><a className="smoothscroll" href="#portfolio"><Button className="appointment" variant="contained" startIcon={<CalendarTodayIcon fontSize="large" />}>
+                        קבע תור
                     </Button >
-                    </Link></div>
-            }
-            <p className="scrolldown">
-                <a className="smoothscroll" href="#about"><i className="icon-down-circle"></i></a>
-            </p>
+                    </a ></div> :
+                        <div className="appointment"><Link onClick={handleOpen} to="/signin"><Button className="appointment" variant="contained" startIcon={<CalendarTodayIcon fontSize="large" />}>
+                            קבע תור
+                        </Button >
+                        </Link></div>
+                }
+                <p className="scrolldown">
+                    <a className="smoothscroll" href="#about"><i className="icon-down-circle"></i></a>
+                </p>
+            </div>
+
         </header >
     )
 
