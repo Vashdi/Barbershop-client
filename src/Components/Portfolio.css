@@ -1,11 +1,17 @@
 @import url("https://cdn.syncfusion.com/ej2/material.css");
 
+.appointmentContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+
 .time{
     background-color: white;
-    width: 30%;
-    height: 75%;
-    margin-left: 1.5%;
-    margin-top: -2%;
     font-size: 2rem;
    }
 .app_img{
@@ -104,28 +110,33 @@
     right: 30px;
 }
 .clientNextApp{
-    color:orange;
-    transform: scale(1);
+    color:#F06000;
     text-align: center;
     margin-bottom: 10px;
 }
 
 .sum{
-    position: absolute;
-    left: 8.5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 5%;
+}
+
+.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
+    position: relative;
+    background-color: #F06000 !important;
+    color: #F0F8FF;
 }
 
 .showApp{
-    position: absolute;
-    top: 243%;
-    left: 41.5%;
     padding: 10px 20px;
     font-size: 24px;
     text-align: center;
     cursor: pointer;
     outline: none;
     color: #fff;
-    background-color: orange;
+    background-color: #F06000;
     border: none;
     border-radius: 15px;
     box-shadow: 0 9px #999;
@@ -140,31 +151,73 @@
     transform: translateY(4px);
   }
 
+  .hourButton{
+    border-radius: 30px;
+
+    border: 2px solid #F06000 ;
+}
+
+.hourButton:hover{
+    cursor: pointer;
+    box-shadow: 0 2px 2px 0 #F06000, 0 2px 2px 0 #F06000;
+}
+
+.hourButton:active {
+    background-color: #F06000;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+
+
 .boxApp{
-    position: absolute;
-    top: -12%;
-    left: 61%;
-    height: 350px;
-    width: 350px;
     border-radius: 50px;
     background-color: rgba(255, 255, 255, 0.377);
 }
 .hoursShow{
-    position: absolute;
-    top:185%;
-    left: 25%;
-    column-count: 5; 
-    gap: 90px;
-    margin-top: 25px;
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    grid-template-rows: auto;
+    align-items: center;
+    text-align: center;
+    padding-right: 30%;
+    padding-bottom: 15%;
+    gap: 10%;
+}
+.hourTitle{
+    color: #F06000;
 }
 
-.hourTitle{
-    position: absolute;
-    left: 10%;
-    top: 182.5%;
+.hoursContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 10%;
+}
+
+@media screen and ( max-width: 400px){
+
+    .hoursShow{
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        grid-template-rows: auto;
+        align-items: center;
+        text-align: center;
+        padding-right: 30%;
+        gap: 10%;
+    }
+
+    .hoursContainer{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding-bottom: 30%;
+    }
+
 }
   
-@media screen and ( max-width: 960px){
+/* @media screen and ( max-width: 960px){
     .time{
         background-color: white;
         position:absolute;
@@ -209,7 +262,7 @@
     cursor: pointer;
     outline: none;
     color: #fff;
-    background-color: orange;
+    background-color: #F06000;
     border: none;
     border-radius: 15px;
     box-shadow: 0 5px #999;
@@ -229,4 +282,4 @@
     left: -85%;
 }
   
-}
+} */

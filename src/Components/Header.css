@@ -18,7 +18,7 @@
 }
 .font {
     font-family: 'Rampart One', cursive;
-    color:orange;
+    color:#F06000;
     font-size: 2rem;
     transform: rotate(360deg);
 }
@@ -91,7 +91,7 @@
     position: absolute;
     top: 0%;
     left: 0%; 
-    color: orange;
+    color: #F06000;
     animation: animateButton 5s;
 }
 
@@ -172,7 +172,7 @@ h4:hover {
         position: absolute;
         top: -5%;
         left: -20%; 
-        color: orange;
+        color: #F06000;
         transform: scale(0.5);
     }
 

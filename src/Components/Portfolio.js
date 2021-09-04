@@ -55,7 +55,6 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(4, 0, 2),
     },
     button: {
-        marginLeft: '500px'
 
     }
 }));
@@ -212,87 +211,88 @@ const Portfolio = (props) => {
     }
 
     return (<section id="portfolio">
-        {
-            storeData.AppointmentReducer.step === 1 &&
-            <div>
-                <h1 className="hourTitle">בחר שעה</h1>
-                <div className="hoursShow">
-                    {
-                        hoursToShow.map((ourHour, index) => {
-                            return <SingleHour key={index} hour={ourHour} callback={(data) => setMyHour(data)} />
-                        })
-                    }
-                </div>
-
-            </div>
-        }
-        {
-            storeData.AppointmentReducer.step === 0 &&
-            <>
-                <DayPicker className="time" disabledDays={newStrict} onDayClick={handleDayClick} selectedDays={selectedDay} /><br /><br />
-            </>
-        }
-
-        {
-            storeData.AppointmentReducer.step === 2 &&
-            <div className="sum">
-                <div class="boxApp"></div>
-                <h1 style={{ marginBottom: '40px' }}>:התור שנבחר</h1>
-                <h3>:תאריך</h3>
-                <h3 style={{ color: 'white' }}>{selectedDay.getDate() + "/" + (selectedDay.getMonth() + 1) + "/" + selectedDay.getFullYear()}</h3>
-                <h3>:שעה</h3>
-                <h3 style={{ color: 'white' }}>{myHour}</h3><br />
-                <Button
-                    variant="contained"
-                    color="primary"
-                    className={classes.button}
-                    endIcon={<AssignmentTurnedInIcon>send</AssignmentTurnedInIcon>}
-                    onClick={handlefinish}
-                >
-                    Send
-                </Button><br />
-                <Button
-                    variant="contained"
-                    color="secondary"
-                    className={classes.button}
-                    onClick={handleReset}
-                >
-                    Reset
-                </Button>
-            </div>
-        }
-        <div>
-            <button className="showApp" onClick={handleOpenModal}>
-                התורים הקרובים שלי
-            </button>
-            <Modal
-                aria-labelledby="transition-modal-title"
-                aria-describedby="transition-modal-description"
-                className={classesModal.modal}
-                open={openModal}
-                onClose={handleCloseModal}
-                closeAfterTransition
-                BackdropComponent={Backdrop}
-                BackdropProps={{
-                    timeout: 500,
-                }}
-            >
-                <Fade in={openModal}>
-                    <div className={classesModal.paper}>
-                        <h2 id="transition-modal-title"><p className="clientNextApp"> התורים הקרובים שלי</p></h2>
-                        <p id="transition-modal-description"><div className={classes.demo}>
-                            <List dense={dense}>
-                                {appToShow.map((apps, index) => {
-                                    return (<SingleAppointment key={index} appointment={apps} />)
-                                })}
-                            </List>
-                        </div></p>
+        <div className="appointmentContainer">
+            {
+                storeData.AppointmentReducer.step === 1 &&
+                <div className="hoursContainer">
+                    <h2 className="hourTitle">בחר שעה</h2>
+                    <div className="hoursShow">
+                        {
+                            hoursToShow.map((ourHour, index) => {
+                                return <input key={index} className="hourButton" type="button" onClick={() => setMyHour(ourHour)} value={ourHour} />
+                            })
+                        }
                     </div>
-                </Fade>
-            </Modal>
+
+                </div>
+            }
+            {
+                storeData.AppointmentReducer.step === 0 &&
+                <>
+                    <DayPicker className="time" disabledDays={newStrict} onDayClick={handleDayClick} selectedDays={selectedDay} /><br /><br />
+                </>
+            }
+
+            {
+                storeData.AppointmentReducer.step === 2 &&
+                <div className="sum">
+                    <div class="boxApp"></div>
+                    <h2 className="hourTitle" style={{ marginBottom: '40px' }}>התור שנבחר</h2>
+                    <h4 className="hourTitle">:תאריך</h4>
+                    <h4 className="hourTitle">{selectedDay.getDate() + "/" + (selectedDay.getMonth() + 1) + "/" + selectedDay.getFullYear()}</h4>
+                    <h4 className="hourTitle">:שעה</h4>
+                    <h4 className="hourTitle">{myHour}</h4><br />
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        className={classes.button}
+                        endIcon={<AssignmentTurnedInIcon>send</AssignmentTurnedInIcon>}
+                        onClick={handlefinish}
+                    >
+                        Send
+                    </Button><br />
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        className={classes.button}
+                        onClick={handleReset}
+                    >
+                        Reset
+                    </Button>
+                </div>
+            }
+            <div>
+                <button className="showApp" onClick={handleOpenModal}>
+                    התורים הקרובים שלי
+                </button>
+                <Modal
+                    aria-labelledby="transition-modal-title"
+                    aria-describedby="transition-modal-description"
+                    className={classesModal.modal}
+                    open={openModal}
+                    onClose={handleCloseModal}
+                    closeAfterTransition
+                    BackdropComponent={Backdrop}
+                    BackdropProps={{
+                        timeout: 500,
+                    }}
+                >
+                    <Fade in={openModal}>
+                        <div className={classesModal.paper}>
+                            <h2 id="transition-modal-title"><p className="clientNextApp"> התורים הקרובים שלי</p></h2>
+                            <p id="transition-modal-description"><div className={classes.demo}>
+                                <List dense={dense}>
+                                    {appToShow.map((apps, index) => {
+                                        return (<SingleAppointment key={index} appointment={apps} />)
+                                    })}
+                                </List>
+                            </div></p>
+                        </div>
+                    </Fade>
+                </Modal>
+            </div>
+
         </div>
-
-
         {/* {
             admin ? <div>
                 <DayPicker className="time_table" selectedDays={adminSelectedDay} />

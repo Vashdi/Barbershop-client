@@ -112,7 +112,7 @@ p {
   z-index: 9;
   height: 2px;
   width: 100%;
-  background-color: orange;
+  background-color: #F06000;
 }
 .btn > * > *:before {
   top: 0;
@@ -131,7 +131,7 @@ p {
   z-index: 9;
   height: 100%;
   width: 2px;
-  background-color: orange;
+  background-color: #F06000;
 }
 .btn > * > * > *:before {
   left: 0;
