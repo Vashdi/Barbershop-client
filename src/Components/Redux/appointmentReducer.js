@@ -7,7 +7,6 @@ const AppointmentReducer = (state = { appointments: [], step: 0 }, action) => {
             return { ...state, appointments: action.payload }
 
         case "DELETE":
-            state.appointments = state.appointments.filter(app => app.id !== action.payload);
             return { ...state, appointments: state.appointments.filter(app => app.id !== action.payload) };
 
         case "NEXT":

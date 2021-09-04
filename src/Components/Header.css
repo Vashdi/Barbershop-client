@@ -1,7 +1,57 @@
+.bwrapper{
+    transform: translate(-50%, -50%);
+    grid-row-start: 3;
+    grid-column-start: 6;
+    padding-bottom: 40%;
+    padding-left: 11%;
+  }
+  
+  .hoverButton{
+    display: block;
+    width: 200px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 18px;
+    font-family: sans-serif;
+    text-decoration: none;
+    color: #333;
+    border: 2px solid #333;
+    letter-spacing: 2px;
+    text-align: center;
+    position: relative;
+    transition: all .35s;
+  }
+  
+  .hoverButton span{
+    position: relative;
+    z-index: 2;
+  }
+  
+  .hoverButton:after{
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: #F06000;
+    transition: all .35s;
+  }
+  
+  .hoverButton:hover{
+    color: #fff;
+  }
+  
+  .hoverButton:hover:after{
+    width: 100%;
+  }
+
 #wrapper {
     display: grid;
     grid-template-columns: repeat(10,1fr);
     grid-template-rows: auto;
+    align-items: center;
+    text-align: center;
     height: 80vh;
     width: 100vw;
 }
@@ -15,6 +65,7 @@
     grid-row-end: 2;
     grid-column-start: 1;
     grid-column-end: 3;
+    padding-top: 20%;
 }
 .font {
     font-family: 'Rampart One', cursive;

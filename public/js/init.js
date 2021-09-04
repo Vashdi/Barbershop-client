@@ -5,208 +5,208 @@
 -----------------------------------------------------------------------------------*/
 jQuery(document).ready(function ($) {
 
-   /*----------------------------------------------------*/
-   /* FitText Settings
-   ------------------------------------------------------ */
+    /*----------------------------------------------------*/
+    /* FitText Settings
+    ------------------------------------------------------ */
 
-   setTimeout(function () {
-      $('h1.responsive-headline').fitText(1, { minFontSize: '40px', maxFontSize: '90px' });
-   }, 100);
-
-
-   /*----------------------------------------------------*/
-   /* Smooth Scrolling
-   ------------------------------------------------------ */
-
-   $('.smoothscroll').on('click', function (e) {
-      e.preventDefault();
-
-      var target = this.hash,
-         $target = $(target);
-
-      $('html, body').stop().animate({
-         'scrollTop': $target.offset().top
-      }, 800, 'swing', function () {
-         window.location.hash = target;
-      });
-   });
+    setTimeout(function () {
+        $('h1.responsive-headline').fitText(1, { minFontSize: '40px', maxFontSize: '90px' });
+    }, 100);
 
 
-   /*----------------------------------------------------*/
-   /* Highlight the current section in the navigation bar
-   ------------------------------------------------------*/
+    /*----------------------------------------------------*/
+    /* Smooth Scrolling
+    ------------------------------------------------------ */
 
-   var sections = $("section");
-   var navigation_links = $("#nav-wrap a");
+    $('.smoothscroll').on('click', function (e) {
+        e.preventDefault();
 
-   sections.waypoint({
+        var target = this.hash,
+            $target = $(target);
 
-      handler: function (event, direction) {
-
-         var active_section;
-
-         active_section = $(this);
-         if (direction === "up") active_section = active_section.prev();
-
-         var active_link = $('#nav-wrap a[href="#' + active_section.attr("id") + '"]');
-
-         navigation_links.parent().removeClass("current");
-         active_link.parent().addClass("current");
-
-      },
-      offset: '35%'
-
-   });
+        $('html, body').stop().animate({
+            'scrollTop': $target.offset().top
+        }, 800, 'swing', function () {
+            window.location.hash = target;
+        });
+    });
 
 
-   /*----------------------------------------------------*/
-   /*	Make sure that #header-background-image height is
-   /* equal to the browser height.
-   ------------------------------------------------------ */
+    /*----------------------------------------------------*/
+    /* Highlight the current section in the navigation bar
+    ------------------------------------------------------*/
 
-   // $('header').css({ 'height': $(window).height() });
-   // $(window).on('resize', function () {
+    var sections = $("section");
+    var navigation_links = $("#nav-wrap a");
 
-   //    $('header').css({ 'height': $(window).height() });
-   //    $('body').css({ 'width': $(window).width() })
-   // });
+    sections.waypoint({
 
+        handler: function (event, direction) {
 
-   /*----------------------------------------------------*/
-   /*	Fade In/Out Primary Navigation
-   ------------------------------------------------------*/
+            var active_section;
 
-   $(window).on('scroll', function () {
+            active_section = $(this);
+            if (direction === "up") active_section = active_section.prev();
 
-      var h = $('header').height();
-      var y = $(window).scrollTop();
-      var nav = $('#nav-wrap');
+            var active_link = $('#nav-wrap a[href="#' + active_section.attr("id") + '"]');
 
-      if ((y > h * .20) && (y < h) && ($(window).outerWidth() > 768)) {
-         nav.fadeOut('slow');
-      }
-      else {
-         if (y < h * .20) {
-            nav.removeClass('opaque').fadeIn('slow');
-         }
-         else {
-            nav.addClass('opaque').fadeIn('slow');
-         }
-      }
+            navigation_links.parent().removeClass("current");
+            active_link.parent().addClass("current");
 
-   });
+        },
+        offset: '35%'
+
+    });
 
 
-   /*----------------------------------------------------*/
-   /*	Modal Popup
-   ------------------------------------------------------*/
+    /*----------------------------------------------------*/
+    /*	Make sure that #header-background-image height is
+    /* equal to the browser height.
+    ------------------------------------------------------ */
 
-   $('.item-wrap a').magnificPopup({
+    // $('header').css({ 'height': $(window).height() });
+    // $(window).on('resize', function () {
 
-      type: 'inline',
-      fixedContentPos: false,
-      removalDelay: 200,
-      showCloseBtn: false,
-      mainClass: 'mfp-fade'
-
-   });
-
-   $(document).on('click', '.popup-modal-dismiss', function (e) {
-      e.preventDefault();
-      $.magnificPopup.close();
-   });
+    //    $('header').css({ 'height': $(window).height() });
+    //    $('body').css({ 'width': $(window).width() })
+    // });
 
 
-   /*----------------------------------------------------*/
-   /*	Flexslider
-   /*----------------------------------------------------*/
-   $('.flexslider').flexslider({
-      namespace: "flex-",
-      controlsContainer: ".flex-container",
-      animation: 'slide',
-      controlNav: true,
-      directionNav: false,
-      smoothHeight: true,
-      slideshowSpeed: 7000,
-      animationSpeed: 600,
-      randomize: false,
-   });
+    /*----------------------------------------------------*/
+    /*	Fade In/Out Primary Navigation
+    ------------------------------------------------------*/
 
-   /*----------------------------------------------------*/
-   /*	contact form
-   ------------------------------------------------------*/
+    $(window).on('scroll', function () {
 
-   // $('form#contactForm button.submit').click(function() {
-   //    console.log("TEST1")
-   //    $('#image-loader').fadeIn();
+        var h = $('header').height();
+        var y = $(window).scrollTop();
+        var nav = $('#nav-wrap');
 
-   //    var name = $('#contactForm #contactName').val();
-   //    var email = $('#contactForm #contactEmail').val();
-   //    var subject = $('#contactForm #contactSubject').val();
-   //    var message = $('#contactForm #contactMessage').val();
+        if ((y > h * .20) && (y < h) && ($(window).outerWidth() > 768)) {
+            nav.fadeOut('slow');
+        }
+        else {
+            if (y < h * .20) {
+                nav.removeClass('opaque').fadeIn('slow');
+            }
+            else {
+                nav.addClass('opaque').fadeIn('slow');
+            }
+        }
 
-   //    var data = {
-   //       name: {name},
-   //       email: {email},
-   //       subject: {subject},
-   //       message: {message},
-   //    }
-
-   //    console.log(data)
-
-   //    // {
-   //    //    method: "POST", 
-   //    //    url:"http://localhost:3002/send", 
-   //    //    data:  data
-   //    //  }
-   //             axios.post('http://localhost:3002/send', data).then((response)=>{
-   //                console.log(data)
-   //                if (response.data.status === 'success'){
-   //                  alert("Message Sent."); 
-   //                  this.resetForm()
-   //                   $('#image-loader').fadeOut();
-   //                   $('#message-warning').hide();
-   //                   $('#contactForm').fadeOut();
-   //                   $('#message-success').fadeIn();
-   //                }else if(response.data.status === 'fail'){
-   //                   alert("Message failed to send.")
-   //                   $('#image-loader').fadeOut();
-   //                   //$('#message-warning').html(msg);
-   //                   $('#message-warning').fadeIn();
-   //                }
-   //              })
+    });
 
 
-   //    // $.ajax({
+    /*----------------------------------------------------*/
+    /*	Modal Popup
+    ------------------------------------------------------*/
 
-   //    //    type: "POST",
-   //    //    url: "inc/sendEmail.php",
-   //    //    data: data,
-   //    //    success: function(msg) {
-   //    //       // Message was sent
+    $('.item-wrap a').magnificPopup({
 
-   //    //       if (msg == 'OK') {
-   //    //          $('#image-loader').fadeOut();
-   //    //          $('#message-warning').hide();
-   //    //          $('#contactForm').fadeOut();
-   //    //          $('#message-success').fadeIn();   
-   //    //       }
-   //    //       // There was an error
-   //    //       else {
-   //    //          $('#image-loader').fadeOut();
-   //    //          $('#message-warning').html(msg);
-   //    //          $('#message-warning').fadeIn();
-   //    //       }
-   //    //    },
-   //    // error:function(msg){
-   //    //    console.log("TEST")
-   //    //    $('#image-loader').fadeOut();
-   //    //    // $('#message-warning').html(msg);
-   //    //    $('#message-warning').fadeIn();
-   //    // }
-   //    // });
-   //    return false;
-   // });
+        type: 'inline',
+        fixedContentPos: false,
+        removalDelay: 200,
+        showCloseBtn: false,
+        mainClass: 'mfp-fade'
+
+    });
+
+    $(document).on('click', '.popup-modal-dismiss', function (e) {
+        e.preventDefault();
+        $.magnificPopup.close();
+    });
+
+
+    /*----------------------------------------------------*/
+    /*	Flexslider
+    /*----------------------------------------------------*/
+    $('.flexslider').flexslider({
+        namespace: "flex-",
+        controlsContainer: ".flex-container",
+        animation: 'slide',
+        controlNav: true,
+        directionNav: false,
+        smoothHeight: true,
+        slideshowSpeed: 7000,
+        animationSpeed: 600,
+        randomize: false,
+    });
+
+    /*----------------------------------------------------*/
+    /*	contact form
+    ------------------------------------------------------*/
+
+    // $('form#contactForm button.submit').click(function() {
+    //    console.log("TEST1")
+    //    $('#image-loader').fadeIn();
+
+    //    var name = $('#contactForm #contactName').val();
+    //    var email = $('#contactForm #contactEmail').val();
+    //    var subject = $('#contactForm #contactSubject').val();
+    //    var message = $('#contactForm #contactMessage').val();
+
+    //    var data = {
+    //       name: {name},
+    //       email: {email},
+    //       subject: {subject},
+    //       message: {message},
+    //    }
+
+    //    console.log(data)
+
+    //    // {
+    //    //    method: "POST", 
+    //    //    url:"http://localhost:3002/send", 
+    //    //    data:  data
+    //    //  }
+    //             axios.post('http://localhost:3002/send', data).then((response)=>{
+    //                console.log(data)
+    //                if (response.data.status === 'success'){
+    //                  alert("Message Sent."); 
+    //                  this.resetForm()
+    //                   $('#image-loader').fadeOut();
+    //                   $('#message-warning').hide();
+    //                   $('#contactForm').fadeOut();
+    //                   $('#message-success').fadeIn();
+    //                }else if(response.data.status === 'fail'){
+    //                   alert("Message failed to send.")
+    //                   $('#image-loader').fadeOut();
+    //                   //$('#message-warning').html(msg);
+    //                   $('#message-warning').fadeIn();
+    //                }
+    //              })
+
+
+    //    // $.ajax({
+
+    //    //    type: "POST",
+    //    //    url: "inc/sendEmail.php",
+    //    //    data: data,
+    //    //    success: function(msg) {
+    //    //       // Message was sent
+
+    //    //       if (msg == 'OK') {
+    //    //          $('#image-loader').fadeOut();
+    //    //          $('#message-warning').hide();
+    //    //          $('#contactForm').fadeOut();
+    //    //          $('#message-success').fadeIn();   
+    //    //       }
+    //    //       // There was an error
+    //    //       else {
+    //    //          $('#image-loader').fadeOut();
+    //    //          $('#message-warning').html(msg);
+    //    //          $('#message-warning').fadeIn();
+    //    //       }
+    //    //    },
+    //    // error:function(msg){
+    //    //    console.log("TEST")
+    //    //    $('#image-loader').fadeOut();
+    //    //    // $('#message-warning').html(msg);
+    //    //    $('#message-warning').fadeIn();
+    //    // }
+    //    // });
+    //    return false;
+    // });
 
 
 });

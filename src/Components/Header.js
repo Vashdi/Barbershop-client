@@ -141,7 +141,10 @@ const Header = (props) => {
                     {/* <hr /> */}
                 </div>
 
-                {
+                <div className="bwrapper">
+                    <a className="smoothscroll hoverButton" href="#portfolio"><span>Hover&nbsp;Me!</span></a>
+                </div>
+                {/* {
                     logged ? <div className="appointment"><a className="smoothscroll" href="#portfolio"><Button className="appointment" variant="contained" startIcon={<CalendarTodayIcon fontSize="large" />}>
                         קבע תור
                     </Button >
@@ -150,7 +153,7 @@ const Header = (props) => {
                             קבע תור
                         </Button >
                         </Link></div>
-                }
+                } */}
                 <p className="scrolldown">
                     <a className="smoothscroll" href="#about"><i className="icon-down-circle"></i></a>
                 </p>
