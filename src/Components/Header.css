@@ -1,3 +1,11 @@
+.signinButton {
+    display: none;
+ }
+
+ a {
+    color: #F06000;
+  }
+
 #wrapper {
     display: grid;
     grid-template-columns: repeat(3,1fr);

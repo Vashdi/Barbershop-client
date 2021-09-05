@@ -91,6 +91,27 @@ const Header = (props) => {
                 <nav id="nav-wrap">
                     <a className="mobile-btn" href="#nav-wrap" title="Show navigation">Show navigation</a>
                     <a className="mobile-btn" href="#home" title="Hide navigation">Hide navigation</a>
+                    {logged ?
+                        <li className="signinButton"><a className="smoothscroll" href="#home" onClick={logout}>התנתק ,{username}</a></li>
+                        :
+                        <li className="signinButton"><Link onClick={handleOpen} to="/signin">התחבר</Link>
+                            <Modal
+                                open={open}
+                                onClose={handleClose}
+                                aria-labelledby="modal-modal-title"
+                                aria-describedby="modal-modal-description"
+                            >
+                                <Box style={{ background: 'whitesmoke', borderRadius: '15px' }} sx={style}>
+                                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                                        <Switch>
+                                            <Route path="/signin" component={Signin} />
+                                            <Route path="/signup" component={Signup} />
+                                        </Switch>
+                                    </Typography>
+                                </Box>
+                            </Modal>
+                        </li>
+                    }
                     <ul id="nav" className="nav">
                         <h2><li className="current"><a className="smoothscroll" href="#home">בית</a></li>
                             <li><a className="smoothscroll" href="#about">קצת על עצמי</a></li>
@@ -105,9 +126,9 @@ const Header = (props) => {
                                 </Alert>
                             </Snackbar>
                             {logged ?
-                                <li><a className="smoothscroll" href="#home" onClick={logout}>התנתק ,{username}</a></li>
+                                <li className="hideSigninButton"><a className="smoothscroll" href="#home" onClick={logout}>התנתק ,{username}</a></li>
                                 :
-                                <li><Link onClick={handleOpen} to="/signin">התחבר</Link>
+                                <li className="hideSigninButton"><Link onClick={handleOpen} to="/signin">התחבר</Link>
                                     <Modal
                                         open={open}
                                         onClose={handleClose}

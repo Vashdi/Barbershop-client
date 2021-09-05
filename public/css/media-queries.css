@@ -115,7 +115,7 @@
 		background-color: #CC5200;
 		position: relative;
       border: none;
-      float: right;
+      float: left;
 
       font: 0/0 a;
       text-shadow: none;
@@ -123,7 +123,7 @@
 
       position: relative;
       top: 0px;
-      right: 30px;
+      left: 30px;
    }
 
 	#nav-wrap > a:before,
@@ -149,7 +149,7 @@
 		display: none;
       clear: both;
       width: auto; 
-      float: right;     
+      float: left;     
 
       position: relative;
       top: 12px;
@@ -168,20 +168,36 @@
    ul#nav li {
       display: block;
       height: auto;      
-      margin: 0 auto; 
-      padding: 0 4%;           
-      text-align: left;
-      border-bottom: 1px solid #2D2E34;
+      margin: 0 auto;         
+      text-align: center;
+      border-bottom: 2px solid #2D2E34;
       border-bottom-style: dotted; 
    }
+
+   .signinButton {
+       display: block !important;
+    text-align: right;
+    position: relative;
+    float: right;
+    position: relative;
+    font-size: 2rem;
+    color: #F06000 !important;
+    top: 20px;
+    right: 30px;
+    }
+
+    .hideSigninButton{
+        display: none !important; 
+    }
   
    ul#nav li a {  
       display: block;    
       margin: 0;
-      padding: 0;      
+      padding: 1px;      
       margin: 12px 0; 
       line-height: 16px; /* reset line-height from 48px */
       border: none;
+      text-align: center;
    }  
 
 
