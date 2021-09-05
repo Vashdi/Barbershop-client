@@ -590,7 +590,7 @@ properly.
 --------------------------------------------------------------- */
 @media only screen and (max-width: 767px) {
 
-   .row {
+   /* .row {
 	   width: 460px;
 	   margin: 0 auto;
       padding: 0;
@@ -603,10 +603,10 @@ properly.
 	   margin-right: 0;
       padding: 0 30px;
    }
-   .row .row { width: auto; max-width: none; margin: 0 -30px; }
+   .row .row { width: auto; max-width: none; margin: 0 -30px; } */
 
-   [class*="column"] + [class*="column"]:last-child { float: none; }
-   [class*="bgrid"] [class*="column"] + [class*="column"]:last-child { float: none; }
+   /* [class*="column"] + [class*="column"]:last-child { float: none; }
+   [class*="bgrid"] [class*="column"] + [class*="column"]:last-child { float: none; } */
 
    /* Offsets */
    .row .offset-1    { margin-left: 0%; }

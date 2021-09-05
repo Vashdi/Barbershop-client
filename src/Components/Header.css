@@ -1,61 +1,12 @@
-.bwrapper{
-    transform: translate(-50%, -50%);
-    grid-row-start: 3;
-    grid-column-start: 6;
-    padding-bottom: 40%;
-    padding-left: 11%;
-  }
-  
-  .hoverButton{
-    display: block;
-    width: 200px;
-    height: 40px;
-    line-height: 40px;
-    font-size: 18px;
-    font-family: sans-serif;
-    text-decoration: none;
-    color: #333;
-    border: 2px solid #333;
-    letter-spacing: 2px;
-    text-align: center;
-    position: relative;
-    transition: all .35s;
-  }
-  
-  .hoverButton span{
-    position: relative;
-    z-index: 2;
-  }
-  
-  .hoverButton:after{
-    position: absolute;
-    content: "";
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 100%;
-    background: #F06000;
-    transition: all .35s;
-  }
-  
-  .hoverButton:hover{
-    color: #fff;
-  }
-  
-  .hoverButton:hover:after{
-    width: 100%;
-  }
-
 #wrapper {
     display: grid;
-    grid-template-columns: repeat(10,1fr);
+    grid-template-columns: repeat(3,1fr);
     grid-template-rows: auto;
     align-items: center;
     text-align: center;
-    height: 80vh;
+    height: 100vh;
     width: 100vw;
 }
-
 .title{
     display: flex;
     padding-left: 10%;
@@ -75,13 +26,22 @@
 }
 
 .appointment{    
-    width: 42%;
+    width: 100%;
+    height: auto;
     padding-bottom: 30%;
     grid-row-start: 3;
     grid-row-end: 4;
-    grid-column-start: 5;
-    grid-column-end: 7;
-    padding-left: 25%;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    margin-left: 0%;
+}
+.MuiButton-outlined {
+    border: 1px solid orange !important;
+    padding: 5px 15px !important;
+    color: orange !important; 
+    height: 50px !important;
+    font-size: x-large !important;
+    width: 175px !important;
 }
 
 .fullscreen-bg{
@@ -94,12 +54,16 @@
     grid-row-end: 4;
 }
 
-
-
-
-
-@media screen and ( min-width: 0px){
-
+@media screen and ( min-width: 760px){
+    .fullscreen-bg{
+        width: 100%;
+        height: 140%;
+        object-fit: cover;
+        grid-column-start: 1;
+        grid-column-end: 11;
+        grid-row-start: 1;
+        grid-row-end: 4;
+    }
 }
 /* .appointment{
     position: absolute;

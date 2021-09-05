@@ -138,22 +138,17 @@ const Header = (props) => {
                             SNIR&nbsp;BARBER&nbsp;SHOP
                         </h1>
                     </a>
-                    {/* <hr /> */}
                 </div>
-
-                <div className="bwrapper">
-                    <a className="smoothscroll hoverButton" href="#portfolio"><span>Hover&nbsp;Me!</span></a>
-                </div>
-                {/* {
-                    logged ? <div className="appointment"><a className="smoothscroll" href="#portfolio"><Button className="appointment" variant="contained" startIcon={<CalendarTodayIcon fontSize="large" />}>
+                {
+                    logged ? <div className="appointment"><a className="smoothscroll" href="#portfolio"><Button variant="outlined" className="appointment" startIcon={<CalendarTodayIcon fontSize="large" />}>
                         קבע תור
                     </Button >
                     </a ></div> :
-                        <div className="appointment"><Link onClick={handleOpen} to="/signin"><Button className="appointment" variant="contained" startIcon={<CalendarTodayIcon fontSize="large" />}>
+                        <div className="appointment"><Link onClick={handleOpen} to="/signin"><Button className="appointment" variant="outlined" startIcon={<CalendarTodayIcon fontSize="large" />}>
                             קבע תור
                         </Button >
                         </Link></div>
-                } */}
+                }
                 <p className="scrolldown">
                     <a className="smoothscroll" href="#about"><i className="icon-down-circle"></i></a>
                 </p>
