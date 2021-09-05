@@ -132,23 +132,25 @@ const Header = (props) => {
                     <source src="images/sample.mp4" type="video/mp4" />
                 </video>
                 {/* <h2 className="titleForSmallMobile"><p className="font">BARBER&nbsp;SHOP&nbsp;SNIR</p></h2> */}
-                <div className="title">
-                    <a className="smoothscroll" href="#about">
-                        <h1 className="font">
-                            SNIR&nbsp;BARBER&nbsp;SHOP
-                        </h1>
-                    </a>
-                </div>
-                {
-                    logged ? <div className="appointment"><a className="smoothscroll" href="#portfolio"><Button variant="outlined" className="appointment" startIcon={<CalendarTodayIcon fontSize="large" />}>
-                        קבע תור
-                    </Button >
-                    </a ></div> :
-                        <div className="appointment"><Link onClick={handleOpen} to="/signin"><Button className="appointment" variant="outlined" startIcon={<CalendarTodayIcon fontSize="large" />}>
+                <div className="elementsContainer">
+                    <div className="title">
+                        <a className="smoothscroll" href="#about">
+                            <h1 className="font">
+                                SNIR&nbsp;BARBER&nbsp;SHOP
+                            </h1>
+                        </a>
+                    </div>
+                    {
+                        logged ? <div className="appointment"><a className="smoothscroll" href="#portfolio"><Button variant="outlined" className="appointment" startIcon={<CalendarTodayIcon fontSize="large" />}>
                             קבע תור
                         </Button >
-                        </Link></div>
-                }
+                        </a ></div> :
+                            <div className="appointment"><Link onClick={handleOpen} to="/signin"><Button className="appointment" variant="outlined" startIcon={<CalendarTodayIcon fontSize="large" />}>
+                                קבע תור
+                            </Button >
+                            </Link></div>
+                    }
+                </div>
                 <p className="scrolldown">
                     <a className="smoothscroll" href="#about"><i className="icon-down-circle"></i></a>
                 </p>
