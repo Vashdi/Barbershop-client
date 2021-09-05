@@ -271,14 +271,14 @@ ul#nav li.current a { color: #F06000; }
 /* ------------------------------------------------------------------ */
 
 #Gallery {
-   background: white;
+   background: floralwhite;
    padding-top: 20px;
    padding-bottom: 20px;
    overflow: hidden;
    text-align: left;
 }
 #shop {
-   background: #ebeeee;
+   background: antiquewhite;
    padding-top: 20px;
    height: 750px;
    padding-bottom: 80px;
@@ -286,9 +286,16 @@ ul#nav li.current a { color: #F06000; }
    text-align: left;
 }
 
+.makeStyles-root-2 {
+    max-width: 345px;
+    margin-left: 5%;
+    border-radius: 50px;
+    background: antiquewhite !important;
+}
+
 @media screen and ( max-width: 960px){
    #shop {
-      background: black;
+      background: antiquewhite;
       height: 600px;
       padding-top: 100px;
       padding-bottom: 10px;

@@ -5,6 +5,7 @@
     text-align: center;
     justify-content: center;
     align-items: center;
+    background-color: bisque;
 }
 .bio{
     flex: 2;
