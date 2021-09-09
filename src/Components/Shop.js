@@ -23,7 +23,6 @@ const Shop = () => {
     const classes = useStyles();
     const responsive = {
         superLargeDesktop: {
-            // the naming can be any, depends on you.
             breakpoint: { max: 2500, min: 1500 },
             items: 4
         },
@@ -41,32 +40,32 @@ const Shop = () => {
         }
     };
     const images = [{
-        url: "/images/all.png",
+        url: "/images/shop1.png",
         name: "מארז",
         price: "60₪"
     },
     {
-        url: "/images/body-cream.png",
+        url: "/images/shop2.png",
         name: "קרם גוף",
         price: "45₪"
     },
     {
-        url: "/images/bodyWash2.png",
+        url: "/images/shop3.png",
         name: "שוטף גוף",
         price: "19.90₪"
     },
     {
-        url: "/images/bread-Wash.png",
+        url: "/images/shop4.png",
         name: "שוטף זקן",
         price: "30₪"
     },
     {
-        url: "/images/Cleaner.png",
+        url: "/images/shop5.png",
         name: "מנקה",
         price: "200₪"
     },
     {
-        url: "/images/oil.png",
+        url: "/images/shop6.png",
         name: "שמן",
         price: "100₪"
     }]
