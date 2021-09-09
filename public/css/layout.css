@@ -858,14 +858,14 @@ call-to-action .button {
 }
 
 #contact {
-   background: rgb(22, 22, 22);
+   background:rgb(14, 13, 13);
    padding-bottom: 30px;
    color: #636363;
 }
 
 @media screen and ( max-width: 960px){
    #contact {
-      background: #191919;
+      background: rgb(14, 13, 13);
       color: #636363;
    }
 }
