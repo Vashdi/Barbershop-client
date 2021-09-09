@@ -210,7 +210,7 @@ const Portfolio = (props) => {
         }
     }
 
-    return (<section id="portfolio">
+    return (<section data-aos="fade-up" id="portfolio">
         <div className="appointmentContainer">
             {
                 storeData.AppointmentReducer.step === 1 &&

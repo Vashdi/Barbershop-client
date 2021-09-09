@@ -9,6 +9,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import './Shop.css'
+import backPic from './Pictuers/shop.jpeg'
 
 const useStyles = makeStyles({
     root: {
@@ -43,32 +44,32 @@ const Shop = () => {
     const images = [{
         url: "/images/all.png",
         name: "all",
-        price: "60 Shekel"
+        price: "60₪"
     },
     {
         url: "/images/body-cream.png",
         name: "body Cream",
-        price: "45 Shekel"
+        price: "45₪"
     },
     {
         url: "/images/bodyWash2.png",
         name: "body Wash",
-        price: "19.90 Shekel"
+        price: "19.90₪"
     },
     {
         url: "/images/bread-Wash.png",
         name: "bread-Wash",
-        price: "30 Shekel"
+        price: "30₪"
     },
     {
         url: "/images/Cleaner.png",
         name: "Cleaner",
-        price: "200 Shekel"
+        price: "200₪"
     },
     {
         url: "/images/oil.png",
         name: "oil",
-        price: "100 Shekel"
+        price: "100₪"
     }]
 
     return (
@@ -87,10 +88,10 @@ const Shop = () => {
                                 />
                                 <CardContent style={{ textAlign: 'center' }}>
                                     <Typography gutterBottom variant="h5" component="h2">
-                                        <h1 className="titleSize">{image.name}</h1>
+                                        <h1 style={{ color: 'white' }} className="titleSize">{image.name}</h1>
                                     </Typography>
                                     <Typography variant="body2" color="textSecondary" component="p">
-                                        <h3>{image.price}</h3>
+                                        <h3 style={{ color: 'white' }}>{image.price}</h3>
                                     </Typography>
                                 </CardContent>
                             </CardActionArea>

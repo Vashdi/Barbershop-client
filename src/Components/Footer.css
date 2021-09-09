@@ -1,5 +1,54 @@
-.waze{
-    position: absolute;
-    bottom: 43%;
-    left: 56%;
+.socialLinksFooter{
+    display: grid ;
+    grid-template-columns: repeat(100,1fr) ;
+    text-align: center ;
+    align-items: center ;
+}
+.facebookFooter{
+    grid-column-start: 46;
+    grid-column-end: 47;
+    transform: scale(2);
+}
+
+.instaFooter{
+    grid-column-start: 49;
+    grid-column-end: 50;
+    transform: scale(2);
+}
+.whatsappFooter{
+    padding-top: 5px;
+    grid-column-start: 52;
+    grid-column-end: 53;
+    transform: scale(1.5);
+}
+.wazeFooter{
+    padding-top: 6.5px;
+    padding-left: 3px;
+    grid-column-start: 54;
+    grid-column-end: 55;
+}
+
+@media only screen and (max-width: 1000px) {
+    .facebookFooter{
+        grid-column-start: 40;
+        grid-column-end: 41;
+        transform: scale(2);
+    }
+    
+    .instaFooter{
+        grid-column-start: 47;
+        grid-column-end: 48;
+        transform: scale(2);
+    }
+    .whatsappFooter{
+        padding-top: 5px;
+        grid-column-start: 54;
+        grid-column-end: 55;
+        transform: scale(1.5);
+    }
+    .wazeFooter{
+        padding-top: 6.5px;
+        grid-column-start: 58;
+        grid-column-end: 59;
+    }    
 }

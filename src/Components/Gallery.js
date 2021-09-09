@@ -1,6 +1,7 @@
 import React from 'react'
 import './Gallery.css'
 import ModalImage from "react-modal-image";
+import 'aos/dist/aos.css';
 
 const Gallery = () => {
 
@@ -56,10 +57,10 @@ const Gallery = () => {
     ]
 
     return (
-        <section id="Gallery">
+        <section data-aos="fade-up" id="Gallery">
             <div className="images">
                 {photos && photos.map(photo => (
-                    <div class="container-block">
+                    <div data-aos="flip-up" class="container-block">
                         <p class="btn">
                             <span>
                                 <span>

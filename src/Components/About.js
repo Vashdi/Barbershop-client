@@ -1,29 +1,36 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './About.css'
+import Aos from 'aos';
+import 'aos/dist/aos.css';
+
 const About = (props) => {
+    useEffect(() => {
+        Aos.init({ duration: 2000, once: true })
+    }, []);
+
     if (props.data) {
         var profilepic = "images/" + props.data.image;
         var barbershopPic = "images/picture5.jpg";
     }
     return (
-        <section id="about">
+        <section data-aos="fade-up" id="about">
             <div className="Aboutcontainer">
-                <div className="aboutImg">
+                <div data-aos="fade-up" className="aboutImg">
                     <img src={barbershopPic} alt="" />
                 </div>
-                <div>
-                    <h2>קצת על עצמי</h2>
+                <div style={{ color: 'white' }} data-aos="fade-up">
+                    <h2 style={{ color: 'orange' }} >קצת על עצמי</h2>
                     ,אני שניר<br />
                     ספר מתחיל מראשון לציון<br />
                     תבואו נדאג לכם
                 </div>
-                <div className="bio">
-                    <h2>קצת על עצמי</h2>
-                    ,אני שניר<br />
-                    ספר מתחיל מראשון לציון<br />
+                <div data-aos="fade-up" className="bio">
+                    <h2 style={{ color: 'orange' }} >קצת על המספרה</h2>
+                    ,המספרה בראשון לציון <br />
+                    אווירה טובה וצעירה<br />
                     תבואו נדאג לכם
                 </div>
-                <div>
+                <div data-aos="fade-up">
                     <img className="barbershop" src={barbershopPic} alt="" />
                 </div>
             </div>

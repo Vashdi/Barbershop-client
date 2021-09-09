@@ -1,6 +1,6 @@
 .contactContainer{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -14,40 +14,50 @@
 .secondRow{
     color:white;
 }
+.paddingIcons{
+    padding-left: 80px;
+}
+.paddingIconsEmail{
+    padding-left: 100px;
+    padding-bottom: 30px ;
+}
 
 .icon{
-    color: black;
-    width: 60px;
-    height: 60px;
-    background: #F06000;
+    color: #F06000;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 50%;
-    font-size: 22px;
+    font-size: 40px;
 }
 .icon2{
-    color: black;
-    min-width: 60px;
-    height: 60px;
-    background: #F06000;
+    color: #F06000;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 50%;
-    font-size: 22px;
+    font-size: 40px;
 }
 .icon3{
-    color: black;
-    min-width: 60px;
-    height: 60px;
-    background: #F06000;
+    color: #F06000;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 50%;
-    font-size: 22px;
+    font-size: 40px;
 }
 .wazeContact{
     font-size: 20px;
 }
+
+@media only screen and (max-width: 962px) {
+    .contactContainer{
+        flex-direction: column;
+    }
+    .paddingIcons{
+        padding-left: 0px;
+    }
+    .paddingIconsEmail{
+        padding-left: 0px;
+        padding-bottom: 30px ;
+    }
+
+}
+

@@ -1,7 +1,6 @@
 .signinButton {
     display: none;
  }
-
  a {
     color: #F06000;
   }
@@ -32,9 +31,10 @@
 }
 .font {
     font-family: 'Rampart One', cursive;
-    color:#F06000;
+    color:white;
     font-size: 2rem;
     transform: rotate(360deg);
+    animation: paddingRight 5s,opacityButton 3s;
 }
 
 .appointment{    
@@ -42,14 +42,34 @@
     height: auto;
     padding-bottom: 30%;
     margin-left: 0%;
+    animation: paddingLeft 5s,opacityButton 3s;
 }
+
+@keyframes paddingRight {
+    from {padding-right: 300px;}
+    to {padding-right: 0;}
+  }
+@keyframes paddingLeft {
+    from {padding-left: 300px;}
+    to {padding-left: 0;}
+  }
+  @keyframes opacityButton {
+    from {opacity: 0.1;}
+    to {opacity: 1;}
+  }
+
 .MuiButton-outlined {
-    border: 1px solid orange !important;
+    border: 1px solid white !important;
     padding: 5px 15px !important;
-    color: orange !important; 
+    color: white !important; 
     height: 50px !important;
     font-size: x-large !important;
     width: 175px !important;
+}
+.MuiButton-outlined:hover {
+    background-color: rgba(0, 0, 0, 0.74) !important;
+    border: 1px solid orange !important;
+    color: orange !important; 
 }
 
 .fullscreen-bg{
@@ -60,7 +80,13 @@
     grid-column-end: 11;
     grid-row-start: 1;
     grid-row-end: 4;
+    animation: animateMovie 5s;
 }
+
+@keyframes animateMovie {
+    from {opacity: 0.0001;}
+    to {opacity: 1;}
+  }
 
 @media screen and ( min-width: 760px){
     .fullscreen-bg{
@@ -73,6 +99,19 @@
         grid-row-end: 4;
     }
 }
+
+@media screen and ( min-width: 900px){
+    .elementsContainer{
+        margin-top: 30%;
+    }
+}
+
+@media screen and ( min-width: 1300px){
+    .elementsContainer{
+        margin-top: 20%;
+    }
+}
+
 /* .appointment{
     position: absolute;
     top: 50%;

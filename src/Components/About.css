@@ -5,10 +5,11 @@
     text-align: center;
     justify-content: center;
     align-items: center;
-    background-color: bisque;
+    background-color: black;
 }
 .bio{
     flex: 2;
+    color:white;
 }
 .aboutImg{
     width: 100%;

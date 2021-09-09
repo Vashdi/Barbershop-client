@@ -16,7 +16,6 @@ import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
 
-
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
@@ -41,6 +40,7 @@ const Header = (props) => {
     const dispatch = useDispatch();
     const storeData = useSelector(state => state);
     const [openError, setOpenError] = React.useState(false);
+
 
     const handleClickError = () => {
         setOpenError(true);
@@ -113,13 +113,7 @@ const Header = (props) => {
                         </li>
                     }
                     <ul id="nav" className="nav">
-                        <h2><li className="current"><a className="smoothscroll" href="#home">בית</a></li>
-                            <li><a className="smoothscroll" href="#about">קצת על עצמי</a></li>
-                            <li><a className="smoothscroll" href={logged ? "#appointment" : "#login"} onClick={logged ? null : handleClickError}>קבע פגישה</a></li>
-                            <li><a className="smoothscroll" href="#Gallery">גלריה</a></li>
-                            <li><a className="smoothscroll" href="#price">מחירים</a></li>
-                            <li><a className="smoothscroll" href="#shop">חנות</a></li>
-                            <li><a className="smoothscroll" href="#contact">צור קשר</a></li>
+                        <h2>
                             <Snackbar open={openError} autoHideDuration={2000} onClose={handleCloseError}>
                                 <Alert onClose={handleCloseError} severity="error">
                                     <h6 style={{ marginTop: '-3.5px' }}>!אתה צריך להתחבר קודם</h6>
@@ -146,13 +140,19 @@ const Header = (props) => {
                                     </Modal>
                                 </li>
                             }
+                            <li><a className="smoothscroll" href="#contact">צור קשר</a></li>
+                            <li><a className="smoothscroll" href="#shop">חנות</a></li>
+                            <li><a className="smoothscroll" href="#price">מחירים</a></li>
+                            <li><a className="smoothscroll" href="#Gallery">גלריה</a></li>
+                            <li><a className="smoothscroll" href={logged ? "#appointment" : "#login"} onClick={logged ? null : handleClickError}>קבע פגישה</a></li>
+                            <li><a className="smoothscroll" href="#about">קצת על עצמי</a></li>
+                            <li className="current"><a className="smoothscroll" href="#home">בית</a></li>
                         </h2>
                     </ul>
                 </nav>
                 <video class="fullscreen-bg" loop muted autoPlay>
                     <source src="images/sample.mp4" type="video/mp4" />
                 </video>
-                {/* <h2 className="titleForSmallMobile"><p className="font">BARBER&nbsp;SHOP&nbsp;SNIR</p></h2> */}
                 <div className="elementsContainer">
                     <div className="title">
                         <a className="smoothscroll" href="#about">
