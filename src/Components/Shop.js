@@ -14,7 +14,9 @@ const useStyles = makeStyles({
     root: {
         marginLeft: '5%',
         maxWidth: 345,
-        borderRadius: '50px'
+        borderRadius: '50px',
+        border: '2px solid white',
+        background: 'transparent'
     },
 
 });

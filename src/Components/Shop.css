@@ -1,6 +1,8 @@
 .shopContainer{
   display: flex;
 }
+
+
   @keyframes blink {
     0%,
     22%,

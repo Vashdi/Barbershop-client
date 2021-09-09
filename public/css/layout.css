@@ -282,13 +282,6 @@ ul#nav li.current a { color: #F06000; }
    text-align: left;
 }
 
-.makeStyles-root-2 {
-    max-width: 345px;
-    margin-left: 5%;
-    border: 2px solid white !important;
-    border-radius: 50px;
-    background: transparent !important;
-}
 
 @media screen and ( max-width: 960px){
    #shop {
@@ -443,12 +436,11 @@ ul#nav li.current a { color: #F06000; }
 }
 
 #portfolio {
+   background: whitesmoke;
     position: relative;
     width: 100%;
     text-align: center;
     overflow: hidden;
-    /* display: flex; */
-    /* flex-direction: column; */
 } 
 /* @media screen and ( max-width: 960px){
    #portfolio {
@@ -858,7 +850,7 @@ call-to-action .button {
 /* ------------------------------------------------------------------ */
 
 #appointment {
-   background: white;
+   background:whitesmoke;
    color:black;
    text-align: center;
    font-size: large;

@@ -9,10 +9,16 @@
     padding-bottom: 5%;
 }
 
+.MuiStepper-root {
+    display: flex;
+    padding: 24px;
+    background: whitesmoke !important;
+}
 
 .time{
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.363);
     font-size: 2rem;
+    border: 2px solid orange;
    }
 .app_img{
     width: 100%;

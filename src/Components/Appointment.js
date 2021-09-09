@@ -17,9 +17,6 @@ import ScheduleIcon from '@material-ui/icons/Schedule';
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 import CheckCircle from '@material-ui/icons/CheckCircle';
 
-
-
-
 const useQontoStepIconStyles = makeStyles({
     root: {
         color: '#eaeaf0',
@@ -28,11 +25,11 @@ const useQontoStepIconStyles = makeStyles({
         alignItems: 'center',
     },
     active: {
-        color: '#784af4',
+        color: 'orange',
     },
     circle: {
-        width: 8,
-        height: 8,
+        width: 10,
+        height: 10,
         borderRadius: '50%',
         backgroundColor: 'currentColor',
     },
@@ -70,13 +67,13 @@ const ColorlibConnector = withStyles({
     active: {
         '& $line': {
             backgroundImage:
-                'linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)',
+                'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233, 154, 64) 50%, rgb(221, 110, 19) 100%)',
         },
     },
     completed: {
         '& $line': {
             backgroundImage:
-                'linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)',
+                'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233, 154, 64) 50%, rgb(221, 110, 19) 100%)',
         },
     },
     line: {
@@ -92,8 +89,8 @@ const useColorlibStepIconStyles = makeStyles({
         backgroundColor: '#ccc',
         zIndex: 1,
         color: '#fff',
-        width: 75,
-        height: 75,
+        width: 55,
+        height: 55,
         display: 'flex',
         borderRadius: '50%',
         justifyContent: 'center',
@@ -101,12 +98,12 @@ const useColorlibStepIconStyles = makeStyles({
     },
     active: {
         backgroundImage:
-            'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)',
+            'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233, 154, 64) 50%, rgb(221, 110, 19) 100%)',
         boxShadow: '0 4px 10px 0 rgba(0,0,0,.25)',
     },
     completed: {
         backgroundImage:
-            'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)',
+            'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233, 154, 64) 50%, rgb(221, 110, 19) 100%)',
     },
 });
 
@@ -115,8 +112,8 @@ function ColorlibStepIcon(props) {
     const { active, completed } = props;
 
     const icons = {
-        1: <ScheduleIcon fontSize="large" />,
-        2: <CalendarTodayIcon fontSize="large" />,
+        1: <CalendarTodayIcon fontSize="large" />,
+        2: <ScheduleIcon fontSize="large" />,
         3: <CheckCircle fontSize="large" />,
     };
 
@@ -141,13 +138,15 @@ ColorlibStepIcon.propTypes = {
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
+        background: 'whitesmoke'
     },
     step_label_root: {
         fontSize: '20px',
+        background: 'whitesmoke'
     },
     button: {
         marginRight: theme.spacing(1),
-        fontSize: "15px"
+        fontSize: "15px",
     },
     instructions: {
         marginTop: theme.spacing(1),
