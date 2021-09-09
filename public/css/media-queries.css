@@ -106,7 +106,7 @@
       width: auto;
       position: fixed;
       top: 0;
-      right: 0;
+      left: 50px;
    }
    #nav-wrap > a {
 	   width: 48px;
@@ -121,9 +121,9 @@
       text-shadow: none;
       color: transparent;
 
-      position: relative;
-      top: 0px;
-      left: 30px;
+      position: fixed;
+      top: 0;
+      right: 20px;
    }
 
 	#nav-wrap > a:before,
@@ -148,12 +148,12 @@
       height: auto;
 		display: none;
       clear: both;
-      width: auto; 
+      width: 50%; 
       float: left;     
 
-      position: relative;
-      top: 12px;
-      right: 0;
+      position: fixed;
+      top: 50px;
+      right: 20px;
    }
    
    /* display menu panels */

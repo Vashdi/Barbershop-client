@@ -43,32 +43,32 @@ const Shop = () => {
     };
     const images = [{
         url: "/images/all.png",
-        name: "all",
+        name: "מארז",
         price: "60₪"
     },
     {
         url: "/images/body-cream.png",
-        name: "body Cream",
+        name: "קרם גוף",
         price: "45₪"
     },
     {
         url: "/images/bodyWash2.png",
-        name: "body Wash",
+        name: "שוטף גוף",
         price: "19.90₪"
     },
     {
         url: "/images/bread-Wash.png",
-        name: "bread-Wash",
+        name: "שוטף זקן",
         price: "30₪"
     },
     {
         url: "/images/Cleaner.png",
-        name: "Cleaner",
+        name: "מנקה",
         price: "200₪"
     },
     {
         url: "/images/oil.png",
-        name: "oil",
+        name: "שמן",
         price: "100₪"
     }]
 

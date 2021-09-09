@@ -7,52 +7,52 @@ const Gallery = () => {
 
     const photos = [{
         url: "/images/picture1.jpg",
-        name: "cream"
+        name: "תספורת"
     },
     {
         url: "/images/picture2.jpg",
-        name: "cream"
+        name: "תספורת"
     },
     {
         url: "/images/picture3.jpg",
-        name: "cream"
+        name: "תספורת"
     },
     {
         url: "/images/picture4.jpg",
-        name: "cream"
+        name: "תספורת"
     },
     {
         url: "/images/picture5.jpg",
-        name: "cream"
+        name: "תספורת"
     },
     {
         url: "/images/picture6.jpg",
-        name: "cream"
+        name: "תספורת"
     },
     {
         url: "/images/picture7.jpg",
-        name: "cream"
+        name: "תספורת"
     },
     {
         url: "/images/picture8.jpg",
-        name: "cream"
+        name: "תספורת"
     }
         ,
     {
         url: "/images/picture9.jpg",
-        name: "cream"
+        name: "תספורת"
     },
     {
         url: "/images/picture10.jpg",
-        name: "cream"
+        name: "תספורת"
     },
     {
         url: "/images/picture4.jpg",
-        name: "cream"
+        name: "תספורת"
     },
     {
         url: "/images/picture5.jpg",
-        name: "cream"
+        name: "תספורת"
     }
     ]
 
@@ -60,7 +60,7 @@ const Gallery = () => {
         <section data-aos="fade-up" id="Gallery">
             <div className="images">
                 {photos && photos.map(photo => (
-                    <div data-aos="flip-up" class="container-block">
+                    <div class="container-block">
                         <p class="btn">
                             <span>
                                 <span>

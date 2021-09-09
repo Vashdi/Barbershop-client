@@ -89,8 +89,6 @@ const Header = (props) => {
         <header id="home">
             <div id="wrapper">
                 <nav id="nav-wrap">
-                    <a className="mobile-btn" href="#nav-wrap" title="Show navigation">Show navigation</a>
-                    <a className="mobile-btn" href="#home" title="Hide navigation">Hide navigation</a>
                     {logged ?
                         <li className="signinButton"><a className="smoothscroll" href="#home" onClick={logout}>התנתק ,{username}</a></li>
                         :
@@ -112,6 +110,8 @@ const Header = (props) => {
                             </Modal>
                         </li>
                     }
+                    <a className="mobile-btn" href="#nav-wrap" title="Show navigation">Show navigation</a>
+                    <a className="mobile-btn" href="#home" title="Hide navigation">Hide navigation</a>
                     <ul id="nav" className="nav">
                         <h2>
                             <Snackbar open={openError} autoHideDuration={2000} onClose={handleCloseError}>
@@ -119,6 +119,14 @@ const Header = (props) => {
                                     <h6 style={{ marginTop: '-3.5px' }}>!אתה צריך להתחבר קודם</h6>
                                 </Alert>
                             </Snackbar>
+
+                            <li className="current"><a className="smoothscroll" href="#home">בית</a></li>
+                            <li><a className="smoothscroll" href="#about">קצת על עצמי</a></li>
+                            <li><a className="smoothscroll" href={logged ? "#appointment" : "#login"} onClick={logged ? null : handleClickError}>קבע פגישה</a></li>
+                            <li><a className="smoothscroll" href="#Gallery">גלריה</a></li>
+                            <li><a className="smoothscroll" href="#price">מחירים</a></li>
+                            <li><a className="smoothscroll" href="#shop">חנות</a></li>
+                            <li><a className="smoothscroll" href="#contact">צור קשר</a></li>
                             {logged ?
                                 <li className="hideSigninButton"><a className="smoothscroll" href="#home" onClick={logout}>התנתק ,{username}</a></li>
                                 :
@@ -140,13 +148,6 @@ const Header = (props) => {
                                     </Modal>
                                 </li>
                             }
-                            <li><a className="smoothscroll" href="#contact">צור קשר</a></li>
-                            <li><a className="smoothscroll" href="#shop">חנות</a></li>
-                            <li><a className="smoothscroll" href="#price">מחירים</a></li>
-                            <li><a className="smoothscroll" href="#Gallery">גלריה</a></li>
-                            <li><a className="smoothscroll" href={logged ? "#appointment" : "#login"} onClick={logged ? null : handleClickError}>קבע פגישה</a></li>
-                            <li><a className="smoothscroll" href="#about">קצת על עצמי</a></li>
-                            <li className="current"><a className="smoothscroll" href="#home">בית</a></li>
                         </h2>
                     </ul>
                 </nav>
