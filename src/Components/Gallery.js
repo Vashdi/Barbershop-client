@@ -58,29 +58,29 @@ const Gallery = () => {
 
     return (
         <section data-aos="fade-up" id="Gallery">
-            <div className="images">
-                {photos && photos.map(photo => (
-                    <div class="container-block">
-                        <p class="btn">
-                            <span>
+            <div className="galleryContainer">
+                <h1 className="titleGallery">גלריה</h1>
+                <div className="images">
+                    {photos && photos.map(photo => (
+                        <div class="container-block">
+                            <p class="btn">
                                 <span>
-                                    <ModalImage
-                                        small={photo.url}
-                                        large={photo.url}
-                                        alt={photo.name}
-                                        hideDownload={true}
-                                        hideZoom={true}
-                                        className="modal-image"
-                                    />
+                                    <span>
+                                        <ModalImage
+                                            small={photo.url}
+                                            large={photo.url}
+                                            alt={photo.name}
+                                            hideDownload={true}
+                                            hideZoom={true}
+                                            className="modal-image"
+                                        />
+                                    </span>
                                 </span>
-                            </span>
-                        </p>
-                    </div>
-                ))}
-
-
+                            </p>
+                        </div>
+                    ))}
+                </div>
             </div>
-
         </section>
     )
 }
