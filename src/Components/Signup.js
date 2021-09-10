@@ -12,6 +12,7 @@ import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2'
 import { useDispatch } from 'react-redux';
 import appService from '../services/appointment'
+import { useHistory } from 'react-router-dom';
 
 
 const theme = createTheme({
@@ -53,6 +54,7 @@ const Toast = Swal.mixin({
 })
 
 const Signup = (props) => {
+    let history = useHistory();
     const [values, setValues] = useState({
         password: '',
         showPassword: false,
@@ -83,6 +85,7 @@ const Signup = (props) => {
                 icon: 'success',
                 title: '!ההרשמה בוצעה בהצלחה'
             })
+            history.push('/');
         } catch (exception) {
             Toast.fire({
                 icon: 'error',

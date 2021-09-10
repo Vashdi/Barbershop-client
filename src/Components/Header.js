@@ -68,7 +68,7 @@ const Header = (props) => {
 
     useEffect(() => {
         if (storeData.AuthReducer.user) {
-            setUserName(storeData.AuthReducer.user.name);
+            setUserName(storeData.AuthReducer.user.firstname);
         }
         setLogged(storeData.AuthReducer.user ? true : false);
         setAdmin(storeData.AuthReducer.user?.phone === "0523679033" ? true : false);
@@ -116,13 +116,13 @@ const Header = (props) => {
                         <h2>
                             <Snackbar open={openError} autoHideDuration={2000} onClose={handleCloseError}>
                                 <Alert onClose={handleCloseError} severity="error">
-                                    <h6 style={{ marginTop: '-3.5px' }}>!אתה צריך להתחבר קודם</h6>
+                                    <h6 style={{ marginTop: '-3.5px', zIndex: '100' }}>!אתה צריך להתחבר קודם</h6>
                                 </Alert>
                             </Snackbar>
 
                             <li className="current"><a className="smoothscroll" href="#home">בית</a></li>
                             <li><a className="smoothscroll" href="#about">קצת על עצמי</a></li>
-                            <li><a className="smoothscroll" href={logged ? "#appointment" : "#login"} onClick={logged ? null : handleClickError}>קבע פגישה</a></li>
+                            <li><a className="smoothscroll" href={logged ? "#appointment" : "#login"} onClick={logged ? null : handleClickError}>קבע תור</a></li>
                             <li><a className="smoothscroll" href="#Gallery">גלריה</a></li>
                             <li><a className="smoothscroll" href="#price">מחירים</a></li>
                             <li><a className="smoothscroll" href="#shop">חנות</a></li>
@@ -151,7 +151,7 @@ const Header = (props) => {
                         </h2>
                     </ul>
                 </nav>
-                <video class="fullscreen-bg" loop muted autoPlay>
+                <video class="fullscreen-bg" loop muted autoPlay playsinline>
                     <source src="images/sample.mp4" type="video/mp4" />
                 </video>
                 <div className="elementsContainer">
@@ -167,7 +167,7 @@ const Header = (props) => {
                             קבע תור
                         </Button >
                         </a ></div> :
-                            <div className="appointment"><Link onClick={handleOpen} to="/signin"><Button className="appointment" variant="outlined" startIcon={<CalendarTodayIcon fontSize="large" />}>
+                            <div className="appointment"><Link onClick={handleClickError} to="/"><Button className="appointment" variant="outlined" startIcon={<CalendarTodayIcon fontSize="large" />}>
                                 קבע תור
                             </Button >
                             </Link></div>

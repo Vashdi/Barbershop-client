@@ -10,7 +10,7 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import loginService from '../services/login'
 import appService from '../services/appointment'
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { deepOrange } from '@material-ui/core/colors';
@@ -59,6 +59,7 @@ const Toast = Swal.mixin({
 })
 
 const Signin = (props) => {
+    let history = useHistory();
     const [user, setUser] = useState("");
     const [modal, setModal] = useState(false);
     const classes = useStyles();
@@ -99,6 +100,7 @@ const Signin = (props) => {
                 icon: 'success',
                 title: '!ההתחברות בוצעה בהצלחה'
             })
+            history.push("/");
         } catch (exception) {
             Toast.fire({
                 icon: 'error',

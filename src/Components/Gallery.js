@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Gallery.css'
-import ModalImage from "react-modal-image";
 import 'aos/dist/aos.css';
+import Lightbox from 'react-image-lightbox';
+import 'react-image-lightbox/style.css';
 
 const Gallery = () => {
-
-    const photos = [{
+    const [isOpen, setIsOpen] = useState(false);
+    const [photoIndex, setPhotoIndex] = useState(0);
+    const images = [{
         url: "/images/picture1.jpg",
         name: "תספורת"
     },
@@ -61,27 +63,40 @@ const Gallery = () => {
             <div className="galleryContainer">
                 <h1 className="titleGallery">גלריה</h1>
                 <div className="images">
-                    {photos && photos.map(photo => (
+                    {images && images.map((photo, index) => (
                         <div class="container-block">
                             <p class="btn">
                                 <span>
                                     <span>
-                                        <ModalImage
-                                            small={photo.url}
-                                            large={photo.url}
-                                            alt={photo.name}
-                                            hideDownload={true}
-                                            hideZoom={true}
-                                            className="modal-image"
-                                        />
+                                        <img src={photo.url} onClick={() => {
+                                            setPhotoIndex(index)
+                                            setIsOpen(true)
+                                        }} className="modal-image" alt="" />
                                     </span>
                                 </span>
                             </p>
                         </div>
                     ))}
                 </div>
+                <div>
+                    {isOpen && (
+                        <Lightbox
+                            clickOutsideToClose={true}
+                            mainSrc={images[photoIndex].url}
+                            nextSrc={images[(photoIndex + 1) % images.length].url}
+                            prevSrc={images[(photoIndex + images.length - 1) % images.length].url}
+                            onCloseRequest={() => setIsOpen(false)}
+                            onMovePrevRequest={() =>
+                                setPhotoIndex((photoIndex + images.length - 1) % images.length)
+                            }
+                            onMoveNextRequest={() =>
+                                setPhotoIndex((photoIndex + 1) % images.length)
+                            }
+                        />
+                    )}
+                </div>
             </div>
-        </section>
+        </section >
     )
 }
 
