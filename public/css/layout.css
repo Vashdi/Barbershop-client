@@ -859,7 +859,7 @@ call-to-action .button {
    color:black;
    text-align: center;
    font-size: large;
-   margin-bottom: 40px;
+   padding-bottom: 3%;
 }
 
 #contact {
