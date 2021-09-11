@@ -11,15 +11,15 @@ const Price = () => {
             </div>
             <div data-aos="fade-right" className="pricesBoard">
                 <h1 style={{ color: 'white' }}>המחירים שלנו</h1>
-                <ul>
-                    <li>תספורת גבר........................................................................₪50</li>
-                    <li>₪תספורת + זקן......................................................................60</li>
-                    <li>תספורת ילד..........................................................................₪30</li>
-                    <li>₪שעוות פנים...........................................................................15</li>
-                    <li>תספורת + שעוות פנים.....................................................₪70</li>
-                    <li>מסיכת פנים..........................................................................₪25</li>
-                    <li>גוונים + צבע(משתנה לפי סוג שיער)...........................₪120</li>
-                </ul>
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                    <span style={{ display: "flex", flexDirection: "row", width: '80%' }}>&nbsp;₪50&nbsp;<hr style={{ borderTop: "dotted 1px white", width: '90%' }} />&nbsp;תספורת&nbsp;גבר&nbsp;</span>
+                    <span style={{ display: "flex", flexDirection: "row", width: '80%' }}>&nbsp;₪60&nbsp;<hr style={{ borderTop: "dotted 1px white", width: '90%' }} />&nbsp;תספורת&nbsp;+&nbsp;זקן&nbsp;</span>
+                    <span style={{ display: "flex", flexDirection: "row", width: '80%' }}>&nbsp;₪30&nbsp;<hr style={{ borderTop: "dotted 1px white", width: '90%' }} />&nbsp;תספורת&nbsp;ילד&nbsp;</span>
+                    <span style={{ display: "flex", flexDirection: "row", width: '80%' }}>&nbsp;₪15&nbsp;<hr style={{ borderTop: "dotted 1px white", width: '90%' }} />&nbsp;שעוות&nbsp;פנים&nbsp;</span>
+                    <span style={{ display: "flex", flexDirection: "row", width: '80%' }}>&nbsp;₪70&nbsp;<hr style={{ borderTop: "dotted 1px white", width: '90%' }} />&nbsp;תספורת&nbsp;+&nbsp;שעוות&nbsp;פנים&nbsp;</span>
+                    <span style={{ display: "flex", flexDirection: "row", width: '80%' }}>&nbsp;₪25&nbsp;<hr style={{ borderTop: "dotted 1px white", width: '90%' }} />&nbsp;מסיכת&nbsp;פנים&nbsp;</span>
+                    <span style={{ display: "flex", flexDirection: "row", width: '80%' }}>&nbsp;₪120&nbsp;<hr style={{ borderTop: "dotted 1px white", width: '90%' }} />(גוונים&nbsp;+&nbsp;צבע&nbsp;(משתנה&nbsp;לפי&nbsp;סוג&nbsp;שיער&nbsp;</span>
+                </div>
             </div>
         </div>
         {/* <div className="priceContainer">
