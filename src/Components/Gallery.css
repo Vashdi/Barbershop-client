@@ -34,7 +34,8 @@
   min-height: 150px !important;
   filter: brightness(100%);
   object-fit: cover;
-  margin-left: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 p {
