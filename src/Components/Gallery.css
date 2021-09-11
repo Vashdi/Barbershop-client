@@ -1,3 +1,7 @@
+.ril__image, .ril__imagePrev, .ril__imageNext {
+    height: 70%;
+}
+
 .galleryContainer{
   display: flex;
   flex-wrap: wrap;
@@ -120,19 +124,25 @@ p {
 } 
 
 @media only screen and (max-width: 400px) {
-  .modal-image{
-    max-height: 150px !important;
-    max-width: 150px !important;
-    min-width: 150px !important;
-    min-height: 150px !important;
-  }
+    .modal-image{
+        max-height: 150px !important;
+        max-width: 150px !important;
+        min-width: 150px !important;
+        min-height: 150px !important;
+    }
+    .ril__image, .ril__imagePrev, .ril__imageNext {
+        height: auto;
+    }
 }
 
 @media only screen and (max-width: 500px) {
-  .modal-image{
-    max-height: 120px !important;
-    max-width: 120px !important;
-    min-width: 120px !important;
-    min-height: 120px !important;
-  }
+    .modal-image{
+        max-height: 120px !important;
+        max-width: 120px !important;
+        min-width: 120px !important;
+        min-height: 120px !important;
+    }
+    .ril__image, .ril__imagePrev, .ril__imageNext {
+        height: auto;
+    }
 }

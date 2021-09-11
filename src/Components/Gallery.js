@@ -92,6 +92,7 @@ const Gallery = () => {
                             onMoveNextRequest={() =>
                                 setPhotoIndex((photoIndex + 1) % images.length)
                             }
+                            animationDuration={500}
                         />
                     )}
                 </div>
