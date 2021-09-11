@@ -12,7 +12,7 @@ import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2'
 import { useDispatch } from 'react-redux';
 import appService from '../services/appointment'
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 
 const theme = createTheme({
@@ -99,8 +99,8 @@ const Signup = (props) => {
         <div className={classes.root}>
             <form onSubmit={handleSubmit(send)}>
                 <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
-                    <InputLabel style={{ fontSize: 'medium' }} htmlFor="outlined-adornment-password">מספר פלאפון</InputLabel>
-                    <OutlinedInput style={{ width: '200%', fontSize: 'large' }}
+                    <InputLabel style={{ fontSize: 'medium', left: 25 }} htmlFor="outlined-adornment-password">מספר פלאפון</InputLabel>
+                    <OutlinedInput style={{ width: '200%', fontSize: 'large', left: 25 }}
                         id="outlined-adornment-password"
                         type='text'
                         endAdornment={
@@ -118,8 +118,8 @@ const Signup = (props) => {
                 </FormControl>
                 {errors.phone && <span style={{ color: 'red' }}>{errors.phone.message}</span>}
                 <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
-                    <InputLabel style={{ fontSize: 'medium' }} htmlFor="outlined-adornment-password">שם פרטי</InputLabel>
-                    <OutlinedInput style={{ width: '200%', fontSize: 'large' }}
+                    <InputLabel style={{ fontSize: 'medium', left: 25 }} htmlFor="outlined-adornment-password">שם פרטי</InputLabel>
+                    <OutlinedInput style={{ width: '200%', fontSize: 'large', left: 25 }}
                         id="outlined-adornment-password"
                         type='text'
                         endAdornment={
@@ -137,8 +137,8 @@ const Signup = (props) => {
                 </FormControl>
                 {errors.firstName && <span style={{ color: 'red' }}>{errors.firstName.message}</span>}
                 <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
-                    <InputLabel style={{ fontSize: 'medium' }} htmlFor="outlined-adornment-password">שם משפחה</InputLabel>
-                    <OutlinedInput style={{ width: '200%', fontSize: 'large' }}
+                    <InputLabel style={{ fontSize: 'medium', left: 25 }} htmlFor="outlined-adornment-password">שם משפחה</InputLabel>
+                    <OutlinedInput style={{ width: '200%', fontSize: 'large', left: 25 }}
                         id="outlined-adornment-password"
                         type='text'
                         endAdornment={
@@ -156,8 +156,8 @@ const Signup = (props) => {
                 </FormControl>
                 {errors.lastName && <span style={{ color: 'red' }}>{errors.lastName.message}</span>}
                 <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
-                    <InputLabel style={{ fontSize: 'medium' }} htmlFor="outlined-adornment-password">סיסמא</InputLabel>
-                    <OutlinedInput style={{ width: '200%', fontSize: 'large' }}
+                    <InputLabel style={{ fontSize: 'medium', left: 25 }} htmlFor="outlined-adornment-password">סיסמא</InputLabel>
+                    <OutlinedInput style={{ width: '200%', fontSize: 'large', left: 25 }}
                         id="outlined-adornment-password"
                         type={values.showPassword ? 'text' : 'password'}
                         endAdornment={
@@ -182,11 +182,20 @@ const Signup = (props) => {
                 </FormControl>
                 {errors.password && <span style={{ color: 'red' }}>{errors.password.message}</span>}
                 <ThemeProvider theme={theme}>
-                    <Button style={{ width: '100%', left: '-5%' }} type="submit" variant="contained" color="primary" className={classes.margin}>
+                    <Button style={{ width: '300%', left: 85 }} type="submit" variant="contained" color="primary" className={classes.margin}>
                         <span style={{ fontSize: "large" }}>הרשם עכשיו</span>
                     </Button>
                 </ThemeProvider>
             </form>
+            <hr style={{ border: '1px solid grey', width: '98%' }} />
+            <Link style={{ display: "flex", flexDirection: "column", alignItems: "center" }} to='/signin' >
+                <ThemeProvider theme={theme}>
+                    <Button style={{ width: '220%', fontSize: "small" }} variant="contained" color="primary" className={classes.margin}>
+                        יש לך כבר משתמש?
+                        עבור למסך ההתחברות
+                    </Button>
+                </ThemeProvider>
+            </Link>
         </div>
     </section>)
 }

@@ -157,10 +157,10 @@ const Signin = (props) => {
                     </Button>
                 </ThemeProvider>
             </form>
-            <hr style={{ border: '1px solid grey', width: '100%' }} />
+            <hr style={{ border: '1px solid grey', width: '98%' }} />
             <Link style={{ display: "flex", flexDirection: "column", alignItems: "center" }} to='/signup' >
                 <ThemeProvider theme={theme}>
-                    <Button style={{ width: '220%', fontSize: "medium" }} variant="contained" color="primary" className={classes.margin}>
+                    <Button style={{ width: '220%', fontSize: "small" }} variant="contained" color="primary" className={classes.margin}>
                         אין לך עדיין משתמש?
                         הרשם עכשיו
                     </Button>
