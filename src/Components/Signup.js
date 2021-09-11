@@ -87,6 +87,7 @@ const Signup = (props) => {
             })
             history.push('/');
         } catch (exception) {
+            console.log(exception)
             Toast.fire({
                 icon: 'error',
                 title: exception

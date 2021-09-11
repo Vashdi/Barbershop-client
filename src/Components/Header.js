@@ -90,7 +90,7 @@ const Header = (props) => {
             <div id="wrapper">
                 <nav id="nav-wrap">
                     {logged ?
-                        <li className="signinButton"><a className="smoothscroll" href="#home" onClick={logout}>התנתק ,{username}</a></li>
+                        <li className="signinButton"><a className="smoothscroll" href="#home" onClick={logout}><div style={{ display: "flex", flexDirection: "row" }}><div>התנתק ,</div><div>{username}</div></div></a></li>
                         :
                         <li className="signinButton"><Link onClick={handleOpen} to="/signin">התחבר</Link>
                             <Modal
@@ -128,7 +128,7 @@ const Header = (props) => {
                             <li><a className="smoothscroll" href="#shop">חנות</a></li>
                             <li><a className="smoothscroll" href="#contact">צור קשר</a></li>
                             {logged ?
-                                <li className="hideSigninButton"><a className="smoothscroll" href="#home" onClick={logout}>התנתק ,{username}</a></li>
+                                <li className="hideSigninButton"><a className="smoothscroll" href="#home" onClick={logout}><div style={{ display: "flex", flexDirection: "row" }}><div>התנתק ,</div><div>{username}</div></div></a></li>
                                 :
                                 <li className="hideSigninButton"><Link onClick={handleOpen} to="/signin">התחבר</Link>
                                     <Modal

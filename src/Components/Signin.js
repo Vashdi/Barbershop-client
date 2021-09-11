@@ -113,8 +113,8 @@ const Signin = (props) => {
         <div className={classes.root}>
             <form onSubmit={handleSubmit((data => handleLogin(data)))}>
                 <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
-                    <InputLabel style={{ fontSize: 'medium' }} htmlFor="outlined-adornment-password">פלאפון</InputLabel>
-                    <OutlinedInput style={{ width: '200%', fontSize: 'large' }}
+                    <InputLabel style={{ fontSize: 'medium', left: 25 }} htmlFor="outlined-adornment-password">פלאפון</InputLabel>
+                    <OutlinedInput style={{ width: '200%', fontSize: 'large', left: 25 }}
                         id="outlined-adornment-password"
                         type='number'
                         endAdornment={
@@ -130,8 +130,8 @@ const Signin = (props) => {
                 </FormControl>
                 {errors.phone && <span style={{ color: 'red' }}>{errors.phone.message}</span>}
                 <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
-                    <InputLabel style={{ fontSize: 'medium' }} htmlFor="outlined-adornment-password">סיסמא</InputLabel>
-                    <OutlinedInput style={{ width: '200%', fontSize: 'large' }}
+                    <InputLabel style={{ fontSize: 'medium', left: 25 }} htmlFor="outlined-adornment-password">סיסמא</InputLabel>
+                    <OutlinedInput style={{ width: '200%', fontSize: 'large', left: 25 }}
                         id="outlined-adornment-password"
                         type={values.showPassword ? 'text' : 'password'}
                         endAdornment={
@@ -152,17 +152,20 @@ const Signin = (props) => {
                 </FormControl>
                 {errors.password && <span style={{ color: 'red' }}>{errors.password.message}</span>}
                 <ThemeProvider theme={theme}>
-                    <Button style={{ width: '300%', left: 70 }} type="submit" variant="contained" color="primary" className={classes.margin}>
+                    <Button style={{ width: '300%', left: 85 }} type="submit" variant="contained" color="primary" className={classes.margin}>
                         <span style={{ fontSize: "large" }}>התחבר</span>
                     </Button>
                 </ThemeProvider>
             </form>
             <hr style={{ border: '1px solid grey', width: '100%' }} />
-            <Link to='/signup' > <ThemeProvider theme={theme}>
-                <Button style={{ width: '100%', left: 70, top: 20 }} variant="contained" color="primary" className={classes.margin}>
-                    <span style={{ fontSize: "large" }}>הרשם</span>
-                </Button>
-            </ThemeProvider></Link>
+            <Link style={{ display: "flex", flexDirection: "column", alignItems: "center" }} to='/signup' >
+                <ThemeProvider theme={theme}>
+                    <Button style={{ width: '220%', fontSize: "medium" }} variant="contained" color="primary" className={classes.margin}>
+                        אין לך עדיין משתמש?
+                        הרשם עכשיו
+                    </Button>
+                </ThemeProvider>
+            </Link>
         </div>
     </section >)
 }
