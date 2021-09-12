@@ -9,13 +9,14 @@ const About = (props) => {
     }, []);
 
     if (props.data) {
-        var profilepic = "images/" + props.data.image;
-        var barbershopPic = "images/picture5.jpg";
+        var barbershopPic = "images/aboutMe.jpg";
+        var barbershopPic2 = "images/aboutMe2.jpg";
+
     }
     return (
         <section data-aos="fade-up" id="about">
             <div className="Aboutcontainer">
-                <div data-aos="fade-up" className="aboutImg">
+                <div data-aos="flip-up" className="aboutImg">
                     <img src={barbershopPic} alt="" />
                 </div>
                 <div style={{ color: 'white' }} data-aos="fade-up">
@@ -30,8 +31,8 @@ const About = (props) => {
                     אווירה טובה וצעירה<br />
                     תבואו נדאג לכם
                 </div>
-                <div data-aos="fade-up">
-                    <img className="barbershop" src={barbershopPic} alt="" />
+                <div data-aos="flip-up">
+                    <img className="barbershop" src={barbershopPic2} alt="" />
                 </div>
             </div>
         </section>

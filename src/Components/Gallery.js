@@ -49,11 +49,11 @@ const Gallery = () => {
         name: "תספורת"
     },
     {
-        url: "/images/picture4.jpg",
+        url: "/images/picture11.jpg",
         name: "תספורת"
     },
     {
-        url: "/images/picture5.jpg",
+        url: "/images/picture12.jpg",
         name: "תספורת"
     }
     ]

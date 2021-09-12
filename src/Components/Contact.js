@@ -15,7 +15,7 @@ const Contact = (props) => {
                     <div data-aos="fade-up" class="icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
                     <div data-aos="fade-up">
                         <h3 style={{ color: '#F06000' }}>כתובת</h3>
-                        <p style={{ fontSize: "3rem" }}>לחי 2, קרית ים</p>
+                        <p style={{ fontSize: "3rem" }}>הלוויתן 46, ראשון לציון</p>
                     </div>
                 </div>
                 <div className="paddingIcons">
@@ -29,7 +29,7 @@ const Contact = (props) => {
                     <div data-aos="fade-up" class="icon3"><i class="fa fa-envelope-o" aria-hidden="true"></i></div>
                     <div data-aos="fade-up">
                         <h3 style={{ color: '#F06000' }}>אימייל</h3>
-                        <span style={{ fontSize: "3rem" }}>Vashdi7002@gmail.com</span>
+                        <span style={{ fontSize: "3rem" }}>Smbarbershop@gmail.com</span>
                     </div>
                 </div>
             </div>

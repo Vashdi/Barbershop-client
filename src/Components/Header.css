@@ -34,7 +34,6 @@
     color:white;
     font-size: 2rem;
     transform: rotate(360deg);
-    animation: paddingRight 5s,opacityButton 3s;
 }
 
 .appointment{    
@@ -42,21 +41,8 @@
     height: auto;
     padding-bottom: 30%;
     margin-left: 0%;
-    animation: paddingLeft 5s,opacityButton 3s;
 }
 
-@keyframes paddingRight {
-    from {padding-right: 300px;}
-    to {padding-right: 0;}
-  }
-@keyframes paddingLeft {
-    from {padding-left: 300px;}
-    to {padding-left: 0;}
-  }
-  @keyframes opacityButton {
-    from {opacity: 0.1;}
-    to {opacity: 1;}
-  }
 
 .MuiButton-outlined {
     border: 1px solid white !important;
@@ -75,24 +61,30 @@
 .fullscreen-bg{
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: fill;
     grid-column-start: 1;
     grid-column-end: 11;
     grid-row-start: 1;
     grid-row-end: 4;
-    animation: animateMovie 5s;
 }
 
-@keyframes animateMovie {
-    from {opacity: 0.0001;}
-    to {opacity: 1;}
-  }
+  @media screen and ( min-width: 600px){
+    .fullscreen-bg{
+        width: 100%;
+        height: 140%;
+        object-fit: fill;
+        grid-column-start: 1;
+        grid-column-end: 11;
+        grid-row-start: 1;
+        grid-row-end: 4;
+    }
+}
 
 @media screen and ( min-width: 760px){
     .fullscreen-bg{
         width: 100%;
         height: 140%;
-        object-fit: cover;
+        object-fit: fill;
         grid-column-start: 1;
         grid-column-end: 11;
         grid-row-start: 1;

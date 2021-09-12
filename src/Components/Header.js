@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import './Header.css'
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 import Button from '@material-ui/core/Button';
@@ -39,7 +39,7 @@ const Header = (props) => {
     const handleClose = () => setOpen(false);
     const dispatch = useDispatch();
     const storeData = useSelector(state => state);
-    const [openError, setOpenError] = React.useState(false);
+    const [openError, setOpenError] = useState(false);
 
 
     const handleClickError = () => {
@@ -114,12 +114,6 @@ const Header = (props) => {
                     <a className="mobile-btn" href="#home" title="Hide navigation">Hide navigation</a>
                     <ul id="nav" className="nav">
                         <h2>
-                            <Snackbar open={openError} autoHideDuration={2000} onClose={handleCloseError}>
-                                <Alert onClose={handleCloseError} severity="error">
-                                    <h6 style={{ marginTop: '-3.5px', zIndex: '100' }}>!אתה צריך להתחבר קודם</h6>
-                                </Alert>
-                            </Snackbar>
-
                             <li className="current"><a className="smoothscroll" href="#home">בית</a></li>
                             <li><a className="smoothscroll" href="#about">קצת על עצמי</a></li>
                             <li><a className="smoothscroll" href={logged ? "#appointment" : "#login"} onClick={logged ? null : handleClickError}>קבע תור</a></li>
@@ -151,10 +145,15 @@ const Header = (props) => {
                         </h2>
                     </ul>
                 </nav>
-                <video class="fullscreen-bg" loop muted autoPlay playsinline>
+                <Snackbar open={openError} autoHideDuration={2000} onClose={handleCloseError}>
+                    <Alert onClose={handleCloseError} severity="error">
+                        <h6 style={{ marginTop: '-3.5px', zIndex: '-100' }}>!אתה צריך להתחבר קודם</h6>
+                    </Alert>
+                </Snackbar>
+                <video data-aos="flip-up" class="fullscreen-bg" loop muted autoPlay playsInline>
                     <source src="images/sample.mp4" type="video/mp4" />
                 </video>
-                <div className="elementsContainer">
+                <div data-aos="fade-right" className="elementsContainer">
                     <div className="title">
                         <a className="smoothscroll" href="#about">
                             <h1 className="font">
@@ -163,11 +162,11 @@ const Header = (props) => {
                         </a>
                     </div>
                     {
-                        logged ? <div className="appointment"><a className="smoothscroll" href="#portfolio"><Button variant="outlined" className="appointment" startIcon={<CalendarTodayIcon fontSize="large" />}>
+                        logged ? <div className="appointment"><a className="smoothscroll" href="#portfolio"><Button data-aos="fade-left" variant="outlined" className="appointment" startIcon={<CalendarTodayIcon fontSize="large" />}>
                             קבע תור
                         </Button >
                         </a ></div> :
-                            <div className="appointment"><Link onClick={handleClickError} to="/"><Button className="appointment" variant="outlined" startIcon={<CalendarTodayIcon fontSize="large" />}>
+                            <div data-aos="fade-left" className="appointment"><Link onClick={handleClickError} to="/"><Button data-aos="fade-left" className="appointment" variant="outlined" startIcon={<CalendarTodayIcon fontSize="large" />}>
                                 קבע תור
                             </Button >
                             </Link></div>
@@ -176,7 +175,7 @@ const Header = (props) => {
                 <p className="scrolldown">
                     <a className="smoothscroll" href="#about"><i className="icon-down-circle"></i></a>
                 </p>
-            </div>
+            </div >
 
         </header >
     )
