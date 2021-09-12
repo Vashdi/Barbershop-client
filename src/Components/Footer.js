@@ -13,7 +13,7 @@ const Footer = (props) => {
                 <a className="facebookFooter" href="http://www.facebook.com/snir.mishaelof"><i className="fa fa-facebook" ></i></a>
                 <a className="instaFooter" href="http://www.instagram.com/snirmishaelof_barbershop/"><i className="fa fa-instagram"></i></a>
                 <a className="whatsappFooter" href="https://wa.me/+972502341694"><WhatsAppIcon fontSize='large' /></a>
-                <a className="wazeFooter" href={`https://waze.com/ul?ll=32.8539957,35.0709409navigate=yes`}><Icon icon="mdi:waze" width="35" height="40" /></a>
+                <a className="wazeFooter" href={`https://waze.com/ul?ll=31.988110,34.781229navigate=yes`}><Icon icon="mdi:waze" width="35" height="40" /></a>
             </div>
             <nav id="nav-wrap2">
                 <ul id="nav2" className="nav2">
