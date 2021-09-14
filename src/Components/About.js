@@ -19,13 +19,13 @@ const About = (props) => {
                 <div data-aos="flip-up" className="aboutImg">
                     <img src={barbershopPic} alt="" />
                 </div>
-                <div style={{ color: 'white' }} data-aos="fade-up">
+                <div style={{ color: 'white' }} className="bio" data-aos="fade-up">
                     <h2 style={{ color: 'orange' }} >קצת על עצמי</h2>
                     ,אני שניר<br />
                     ספר מתחיל מראשון לציון<br />
                     תבואו נדאג לכם
                 </div>
-                <div data-aos="fade-up" className="bio">
+                <div data-aos="fade-up" className="bioShop">
                     <h2 style={{ color: 'orange' }} >קצת על המספרה</h2>
                     ,המספרה בראשון לציון <br />
                     אווירה טובה וצעירה<br />

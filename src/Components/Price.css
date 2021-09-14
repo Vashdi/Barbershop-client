@@ -21,6 +21,16 @@
     transform: scaleX(1.5);
     color: #F06000 !important;
 }
+.dottedRow{
+    border-top: dotted 1px white;
+    width: 90%; 
+}
+
+.priceRow{
+    display: flex;
+    flex-direction: row;
+    width: 130%;
+}
 
 @media (min-width: 760px) {
     .pricesContainer{
@@ -38,5 +48,15 @@
     .pricesBoard{
         width: 50%;
         flex:1;
+    }
+    .dottedRow{
+        border-top: dotted 1px white;
+        width: 90%; 
+    }
+    
+    .priceRow{
+        display: flex;
+        flex-direction: row;
+        width: 80%;
     }
 }

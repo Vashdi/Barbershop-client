@@ -141,7 +141,7 @@ const useStyles = makeStyles((theme) => ({
         background: 'whitesmoke'
     },
     step_label_root: {
-        fontSize: '20px',
+        fontSize: '15px',
         background: 'whitesmoke'
     },
     button: {

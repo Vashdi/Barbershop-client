@@ -12,13 +12,13 @@ const Price = () => {
             <div data-aos="fade-right" className="pricesBoard">
                 <h1 style={{ color: 'white' }}>המחירים שלנו</h1>
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                    <span style={{ display: "flex", flexDirection: "row", width: '80%' }}>&nbsp;₪50&nbsp;<hr style={{ borderTop: "dotted 1px white", width: '90%' }} />&nbsp;תספורת&nbsp;גבר&nbsp;</span>
-                    <span style={{ display: "flex", flexDirection: "row", width: '80%' }}>&nbsp;₪60&nbsp;<hr style={{ borderTop: "dotted 1px white", width: '90%' }} />&nbsp;תספורת&nbsp;+&nbsp;זקן&nbsp;</span>
-                    <span style={{ display: "flex", flexDirection: "row", width: '80%' }}>&nbsp;₪30&nbsp;<hr style={{ borderTop: "dotted 1px white", width: '90%' }} />&nbsp;תספורת&nbsp;ילד&nbsp;</span>
-                    <span style={{ display: "flex", flexDirection: "row", width: '80%' }}>&nbsp;₪15&nbsp;<hr style={{ borderTop: "dotted 1px white", width: '90%' }} />&nbsp;שעוות&nbsp;פנים&nbsp;</span>
-                    <span style={{ display: "flex", flexDirection: "row", width: '80%' }}>&nbsp;₪70&nbsp;<hr style={{ borderTop: "dotted 1px white", width: '90%' }} />&nbsp;תספורת&nbsp;+&nbsp;שעוות&nbsp;פנים&nbsp;</span>
-                    <span style={{ display: "flex", flexDirection: "row", width: '80%' }}>&nbsp;₪25&nbsp;<hr style={{ borderTop: "dotted 1px white", width: '90%' }} />&nbsp;מסיכת&nbsp;פנים&nbsp;</span>
-                    <span style={{ display: "flex", flexDirection: "row", width: '80%' }}>&nbsp;₪120&nbsp;<hr style={{ borderTop: "dotted 1px white", width: '90%' }} />(גוונים&nbsp;+&nbsp;צבע&nbsp;(משתנה&nbsp;לפי&nbsp;סוג&nbsp;שיער&nbsp;</span>
+                    <span className="priceRow">&nbsp;₪50&nbsp;<hr className="dottedRow" />&nbsp;תספורת&nbsp;גבר&nbsp;</span>
+                    <span className="priceRow">&nbsp;₪60&nbsp;<hr className="dottedRow" />&nbsp;תספורת&nbsp;+&nbsp;זקן&nbsp;</span>
+                    <span className="priceRow">&nbsp;₪30&nbsp;<hr className="dottedRow" />&nbsp;תספורת&nbsp;ילד&nbsp;</span>
+                    <span className="priceRow">&nbsp;₪15&nbsp;<hr className="dottedRow" />&nbsp;שעוות&nbsp;פנים&nbsp;</span>
+                    <span className="priceRow">&nbsp;₪70&nbsp;<hr className="dottedRow" />&nbsp;תספורת&nbsp;+&nbsp;שעוות&nbsp;פנים&nbsp;</span>
+                    <span className="priceRow">&nbsp;₪25&nbsp;<hr className="dottedRow" />&nbsp;מסיכת&nbsp;פנים&nbsp;</span>
+                    <span className="priceRow">&nbsp;₪120&nbsp;<hr className="dottedRow" />(גוונים&nbsp;+&nbsp;צבע&nbsp;(משתנה&nbsp;לפי&nbsp;סוג&nbsp;שיער&nbsp;</span>
                 </div>
             </div>
         </div>

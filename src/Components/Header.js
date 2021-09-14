@@ -150,7 +150,7 @@ const Header = (props) => {
                         <h6 style={{ marginTop: '-3.5px', zIndex: '-100' }}>!אתה צריך להתחבר קודם</h6>
                     </Alert>
                 </Snackbar>
-                <video data-aos="flip-up" class="fullscreen-bg" loop muted autoPlay playsInline>
+                <video data-aos="flip-up" className="fullscreen-bg" loop muted autoPlay playsInline>
                     <source src="images/sample.mp4" type="video/mp4" />
                 </video>
                 <div data-aos="fade-right" className="elementsContainer">
@@ -162,7 +162,7 @@ const Header = (props) => {
                         </a>
                     </div>
                     {
-                        logged ? <div className="appointment"><a className="smoothscroll" href="#portfolio"><Button data-aos="fade-left" variant="outlined" className="appointment" startIcon={<CalendarTodayIcon fontSize="large" />}>
+                        logged ? <div className="appointment"><a className="smoothscroll" href="#appointment"><Button data-aos="fade-left" variant="outlined" className="appointment" startIcon={<CalendarTodayIcon fontSize="large" />}>
                             קבע תור
                         </Button >
                         </a ></div> :

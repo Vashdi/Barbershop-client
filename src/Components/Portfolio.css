@@ -11,7 +11,6 @@
 
 .MuiStepper-root {
     display: flex;
-    padding: 24px;
     background: whitesmoke !important;
 }
 
@@ -118,7 +117,6 @@
 .clientNextApp{
     color:#F06000;
     text-align: center;
-    margin-bottom: 10px;
 }
 
 .sum{
