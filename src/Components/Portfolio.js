@@ -106,11 +106,21 @@ const Portfolio = (props) => {
     useEffect(() => {
         const start = async () => {
             const stricts = await strictService.getAllStricts();
-            const strictsForWholeDay = stricts.filter(strict => strict.start === "none" && strict.end === "none");
-            const hoursToStrict = stricts.filter(strict => strict.start !== "none" || strict.end !== "none");
-            const strictsToDates = strictsForWholeDay.map(strict => new Date(strict.day));
-            const newStrictsToShow = newStrict.concat(strictsToDates);
-            setHoursToStrict(hoursToStrict);
+            const strictHours = await strictService.getAllStrictDay();
+            let newStrictsToShow = newStrict;
+            stricts.map(strict => {
+                const arrayOfStricts = strict.day;
+                const arrayOfDates = arrayOfStricts.map(day => {
+                    const split = day.split("-");
+                    const year = split[0];
+                    const month = split[1];
+                    const dateWithHours = split[2];
+                    const date = dateWithHours.split("T")[0];
+                    return new Date(year, month - 1, date);
+                })
+                newStrictsToShow = newStrictsToShow.concat(arrayOfDates);
+            })
+            setHoursToStrict(strictHours);
             setNewStrict(newStrictsToShow);
         }
         start();
@@ -215,15 +225,18 @@ const Portfolio = (props) => {
                 storeData.AppointmentReducer.step === 1 &&
                 <div className="hoursContainer">
                     <h2 className="hourTitle">בחר שעה</h2>
-                    <div className="hoursShow">
-                        {
-                            hoursToShow.map((ourHour, index) => {
-                                return <input key={index} className="hourButton" type="button" onClick={() => setMyHour(ourHour)} value={ourHour} />
-                            })
-                        }
-                    </div>
-
+                    {
+                        hoursToShow.length === 0 ? <div className="noApp">!אין תורים יותר ליום זה</div> :
+                            <div className="hoursShow">
+                                {
+                                    hoursToShow.map((ourHour, index) => {
+                                        return <input key={index} className="hourButton" type="button" onClick={() => setMyHour(ourHour)} value={ourHour} />
+                                    })
+                                }
+                            </div>
+                    }
                 </div>
+
             }
             {
                 storeData.AppointmentReducer.step === 0 &&

@@ -95,7 +95,6 @@ const checkHours = async (selectedDay, hours, setHoursToShow, hoursToStrict) => 
         if (currDay === ourDay && currMonth === ourMonth && currYear === ourYear) {
             newHouresToShowFromCurrHour = newHoursToShowAfterAdminStrict.filter(theHours => theHours.split(":", 2)[0] - '0' > currHour + 1);
         }
-        console.log(newHoursToShowAfterAdminStrict);
         setHoursToShow(newHouresToShowFromCurrHour);
     }
 }

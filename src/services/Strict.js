@@ -6,13 +6,12 @@ const getAllStricts = async () => {
     return allStricts;
 }
 
-const strictToDate = (date) => {
-    const arrOfYearMonthDay = date.split("-");
-    const year = arrOfYearMonthDay[0];
-    const month = arrOfYearMonthDay[1];
-    const day = arrOfYearMonthDay[2].split("T")[0];
-    const newDate = new Date()
+
+const getAllStrictDay = async () => {
+    const resp = await axios.get("/strictDay");
+    const allStricts = resp.data;
+    return allStricts;
 }
 
 
-export default { getAllStricts, }
+export default { getAllStricts, getAllStrictDay }

@@ -70,7 +70,6 @@ const Signup = (props) => {
         event.preventDefault();
     };
 
-
     const send = async (data) => {
         try {
             const user = await SignupService.register({
@@ -97,7 +96,7 @@ const Signup = (props) => {
 
     return (<section id="signup">
         <div className={classes.root}>
-            <form onSubmit={handleSubmit(send)}>
+            <form onSubmit={handleSubmit((data => send(data)))}>
                 <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
                     <InputLabel style={{ fontSize: 'medium', left: 25 }} htmlFor="outlined-adornment-password">מספר פלאפון</InputLabel>
                     <OutlinedInput style={{ width: '200%', fontSize: 'large', left: 25 }}

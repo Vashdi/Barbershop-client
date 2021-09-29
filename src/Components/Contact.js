@@ -33,7 +33,7 @@ const Contact = (props) => {
                     </div>
                 </div>
             </div>
-            <a data-aos="fade-up" className="wazeContact" href={`https://waze.com/ul?ll=32.8539957,35.0709409navigate=yes`}>
+            <a data-aos="fade-up" className="wazeContact" href={`https://waze.com/ul?ll=31.988110,34.781229navigate=yes`}>
                 Waze נווט באמצעות
             </a>
         </section >

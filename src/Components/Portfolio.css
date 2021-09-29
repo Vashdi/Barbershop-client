@@ -155,9 +155,11 @@
     transform: translateY(4px);
   }
 
+  .hoursSecondTitle{
+        color:black;
+  }
   .hourButton{
     border-radius: 30px;
-
     border: 2px solid #F06000 ;
 }
 
@@ -171,7 +173,6 @@
     box-shadow: 0 5px #666;
     transform: translateY(4px);
   }
-
 
 .boxApp{
     border-radius: 50px;
@@ -187,6 +188,11 @@
     padding-bottom: 15%;
     gap: 10%;
 }
+
+.noApp{
+    font-size: x-large;
+}
+
 .hourTitle{
     color: #F06000;
 }
@@ -194,6 +200,7 @@
 .hoursContainer{
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     text-align: center;
     padding-bottom: 10%;
