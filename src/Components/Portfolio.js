@@ -109,16 +109,13 @@ const Portfolio = (props) => {
             const strictHours = await strictService.getAllStrictDay();
             let newStrictsToShow = newStrict;
             stricts.map(strict => {
-                const arrayOfStricts = strict.day;
-                const arrayOfDates = arrayOfStricts.map(day => {
-                    const split = day.split("-");
-                    const year = split[0];
-                    const month = split[1];
-                    const dateWithHours = split[2];
-                    const date = dateWithHours.split("T")[0];
-                    return new Date(year, month - 1, date);
-                })
-                newStrictsToShow = newStrictsToShow.concat(arrayOfDates);
+                const day = strict.day;
+                const split = day.split("-");
+                const year = split[0];
+                const month = split[1];
+                const dateWithHours = split[2];
+                const date = dateWithHours.split("T")[0];
+                newStrictsToShow = newStrictsToShow.concat(new Date(year, month - 1, date));
             })
             setHoursToStrict(strictHours);
             setNewStrict(newStrictsToShow);

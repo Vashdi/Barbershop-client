@@ -22,7 +22,7 @@ const About = (props) => {
                 <div style={{ color: 'white' }} className="bio" data-aos="fade-up">
                     <h2 style={{ color: 'orange' }} >קצת על עצמי</h2>
                     ,אני שניר<br />
-                    ספר מתחיל מראשון לציון<br />
+                    ספר מראשון לציון<br />
                     תבואו נדאג לכם
                 </div>
                 <div data-aos="fade-up" className="bioShop">
