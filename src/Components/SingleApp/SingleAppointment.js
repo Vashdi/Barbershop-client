@@ -2,10 +2,10 @@ import appService from '../../services/appointment'
 import React from 'react'
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useDispatch, useSelector } from 'react-redux';
-import { IconButton, ListItem, ListItemSecondaryAction, ListItemText, Typography } from '@material-ui/core';
+import { IconButton, ListItem, ListItemSecondaryAction, ListItemText } from '@material-ui/core';
 import './SingleAppointment.css'
 
-const SingleAppointment = ({ appointment }) => {
+const SingleAppointment = ({ appointment, callback }) => {
     const storeData = useSelector(state => state);
     const dispatch = useDispatch();
 
@@ -18,8 +18,9 @@ const SingleAppointment = ({ appointment }) => {
         const hour = toSplitAgain[2];
         const appToDelete = storeData.AppointmentReducer.appointments.find(app => app.day === day && app.month === month && app.year === year && app.hour === hour);
         const idOfApp = appToDelete.id;
-        dispatch({ type: "DELETE", payload: idOfApp });
         await appService.deleteApp(appToDelete.id);
+        dispatch({ type: "DELETE", payload: idOfApp });
+        callback(new Date(year, month - 1, day));
     }
     return (
         <ListItem>

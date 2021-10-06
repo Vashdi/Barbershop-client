@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import appService from '../services/appointment';
 import strictService from '../services/Strict';
 import appointmentService from '../services/appointment';
-import DayPicker from 'react-day-picker';
-import 'react-day-picker/lib/style.css';
 import './Portfolio.css'
 import SingleAppointment from '../Components/SingleApp/SingleAppointment';
 import { useDispatch } from 'react-redux';
@@ -15,6 +13,10 @@ import Swal from 'sweetalert2';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
+import DayPicker from 'react-day-picker';
+import 'react-day-picker/lib/style.css';
+import MomentLocaleUtils from 'react-day-picker/moment';
+import 'moment/locale/he';
 
 const useStylesModal = makeStyles((theme) => ({
     modal: {
@@ -62,13 +64,35 @@ const useStyles = makeStyles((theme) => ({
 const Portfolio = (props) => {
     const storeData = useSelector(state => state);
     const dispatch = useDispatch();
+
+    //day picker styling and language//
+    const language = 'he';
+    const [newStrict, setNewStrict] = useState([{ before: new Date() }, { after: new Date(new Date().getFullYear(), new Date().getMonth() + 1, new Date().getDate()) }, { daysOfWeek: [1, 6] }]);
+    const getAtStartClosedDays = async () => {
+        const closedDaysArray = await appService.getCloseDays();
+        const closedDaysWithoutID = closedDaysArray.map(closedDay => new Date(closedDay.date));
+        setModifiers({ ...modifiers, closedDays: closedDaysWithoutID });
+    }
+
+    const [modifiers, setModifiers] = useState({
+        closedDays: [],
+        today: new Date()
+    });
+
+    const modifiersStyles = {
+        closedDays: {
+            color: 'red'
+        },
+        foo: new Date()
+    };
+    //day picker styling and language//
+
     const [selectedDay, setSelectedDay] = useState(" ");
     const hours = ["08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00"];
     const [hoursToShow, setHoursToShow] = useState(hours);
     const [myHour, setMyHour] = useState("");
     const [appToShow, setAppToShow] = useState([]);
     const [phone, setPhone] = useState("");
-    const [newStrict, setNewStrict] = useState([{ before: new Date() }, { daysOfWeek: [1, 6] }]);
     const classes = useStyles();
     const [dense, setDense] = useState(false);
     const classesModal = useStylesModal();
@@ -95,14 +119,12 @@ const Portfolio = (props) => {
         setMyHour("");
         dispatch({ type: "RESET" });
     }
-    // const [admin, setAdmin] = useState(false);
     const [adminSelectedDay, setAdminSelectedDay] = useState(" ");
-    // const userFromStorage = window.localStorage['loggedUser'];
-
     const strictDays = () => {
         const newStrictDays = newStrict.concat(adminSelectedDay);
         setNewStrict(newStrictDays);
     }
+
     useEffect(() => {
         const start = async () => {
             const stricts = await strictService.getAllStricts();
@@ -121,6 +143,7 @@ const Portfolio = (props) => {
             setNewStrict(newStrictsToShow);
         }
         start();
+        getAtStartClosedDays();
     }, [])
 
     useEffect(() => {
@@ -143,6 +166,7 @@ const Portfolio = (props) => {
     }
 
     useEffect(() => {
+        console.log(storeData.AppointmentReducer.appointments)
         const allAppointments = storeData.AppointmentReducer.appointments;
         const sortedAppointments = appointmentService.sortAppointments(allAppointments);
         setAppToShow(appointmentService.stringAppointments(sortedAppointments));
@@ -189,7 +213,7 @@ const Portfolio = (props) => {
         } else {
             try {
                 const appointment = { year: selectedDay.getFullYear(), month: selectedDay.getMonth() + 1, day: selectedDay.getDate(), hour: myHour }
-                const resp = await appService.create(appointment);
+                const resp = await appService.create(appointment, hoursToShow, () => { setModifiers({ ...modifiers, closedDays: modifiers.closedDays.concat([selectedDay]) }) });
                 dispatch({ type: "ADD", payload: resp });
                 Swal.fire({
                     icon: 'success',
@@ -198,7 +222,7 @@ const Portfolio = (props) => {
             } catch (error) {
                 Swal.fire({
                     icon: 'error',
-                    title: 'Ooops, something went wrong',
+                    title: error.response.data,
                     text: error.text,
                 })
             }
@@ -238,10 +262,10 @@ const Portfolio = (props) => {
             {
                 storeData.AppointmentReducer.step === 0 &&
                 <>
-                    <DayPicker className="time" disabledDays={newStrict} onDayClick={handleDayClick} selectedDays={selectedDay} /><br /><br />
+                    <DayPicker className="time" disabledDays={newStrict} onDayClick={handleDayClick} selectedDays={selectedDay} localeUtils={MomentLocaleUtils} locale={language}
+                        modifiers={modifiers} modifiersStyles={modifiersStyles} todayButton="חזור להיום" onTodayButtonClick={(day, modifiers) => console.log(day, modifiers)} /><br /><br />
                 </>
             }
-
             {
                 storeData.AppointmentReducer.step === 2 &&
                 <div className="sum">
@@ -272,7 +296,7 @@ const Portfolio = (props) => {
             }
             <div>
                 <button className="showApp" onClick={handleOpenModal}>
-                    התורים הקרובים שלי
+                    התורים שקבעתי
                 </button>
                 <Modal
                     aria-labelledby="transition-modal-title"
@@ -292,7 +316,10 @@ const Portfolio = (props) => {
                             <p id="transition-modal-description"><div className={classes.demo}>
                                 <List dense={dense}>
                                     {appToShow.map((apps, index) => {
-                                        return (<SingleAppointment key={index} appointment={apps} />)
+                                        return (<SingleAppointment key={index} appointment={apps} callback={(day) => {
+                                            console.log(modifiers.closedDays)
+                                            setModifiers({ ...modifiers, closedDays: modifiers.closedDays.filter((date) => date.getFullYear() !== day.getFullYear() || date.getMonth() !== day.getMonth() || date.getDate() !== day.getDate()) })
+                                        }} />)
                                     })}
                                 </List>
                             </div></p>
@@ -302,12 +329,6 @@ const Portfolio = (props) => {
             </div>
 
         </div>
-        {/* {
-            admin ? <div>
-                <DayPicker className="time_table" selectedDays={adminSelectedDay} />
-                <input type="button" value="edit" onClick={strictDays} />
-            </div> : null
-        } */}
     </section>)
 }
 

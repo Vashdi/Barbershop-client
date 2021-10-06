@@ -32,16 +32,40 @@ const getByDate = async (date) => {
 }
 
 const deleteApp = async (id) => {
-    const request = await axios.delete(baseUrl + "/" + id);
-    return request.data;
+    try {
+        let config;
+        if (token !== "bearer ") {
+            config = {
+                headers: { authorization: token },
+            }
+        }
+        const request = await axios.delete(baseUrl + "/" + id, config);
+        const dateToDeleteFromClosed = new Date(request.data.year, request.data.month - 1, request.data.day);
+        console.log(dateToDeleteFromClosed);
+        try {
+            await axios.delete("/closedDays/" + dateToDeleteFromClosed);
+        }
+        catch (e) {
+            window.alert("error:" + e);
+        }
+        return request.data;
+    }
+    catch {
+        window.alert("אתה צריך להתחבר מחדש")
+    }
 }
 
-const create = async newAppointment => {
+const create = async (newAppointment, hoursToShow, callback) => {
     if (token !== "bearer ") {
         const config = {
-            headers: { Authorization: token },
+            headers: { authorization: token },
         }
-        const response = await axios.post(baseUrl, newAppointment, config)
+        const response = await axios.post(baseUrl, newAppointment, config);
+        if (hoursToShow.length === 1) {
+            const newCloseDay = { date: new Date(newAppointment.year, newAppointment.month - 1, newAppointment.day) };
+            await axios.post("/closedDays", newCloseDay);
+            callback();
+        }
         return response.data
     }
     else
@@ -66,7 +90,7 @@ const checkHours = async (selectedDay, hours, setHoursToShow, hoursToStrict) => 
         const ourMonth = selectedDay.getMonth() + 1;
         const ourYear = selectedDay.getFullYear();
         const searchForHour = hoursToStrict.find(date => new Date(date.day).getDate() === ourDay && new Date(date.day).getFullYear() === ourYear && new Date(date.day).getMonth() === (ourMonth - 1));
-        if (searchForHour != null) {
+        if (searchForHour !== undefined) {
             const start = searchForHour.start;
             const end = searchForHour.end;
             const startIndex = hours.indexOf(start);
@@ -74,12 +98,17 @@ const checkHours = async (selectedDay, hours, setHoursToShow, hoursToStrict) => 
             newHours = hours.slice(startIndex, endIndex);
         }
         const resp = await axios.get(`/appointments/day/${ourDay}`);
+        const respAdmin = await axios.get(`/adminAppointment/${ourYear}/${ourMonth}/${ourDay}`);
         const appForDay = resp.data;
+        const adminAppForDay = respAdmin.data;
         const appForDayAndMonth = appForDay.filter(app => app.month === ourMonth);
         const appForDayAndMonthAndYear = appForDayAndMonth.filter(app => app.year = ourYear);
-        const hoursForDate = appForDayAndMonthAndYear.map(appointment => appointment.hour);
+        let hoursForDate = appForDayAndMonthAndYear.map(appointment => appointment.hour);
+        const adminHoursForDate = adminAppForDay.map(appointment => appointment.hour);
+        hoursForDate = hoursForDate.concat(adminHoursForDate);
         if (currDay === ourDay && currMonth === ourMonth && currYear === ourYear && currHour >= 0 && currHour < 8) {
             const newHoursToShow = strictHours.filter(theHours => !hoursForDate.includes(theHours));
+            newHoursToShowAfterAdminStrict = newHoursToShow;
             if (newHours !== " ") {
                 newHoursToShowAfterAdminStrict = newHours.filter(theHours => newHoursToShow.includes(theHours))
             }
@@ -174,5 +203,10 @@ const deleteAppointment = async (userPhone, appointment) => {
     await deleteApp(appToDelete.id);
 }
 
+const getCloseDays = async () => {
+    const resp = await axios.get("/closedDays");
+    return resp.data;
+}
 
-export default { getAll, deleteAppointment, getAllAppointments, sortAppointments, create, update, setToken, checkHours, getByPhone, stringAppointments, deleteApp, sortAppByStringDate, getByDate }
+
+export default { getAll, deleteAppointment, getAllAppointments, sortAppointments, create, update, setToken, checkHours, getByPhone, stringAppointments, deleteApp, sortAppByStringDate, getByDate, getCloseDays }

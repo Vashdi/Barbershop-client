@@ -133,6 +133,9 @@
     color: #F0F8FF;
 }
 
+.DayPicker-Day {
+    color: green ;
+}
 .showApp{
     padding: 10px 20px;
     font-size: 24px;

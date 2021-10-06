@@ -13,6 +13,7 @@ import Swal from 'sweetalert2'
 import { useDispatch } from 'react-redux';
 import appService from '../services/appointment'
 import { Link, useHistory } from 'react-router-dom';
+import firebase from './firebase'
 
 
 const theme = createTheme({
@@ -70,7 +71,44 @@ const Signup = (props) => {
         event.preventDefault();
     };
 
+    const configureCaptcha = () => {
+        window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('sign-in-button', {
+            'size': 'invisible',
+            'callback': (response) => {
+                // reCAPTCHA solved, allow signInWithPhoneNumber.
+                onSignInSubmit();
+            }
+        });
+    }
+
+    const onSignInSubmit = () => {
+        configureCaptcha();
+        const phoneNumber = "+972523679033";
+        const appVerifier = window.recaptchaVerifier;
+        firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
+            .then((confirmationResult) => {
+                // SMS sent. Prompt user to type the code from the message, then sign the
+                // user in with confirmationResult.confirm(code).
+                window.confirmationResult = confirmationResult;
+                console.log("otp sent");
+                const code = "123456";
+                confirmationResult.confirm(code).then((result) => {
+                    // User signed in successfully.
+                    const user = result.user;
+                    // ...
+                }).catch((error) => {
+                    // User couldn't sign in (bad verification code?)
+                    // ...
+                });
+                // ...
+            }).catch((error) => {
+                // Error; SMS not sent
+                // ...
+            });
+    }
+
     const send = async (data) => {
+        onSignInSubmit();
         try {
             const user = await SignupService.register({
                 firstname: data.firstName,
