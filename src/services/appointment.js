@@ -129,6 +129,7 @@ const checkHours = async (selectedDay, hours, setHoursToShow, hoursToStrict) => 
 }
 
 const sortAppByStringDate = (datesInString) => {
+    console.log(datesInString);
     const dates = [];
     datesInString.map(date => {
         const toSplit = date.split("/", 3);
@@ -181,6 +182,7 @@ const getAllAppointments = async (user) => {
     const allUsers = await axios.get("/users");
     const data = allUsers.data;
     const allApp = data.filter(oneUser => oneUser.phone === user.phone);
+    console.log(allApp);
     if (allApp.length !== 0) {
         return allApp[0].appointments;
     }
