@@ -147,7 +147,7 @@ const MakeAppointment = (props) => {
         }
         start();
         getAtStartClosedDays();
-    }, [modifiers, newStrict])
+    }, [])
 
     useEffect(() => {
         if (myHour === "" || myHour === "בחר שעה" || myHour === "pick a time.." || myHour === " ") {
@@ -155,7 +155,7 @@ const MakeAppointment = (props) => {
         } else {
             dispatch({ type: "NEXT" });
         }
-    }, [dispatch, myHour, props])
+    }, [myHour])
 
 
     useEffect(() => {
@@ -182,7 +182,7 @@ const MakeAppointment = (props) => {
             }
         }
 
-    }, [hoursToShow, myHour, props, selectedDay, storeData.AppointmentReducer.step])
+    }, [storeData.AppointmentReducer.step])
 
     useEffect(() => {
         const whenLogged = async () => {
@@ -228,6 +228,7 @@ const MakeAppointment = (props) => {
                     title: " הפגישה נקבעה לתאריך" + appointment.day + "/" + appointment.month + "/" + appointment.year + " בשעה " + appointment.hour + " בהצלחה"
                 })
             } catch (error) {
+                console.log(error, error.data, error.message)
                 Swal.fire({
                     icon: 'error',
                     title: error.response.data,
