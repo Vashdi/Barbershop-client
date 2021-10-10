@@ -135,9 +135,8 @@ const checkHours = async (selectedDay, hours, setHoursToShow, hoursToStrict) => 
 }
 
 const sortAppByStringDate = (datesInString) => {
-    console.log(datesInString);
     const dates = [];
-    datesInString.map(date => {
+    datesInString.forEach(date => {
         const toSplit = date.split("/", 3);
         const toSplitAgain = toSplit[2].split(" ", 3);
         const day = toSplit[0] - '0';
@@ -147,7 +146,8 @@ const sortAppByStringDate = (datesInString) => {
         const hour = splitedAgain[0] - '0';
         const minute = splitedAgain[1] - '0';
         dates.push(new Date(year, month - 1, day, hour, minute))
-    })
+    });
+
     const appointmentsToShowSorted = dates.sort(function (a, b) {
         return a - b;
     });
@@ -157,7 +157,7 @@ const sortAppByStringDate = (datesInString) => {
 const sortAppFromOurDate = (datesInString) => {
     const now = new Date();
     const appointmentsToShow = [];
-    datesInString.map(app => {
+    datesInString.forEach(app => {
         const myHour = app.hour.slice(0, 2) - '0';
         const myMinute = app.hour.slice(3, 5) - '0';
         const appDate = new Date(app.year, app.month - 1, app.day, myHour, myMinute);
@@ -189,7 +189,6 @@ const getAllAppointments = async (user) => {
         const allUsers = await axios.get("/users");
         const data = allUsers.data;
         const allApp = data.filter(oneUser => oneUser.phone === user.phone);
-        console.log(allApp);
         if (allApp.length !== 0) {
             return allApp[0].appointments;
         }

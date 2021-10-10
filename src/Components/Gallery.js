@@ -64,8 +64,8 @@ const Gallery = () => {
                 <h1 className="titleGallery">גלריה</h1>
                 <div className="images">
                     {images && images.map((photo, index) => (
-                        <div class="container-block">
-                            <p class="btn">
+                        <div key={index} className="container-block">
+                            <p className="btn">
                                 <span>
                                     <span>
                                         <img src={photo.url} onClick={() => {

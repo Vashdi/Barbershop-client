@@ -12,21 +12,21 @@ const Contact = () => {
             </div>
             <div className="contactContainer">
                 <div className="paddingIcons">
-                    <div data-aos="fade-up" class="icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+                    <div data-aos="fade-up" className="icon"><i className="fa fa-map-marker" aria-hidden="true"></i></div>
                     <div data-aos="fade-up">
                         <h3 style={{ color: '#F06000' }}>כתובת</h3>
                         <p style={{ fontSize: "3rem" }}>הלוויתן 46, ראשון לציון</p>
                     </div>
                 </div>
                 <div className="paddingIcons">
-                    <div data-aos="fade-up" class="icon2"><i class="fa fa-phone" aria-hidden="true"></i></div>
+                    <div data-aos="fade-up" className="icon2"><i className="fa fa-phone" aria-hidden="true"></i></div>
                     <div data-aos="fade-up">
                         <h3 style={{ color: '#F06000' }}>פלאפון</h3>
                         <p style={{ fontSize: "3rem" }}>0502341694</p>
                     </div>
                 </div>
                 <div className="paddingIconsEmail">
-                    <div data-aos="fade-up" class="icon3"><i class="fa fa-envelope-o" aria-hidden="true"></i></div>
+                    <div data-aos="fade-up" className="icon3"><i className="fa fa-envelope-o" aria-hidden="true"></i></div>
                     <div data-aos="fade-up">
                         <h3 style={{ color: '#F06000' }}>אימייל</h3>
                         <span style={{ fontSize: "3rem" }}>Smbarbershop@gmail.com</span>

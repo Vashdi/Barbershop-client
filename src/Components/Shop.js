@@ -87,11 +87,11 @@ const Shop = () => {
                                     title="Contemplative Reptile"
                                 />
                                 <CardContent style={{ textAlign: 'center' }}>
-                                    <Typography gutterBottom variant="h5" component="h2">
-                                        <h1 style={{ color: 'white' }} className="titleSize">{image.name}</h1>
+                                    <Typography className="titleSize" gutterBottom variant="h3" style={{ color: 'white' }}>
+                                        {image.name}
                                     </Typography>
-                                    <Typography variant="body2" color="textSecondary" component="p">
-                                        <h3 style={{ color: 'white' }}>{image.price}</h3>
+                                    <Typography variant="h4" color="textSecondary" style={{ color: 'white' }}>
+                                        {image.price}
                                     </Typography>
                                 </CardContent>
                             </CardActionArea>
@@ -101,8 +101,8 @@ const Shop = () => {
                     })
                 }
             </Carousel>
-            <div class="sign">
-                <span class="fast-flicker">!</span>בחנות<span class="flicker">המוצרים</span>כל
+            <div className="sign">
+                <span className="fast-flicker">!</span>בחנות<span className="flicker">המוצרים</span>כל
             </div>
         </section>
     );

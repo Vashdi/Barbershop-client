@@ -67,18 +67,6 @@ const MakeAppointment = (props) => {
     const language = 'he';
     const dense = false;
     const [newStrict, setNewStrict] = useState([{ before: new Date() }, { after: new Date(new Date().getFullYear(), new Date().getMonth() + 1, new Date().getDate()) }, { daysOfWeek: [1, 6] }]);
-    const getAtStartClosedDays = async () => {
-        try {
-            const closedDaysArray = await appService.getCloseDays();
-            const closedDaysWithoutID = closedDaysArray.map(closedDay => new Date(closedDay.date));
-            setModifiers({ ...modifiers, closedDays: closedDaysWithoutID });
-        } catch (error) {
-            Swal.fire({
-                icon: 'error',
-                title: error.response.data,
-            })
-        }
-    }
 
     const [modifiers, setModifiers] = useState({
         closedDays: [],
@@ -122,6 +110,18 @@ const MakeAppointment = (props) => {
         dispatch({ type: "RESET" });
     }
     useEffect(() => {
+        const getAtStartClosedDays = async () => {
+            try {
+                const closedDaysArray = await appService.getCloseDays();
+                const closedDaysWithoutID = closedDaysArray.map(closedDay => new Date(closedDay.date));
+                setModifiers({ ...modifiers, closedDays: closedDaysWithoutID });
+            } catch (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: error.response.data,
+                })
+            }
+        }
         const start = async () => {
             try {
                 const stricts = await strictService.getAllStricts();
@@ -147,7 +147,7 @@ const MakeAppointment = (props) => {
         }
         start();
         getAtStartClosedDays();
-    }, [])
+    }, [modifiers, newStrict])
 
     useEffect(() => {
         if (myHour === "" || myHour === "בחר שעה" || myHour === "pick a time.." || myHour === " ") {
@@ -155,24 +155,8 @@ const MakeAppointment = (props) => {
         } else {
             dispatch({ type: "NEXT" });
         }
-    }, [myHour])
+    }, [dispatch, myHour, props])
 
-    const whenLogged = async () => {
-        try {
-            const user = storeData.AuthReducer.user;
-            appService.setToken(user.token);
-            const allAppointments = await appointmentService.getAllAppointments(user);
-            dispatch({ type: 'REPLACEALL', payload: allAppointments })
-            const sortedAppointments = appointmentService.sortAppointments(allAppointments);
-            const appointmentsToShowByString = appointmentService.stringAppointments(sortedAppointments);
-            setAppToShow(appointmentsToShowByString);
-        } catch (error) {
-            Swal.fire({
-                icon: 'error',
-                title: error.response.data,
-            })
-        }
-    }
 
     useEffect(() => {
         const allAppointments = storeData.AppointmentReducer.appointments;
@@ -198,19 +182,35 @@ const MakeAppointment = (props) => {
             }
         }
 
-    }, [storeData.AppointmentReducer.step])
+    }, [hoursToShow, myHour, props, selectedDay, storeData.AppointmentReducer.step])
 
     useEffect(() => {
+        const whenLogged = async () => {
+            try {
+                const user = storeData.AuthReducer.user;
+                appService.setToken(user.token);
+                const allAppointments = await appointmentService.getAllAppointments(user);
+                dispatch({ type: 'REPLACEALL', payload: allAppointments })
+                const sortedAppointments = appointmentService.sortAppointments(allAppointments);
+                const appointmentsToShowByString = appointmentService.stringAppointments(sortedAppointments);
+                setAppToShow(appointmentsToShowByString);
+            } catch (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: error.response.data,
+                })
+            }
+        }
         if (!storeData.AuthReducer.user) {
             dispatch({ type: 'REPLACEALL', payload: [] });
         } else {
             whenLogged();
         }
-    }, [storeData.AuthReducer.user])
+    }, [dispatch, storeData.AuthReducer.user])
 
     useEffect(() => {
         appService.checkHours(selectedDay, hours, setHoursToShow, hoursToStrict);
-    }, [selectedDay])
+    }, [hours, hoursToStrict, selectedDay])
 
     const addAppointment = async () => {
         if (myHour === "pick a time.." || selectedDay === " ") {
@@ -276,7 +276,7 @@ const MakeAppointment = (props) => {
             {
                 storeData.AppointmentReducer.step === 2 &&
                 <div className="sum">
-                    <div class="boxApp"></div>
+                    <div className="boxApp"></div>
                     <h2 className="hourTitle" style={{ marginBottom: '40px' }}>התור שנבחר</h2>
                     <h4 className="hourTitle">:תאריך</h4>
                     <h4 className="hourTitle">{selectedDay.getDate() + "/" + (selectedDay.getMonth() + 1) + "/" + selectedDay.getFullYear()}</h4>

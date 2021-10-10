@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react'
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
-import './Resume.css'
 import Signin from './Signin';
 import Signup from './Signup';
 import { Route, Switch, Link } from 'react-router-dom';

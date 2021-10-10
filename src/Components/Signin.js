@@ -83,7 +83,7 @@ const Signin = (props) => {
             setUser(storeData);
             appService.setToken(user.token);
         }
-    }, [])
+    }, [storeData, user.token])
 
     const handleLogin = async (data) => {
         try {
