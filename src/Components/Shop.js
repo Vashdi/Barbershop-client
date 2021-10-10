@@ -42,34 +42,54 @@ const Shop = () => {
         }
     };
     const images = [{
-        url: "/images/shop1.png",
-        name: "מארז",
+        url: "/images/shop/DeluxePomade.png",
+        name: "Deluxe Pomade",
         price: "60₪"
     },
     {
-        url: "/images/shop2.png",
-        name: "קרם גוף",
-        price: "45₪"
+        url: "/images/shop/MattClay.png",
+        name: "Matt Clay",
+        price: "60₪"
     },
     {
-        url: "/images/shop3.png",
-        name: "שוטף גוף",
-        price: "19.90₪"
+        url: "/images/shop/UltraMatteClay.png",
+        name: "Ultra Matte Clay",
+        price: "60₪"
     },
     {
-        url: "/images/shop4.png",
-        name: "שוטף זקן",
-        price: "30₪"
+        url: "/images/shop/MattPaste.png",
+        name: "Matt Paste",
+        price: "60₪"
     },
     {
-        url: "/images/shop5.png",
-        name: "מנקה",
-        price: "200₪"
+        url: "/images/shop/HeavyHoldPomade.png",
+        name: "Heavy Hold Pomade",
+        price: "60₪"
     },
     {
-        url: "/images/shop6.png",
-        name: "שמן",
-        price: "100₪"
+        url: "/images/shop/FixingSpray.png",
+        name: "Fixing Spray",
+        price: "80₪"
+    },
+    {
+        url: "/images/shop/GroomingTonic.png",
+        name: "Grooming Tonic",
+        price: "80₪"
+    },
+    {
+        url: "/images/shop/SeaSaltSpray.png",
+        name: "Sea Salt Spray",
+        price: "80₪"
+    },
+    {
+        url: "/images/shop/MatteCreme.png",
+        name: "Matte Crème",
+        price: "80₪"
+    },
+    {
+        url: "/images/shop/UltraMatteTexturDust.png",
+        name: "Ultra Matte Textur Dust",
+        price: "80₪"
     }]
 
     return (
