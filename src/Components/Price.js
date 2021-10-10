@@ -14,7 +14,7 @@ const Price = () => {
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                     <span className="priceRow">&nbsp;₪50&nbsp;<hr className="dottedRow" />&nbsp;תספורת&nbsp;גבר&nbsp;</span>
                     <span className="priceRow">&nbsp;₪60&nbsp;<hr className="dottedRow" />&nbsp;תספורת&nbsp;+&nbsp;זקן&nbsp;</span>
-                    <span className="priceRow">&nbsp;₪30&nbsp;<hr className="dottedRow" />&nbsp;תספורת&nbsp;ילד&nbsp;</span>
+                    <span className="priceRow">&nbsp;₪40&nbsp;<hr className="dottedRow" />&nbsp;תספורת&nbsp;ילד&nbsp;</span>
                     <span className="priceRow">&nbsp;₪15&nbsp;<hr className="dottedRow" />&nbsp;שעוות&nbsp;פנים&nbsp;</span>
                     <span className="priceRow">&nbsp;₪70&nbsp;<hr className="dottedRow" />&nbsp;תספורת&nbsp;+&nbsp;שעוות&nbsp;פנים&nbsp;</span>
                     <span className="priceRow">&nbsp;₪25&nbsp;<hr className="dottedRow" />&nbsp;מסיכת&nbsp;פנים&nbsp;</span>
