@@ -60,7 +60,6 @@ const Toast = Swal.mixin({
 const Signin = (props) => {
     let history = useHistory();
     const [user, setUser] = useState("");
-    const [modal, setModal] = useState(false);
     const classes = useStyles();
     const [values, setValues] = useState({
         password: '',
@@ -100,10 +99,10 @@ const Signin = (props) => {
                 title: '!ההתחברות בוצעה בהצלחה'
             })
             history.push("/");
-        } catch (exception) {
-            Toast.fire({
+        } catch (error) {
+            Swal.fire({
                 icon: 'error',
-                title: '!ההתחברות נכשלה'
+                title: error.response.data,
             })
         }
     }
@@ -115,12 +114,12 @@ const Signin = (props) => {
                     <InputLabel style={{ fontSize: 'medium', left: 25 }} htmlFor="outlined-adornment-password">פלאפון</InputLabel>
                     <OutlinedInput style={{ width: '200%', fontSize: 'large', left: 25 }}
                         id="outlined-adornment-password"
-                        type='number'
+                        type='text'
                         endAdornment={
                             <InputAdornment position="end">
                             </InputAdornment>
                         }
-                        labelWidth={50}
+                        labelWidth={45}
                         {...register("phone", {
                             required: { value: true, message: "הכנס מספר פלאפון" },
                             pattern: { value: /^[0-9]*$/i, message: "מספר פלאפון יכול להכיל רק מספרים" }
@@ -145,7 +144,7 @@ const Signin = (props) => {
                                 </IconButton>
                             </InputAdornment>
                         }
-                        labelWidth={75}
+                        labelWidth={45}
                         {...register("password", { required: { value: true, message: "הכנס סיסמה" } })}
                     />
                 </FormControl>

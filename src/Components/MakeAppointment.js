@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import appService from '../services/appointment';
 import strictService from '../services/Strict';
 import appointmentService from '../services/appointment';
-import './Portfolio.css'
-import SingleAppointment from '../Components/SingleApp/SingleAppointment';
+import './MakeAppointment.css'
+import SingleAppointment from './SingleApp/SingleAppointment';
 import { useDispatch } from 'react-redux';
 import { Button, makeStyles } from '@material-ui/core';
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
@@ -61,17 +61,23 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const Portfolio = (props) => {
+const MakeAppointment = (props) => {
     const storeData = useSelector(state => state);
     const dispatch = useDispatch();
-
-    //day picker styling and language//
     const language = 'he';
+    const dense = false;
     const [newStrict, setNewStrict] = useState([{ before: new Date() }, { after: new Date(new Date().getFullYear(), new Date().getMonth() + 1, new Date().getDate()) }, { daysOfWeek: [1, 6] }]);
     const getAtStartClosedDays = async () => {
-        const closedDaysArray = await appService.getCloseDays();
-        const closedDaysWithoutID = closedDaysArray.map(closedDay => new Date(closedDay.date));
-        setModifiers({ ...modifiers, closedDays: closedDaysWithoutID });
+        try {
+            const closedDaysArray = await appService.getCloseDays();
+            const closedDaysWithoutID = closedDaysArray.map(closedDay => new Date(closedDay.date));
+            setModifiers({ ...modifiers, closedDays: closedDaysWithoutID });
+        } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: error.response.data,
+            })
+        }
     }
 
     const [modifiers, setModifiers] = useState({
@@ -85,19 +91,15 @@ const Portfolio = (props) => {
         },
         foo: new Date()
     };
-    //day picker styling and language//
 
     const [selectedDay, setSelectedDay] = useState(" ");
     const hours = ["08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00"];
     const [hoursToShow, setHoursToShow] = useState(hours);
     const [myHour, setMyHour] = useState("");
     const [appToShow, setAppToShow] = useState([]);
-    const [phone, setPhone] = useState("");
     const classes = useStyles();
-    const [dense, setDense] = useState(false);
     const classesModal = useStylesModal();
     const [openModal, setOpenModal] = useState(false);
-    const [allStrict, setAllStrict] = useState(" ");
     const [hoursToStrict, setHoursToStrict] = useState([]);
     const handleOpenModal = () => {
         setOpenModal(true);
@@ -119,28 +121,29 @@ const Portfolio = (props) => {
         setMyHour("");
         dispatch({ type: "RESET" });
     }
-    const [adminSelectedDay, setAdminSelectedDay] = useState(" ");
-    const strictDays = () => {
-        const newStrictDays = newStrict.concat(adminSelectedDay);
-        setNewStrict(newStrictDays);
-    }
-
     useEffect(() => {
         const start = async () => {
-            const stricts = await strictService.getAllStricts();
-            const strictHours = await strictService.getAllStrictDay();
-            let newStrictsToShow = newStrict;
-            stricts.map(strict => {
-                const day = strict.day;
-                const split = day.split("-");
-                const year = split[0];
-                const month = split[1];
-                const dateWithHours = split[2];
-                const date = dateWithHours.split("T")[0];
-                newStrictsToShow = newStrictsToShow.concat(new Date(year, month - 1, date));
-            })
-            setHoursToStrict(strictHours);
-            setNewStrict(newStrictsToShow);
+            try {
+                const stricts = await strictService.getAllStricts();
+                const strictHours = await strictService.getAllStrictDay();
+                let newStrictsToShow = newStrict;
+                stricts.forEach(strict => {
+                    const day = strict.day;
+                    const split = day.split("-");
+                    const year = split[0];
+                    const month = split[1];
+                    const dateWithHours = split[2];
+                    const date = dateWithHours.split("T")[0];
+                    newStrictsToShow = newStrictsToShow.concat(new Date(year, month - 1, date));
+                })
+                setHoursToStrict(strictHours);
+                setNewStrict(newStrictsToShow);
+            } catch (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: error.response.data,
+                })
+            }
         }
         start();
         getAtStartClosedDays();
@@ -155,18 +158,23 @@ const Portfolio = (props) => {
     }, [myHour])
 
     const whenLogged = async () => {
-        const user = storeData.AuthReducer.user;
-        setPhone(user.phone);
-        appService.setToken(user.token);
-        const allAppointments = await appointmentService.getAllAppointments(user);
-        dispatch({ type: 'REPLACEALL', payload: allAppointments })
-        const sortedAppointments = appointmentService.sortAppointments(allAppointments);
-        const appointmentsToShowByString = appointmentService.stringAppointments(sortedAppointments);
-        setAppToShow(appointmentsToShowByString);
+        try {
+            const user = storeData.AuthReducer.user;
+            appService.setToken(user.token);
+            const allAppointments = await appointmentService.getAllAppointments(user);
+            dispatch({ type: 'REPLACEALL', payload: allAppointments })
+            const sortedAppointments = appointmentService.sortAppointments(allAppointments);
+            const appointmentsToShowByString = appointmentService.stringAppointments(sortedAppointments);
+            setAppToShow(appointmentsToShowByString);
+        } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: error.response.data,
+            })
+        }
     }
 
     useEffect(() => {
-        console.log(storeData.AppointmentReducer.appointments)
         const allAppointments = storeData.AppointmentReducer.appointments;
         const sortedAppointments = appointmentService.sortAppointments(allAppointments);
         setAppToShow(appointmentService.stringAppointments(sortedAppointments));
@@ -223,7 +231,6 @@ const Portfolio = (props) => {
                 Swal.fire({
                     icon: 'error',
                     title: error.response.data,
-                    text: error.text,
                 })
             }
         }
@@ -240,7 +247,7 @@ const Portfolio = (props) => {
         }
     }
 
-    return (<section data-aos="fade-up" id="portfolio">
+    return (<section data-aos="fade-up" id="MakeAppointment">
         <div className="appointmentContainer">
             {
                 storeData.AppointmentReducer.step === 1 &&
@@ -275,23 +282,25 @@ const Portfolio = (props) => {
                     <h4 className="hourTitle">{selectedDay.getDate() + "/" + (selectedDay.getMonth() + 1) + "/" + selectedDay.getFullYear()}</h4>
                     <h4 className="hourTitle">:שעה</h4>
                     <h4 className="hourTitle">{myHour}</h4><br />
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        className={classes.button}
-                        endIcon={<AssignmentTurnedInIcon>send</AssignmentTurnedInIcon>}
-                        onClick={handlefinish}
-                    >
-                        Send
-                    </Button><br />
-                    <Button
-                        variant="contained"
-                        color="secondary"
-                        className={classes.button}
-                        onClick={handleReset}
-                    >
-                        Reset
-                    </Button>
+                    <div className="SendResetButtons">
+                        <Button style={{ marginRight: '5px' }}
+                            variant="contained"
+                            color="primary"
+                            className={classes.button}
+                            endIcon={<AssignmentTurnedInIcon>send</AssignmentTurnedInIcon>}
+                            onClick={handlefinish}
+                        >
+                            Send
+                        </Button>
+                        <Button
+                            variant="contained"
+                            color="secondary"
+                            className={classes.button}
+                            onClick={handleReset}
+                        >
+                            Reset
+                        </Button>
+                    </div>
                 </div>
             }
             <div>
@@ -317,7 +326,6 @@ const Portfolio = (props) => {
                                 <List dense={dense}>
                                     {appToShow.map((apps, index) => {
                                         return (<SingleAppointment key={index} appointment={apps} callback={(day) => {
-                                            console.log(modifiers.closedDays)
                                             setModifiers({ ...modifiers, closedDays: modifiers.closedDays.filter((date) => date.getFullYear() !== day.getFullYear() || date.getMonth() !== day.getMonth() || date.getDate() !== day.getDate()) })
                                         }} />)
                                     })}
@@ -327,9 +335,8 @@ const Portfolio = (props) => {
                     </Fade>
                 </Modal>
             </div>
-
         </div>
     </section>)
 }
 
-export default Portfolio;
+export default MakeAppointment;

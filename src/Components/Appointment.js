@@ -6,7 +6,7 @@ import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import { useState } from 'react';
 import Typography from '@material-ui/core/Typography';
-import Portfolio from './Portfolio';
+import MakeAppointment from './MakeAppointment';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -158,19 +158,6 @@ function getSteps() {
     return ['בחר יום לפגישה', 'בחר שעה לפגישה', 'סיכום'];
 }
 
-function getStepContent(step) {
-    switch (step) {
-        case 0:
-            return 'קבע יום לפגישה';
-        case 1:
-            return 'קבע שעה לפגישה';
-        case 2:
-            return 'סיכום';
-        default:
-            return 'Unknown step';
-    }
-}
-
 export default function Appointment() {
     const classes = useStyles();
     const [activeStep, setActiveStep] = useState(0);
@@ -189,11 +176,6 @@ export default function Appointment() {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
 
-    const handleReset = () => {
-        dispatch({ type: "RESET" });
-        setActiveStep(0);
-    };
-
     return (
         <section id="appointment">
             <div className={classes.root}>
@@ -204,7 +186,7 @@ export default function Appointment() {
                         </Step>
                     ))}
                 </Stepper>
-                <Portfolio step={activeStep} disableCallback={(isDisable) => {
+                <MakeAppointment step={activeStep} disableCallback={(isDisable) => {
                     setDisableNext(isDisable)
                 }} />
                 {

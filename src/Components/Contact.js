@@ -2,7 +2,7 @@ import React from 'react'
 import './contact.css'
 import 'aos/dist/aos.css';
 
-const Contact = (props) => {
+const Contact = () => {
     return (
         <section data-aos="fade-up" id="contact">
             <div>

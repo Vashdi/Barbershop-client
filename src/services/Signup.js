@@ -2,12 +2,20 @@ import axios from 'axios'
 const baseUrl = '/users'
 
 const addUser = async (user) => {
-    await axios.post(baseUrl, user);
+    try {
+        await axios.post(baseUrl, user);
+    } catch (error) {
+        throw new Error(error.response.data);
+    }
 }
 
 const getUsers = async () => {
-    const resp = await axios.get("/users");
-    return resp.data;
+    try {
+        const resp = await axios.get("/users");
+        return resp.data;
+    } catch (error) {
+        throw new Error(error.response.data);
+    }
 }
 
 

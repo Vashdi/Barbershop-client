@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import SignupService from '../services/register'
 import FormControl from '@material-ui/core/FormControl';
 import { Button, IconButton, InputAdornment, InputLabel, OutlinedInput, ThemeProvider } from '@material-ui/core';
@@ -86,11 +86,10 @@ const Signup = (props) => {
                 title: '!ההרשמה בוצעה בהצלחה'
             })
             history.push('/');
-        } catch (exception) {
-            console.log(exception)
-            Toast.fire({
+        } catch (error) {
+            Swal.fire({
                 icon: 'error',
-                title: exception
+                title: error.response.data,
             })
         }
     }
@@ -99,7 +98,7 @@ const Signup = (props) => {
         <div className={classes.root}>
             <form onSubmit={handleSubmit((data => send(data)))}>
                 <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
-                    <InputLabel style={{ fontSize: 'medium', left: 25 }} htmlFor="outlined-adornment-password">מספר פלאפון</InputLabel>
+                    <InputLabel dir="rtl" style={{ fontSize: 'medium', left: 25 }} htmlFor="outlined-adornment-password">מספר פלאפון</InputLabel>
                     <OutlinedInput style={{ width: '200%', fontSize: 'large', left: 25 }}
                         id="outlined-adornment-password"
                         type='text'
@@ -107,7 +106,7 @@ const Signup = (props) => {
                             <InputAdornment position="end">
                             </InputAdornment>
                         }
-                        labelWidth={50}
+                        labelWidth={80}
                         {...register("phone", {
                             required: { value: true, message: "הכנס מספר פלאפון" },
                             maxLength: { value: 10, message: "מספר הפלאפון ארוך מדי" },
@@ -122,11 +121,12 @@ const Signup = (props) => {
                     <OutlinedInput style={{ width: '200%', fontSize: 'large', left: 25 }}
                         id="outlined-adornment-password"
                         type='text'
+                        dir="rtl"
                         endAdornment={
                             <InputAdornment position="end">
                             </InputAdornment>
                         }
-                        labelWidth={50}
+                        labelWidth={60}
                         {...register("firstName", {
                             required: { value: true, message: "הכנס שם פרטי" },
                             maxLength: { value: 20, message: "שם ארוך מדי" },
@@ -141,11 +141,12 @@ const Signup = (props) => {
                     <OutlinedInput style={{ width: '200%', fontSize: 'large', left: 25 }}
                         id="outlined-adornment-password"
                         type='text'
+                        dir="rtl"
                         endAdornment={
                             <InputAdornment position="end">
                             </InputAdornment>
                         }
-                        labelWidth={50}
+                        labelWidth={73}
                         {...register("lastName", {
                             required: { value: true, message: "הכנס שם משפחה" },
                             maxLength: { value: 20, message: "שם ארוך מדי" },
@@ -172,7 +173,7 @@ const Signup = (props) => {
                                 </IconButton>
                             </InputAdornment>
                         }
-                        labelWidth={75}
+                        labelWidth={45}
                         {...register("password", {
                             required: { value: true, message: "הכנס סיסמה" },
                             maxLength: { value: 25, message: "סיסמה ארוכה מדי" },

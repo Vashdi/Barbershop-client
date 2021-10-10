@@ -124,7 +124,10 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding-bottom: 5%;
+}
+
+.SendResetButtons{
+    margin-bottom: 10px;
 }
 
 .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
@@ -132,13 +135,18 @@
     background-color: #F06000 !important;
     color: #F0F8FF;
 }
-
+.DayPicker-Months {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: 150%;
+}
 .DayPicker-Day {
     color: green ;
 }
 .showApp{
-    padding: 10px 20px;
-    font-size: 24px;
+    padding: 10px 12px;
+    font-size: 17px;
     text-align: center;
     cursor: pointer;
     outline: none;
@@ -206,11 +214,21 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding-bottom: 10%;
+    padding-bottom: 6%;
+}
+
+@media screen and ( max-width: 700px){
+    .hoursContainer{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding-bottom: 10%;
+    }
+
 }
 
 @media screen and ( max-width: 400px){
-
     .hoursShow{
         display: grid;
         grid-template-columns: repeat(4,1fr);
@@ -230,70 +248,3 @@
     }
 
 }
-  
-/* @media screen and ( max-width: 960px){
-    .time{
-        background-color: white;
-        position:absolute;
-        margin-top: 0;
-        width: 90%;
-        height: 60%;
-        margin-left: -45%;
-        font-size: 2rem;
-       }
-    .nextApp{
-        position: absolute;
-        border:2px solid black;
-        columns: 1;
-        background-color: white;
-        width: 90%;
-        height: 30%;
-        left: 5%;
-        border-radius: 10px;
-        top: 750vw;
-    }
-    .boxApp{
-        position: absolute;
-        top: -15%;
-        left: 61%;
-        height: 350px;
-        width: 350px;
-        border-radius: 50px;
-        background-color: rgba(255, 255, 255, 0.377);
-    }
-.sum{
-    position: absolute;
-    margin-top: 20%;
-    left: -92%;
-}
-.showApp{
-    position: absolute;
-    top: 220%;
-    left: 24%;
-    padding: 7px 10px;
-    font-size: 24px;
-    text-align: center;
-    cursor: pointer;
-    outline: none;
-    color: #fff;
-    background-color: #F06000;
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0 5px #999;
-}
-    .hoursShow{
-        position: absolute;
-        top: 161%;
-        left: 8%;
-        column-count: 4; 
-        gap: 40px;
-        margin-top: 25px;
-        max-height: 420px;
-    }
-.hourTitle{
-    position: absolute;
-    top: 160%;
-    left: -85%;
-}
-  
-} */

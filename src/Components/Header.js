@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import './Header.css'
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 import Button from '@material-ui/core/Button';
@@ -14,25 +14,13 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
-import { makeStyles } from '@material-ui/core/styles';
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
-const useStyles = makeStyles((theme) => ({
-    root: {
-        width: '100%',
-        '& > * + *': {
-            marginTop: theme.spacing(2),
-        },
-    },
-}));
 
-
-const Header = (props) => {
-    const classes = useStyles();
+const Header = () => {
     const [logged, setLogged] = useState(false);
-    const [admin, setAdmin] = useState(false);
     const [open, setOpen] = useState(false);
     const [username, setUserName] = useState("");
     const handleOpen = () => setOpen(true);
@@ -71,18 +59,12 @@ const Header = (props) => {
             setUserName(storeData.AuthReducer.user.firstname);
         }
         setLogged(storeData.AuthReducer.user ? true : false);
-        setAdmin(storeData.AuthReducer.user?.phone === "0523679033" ? true : false);
     }, [storeData.AuthReducer.user])
 
     const logout = (e) => {
         e.preventDefault();
         dispatch({ type: "LOGOUT" });
         handleClose();
-    }
-
-    let name = " ";
-    if (props.data) {
-        name = props.data.name;
     }
 
     return (

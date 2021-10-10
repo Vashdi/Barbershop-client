@@ -3,16 +3,14 @@ import './About.css'
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 
-const About = (props) => {
+const About = () => {
+    var barbershopPic = "images/aboutMe.jpg";
+    var barbershopPic2 = "images/aboutMe2.jpg";
+
     useEffect(() => {
         Aos.init({ duration: 2000, once: true })
     }, []);
 
-    if (props.data) {
-        var barbershopPic = "images/aboutMe.jpg";
-        var barbershopPic2 = "images/aboutMe2.jpg";
-
-    }
     return (
         <section data-aos="fade-up" id="about">
             <div className="Aboutcontainer">
