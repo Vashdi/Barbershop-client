@@ -197,7 +197,7 @@ const MakeAppointment = (props) => {
             } catch (error) {
                 Swal.fire({
                     icon: 'error',
-                    title: error.response.data,
+                    title: error.message,
                 })
             }
         }
@@ -228,10 +228,9 @@ const MakeAppointment = (props) => {
                     title: " הפגישה נקבעה לתאריך" + appointment.day + "/" + appointment.month + "/" + appointment.year + " בשעה " + appointment.hour + " בהצלחה"
                 })
             } catch (error) {
-                console.log(error, error.data, error.message)
                 Swal.fire({
                     icon: 'error',
-                    title: error.response.data,
+                    title: error.message,
                 })
             }
         }
