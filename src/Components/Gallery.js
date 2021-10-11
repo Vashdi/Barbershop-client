@@ -8,52 +8,52 @@ const Gallery = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [photoIndex, setPhotoIndex] = useState(0);
     const images = [{
-        url: "/images/picture1.jpg",
+        url: "/images/gallery/picture1.jpg",
         name: "תספורת"
     },
     {
-        url: "/images/picture2.jpg",
+        url: "/images/gallery/picture2.jpg",
         name: "תספורת"
     },
     {
-        url: "/images/picture3.jpg",
+        url: "/images/gallery/picture3.jpg",
         name: "תספורת"
     },
     {
-        url: "/images/picture4.jpg",
+        url: "/images/gallery/picture4.jpg",
         name: "תספורת"
     },
     {
-        url: "/images/picture5.jpg",
+        url: "/images/gallery/picture5.jpg",
         name: "תספורת"
     },
     {
-        url: "/images/picture6.jpg",
+        url: "/images/gallery/picture6.jpg",
         name: "תספורת"
     },
     {
-        url: "/images/picture7.jpg",
+        url: "/images/gallery/picture7.jpg",
         name: "תספורת"
     },
     {
-        url: "/images/picture8.jpg",
+        url: "/images/gallery/picture8.jpg",
         name: "תספורת"
     }
         ,
     {
-        url: "/images/picture9.jpg",
+        url: "/images/gallery/picture9.jpg",
         name: "תספורת"
     },
     {
-        url: "/images/picture10.jpg",
+        url: "/images/gallery/picture10.jpg",
         name: "תספורת"
     },
     {
-        url: "/images/picture11.jpg",
+        url: "/images/gallery/picture11.jpg",
         name: "תספורת"
     },
     {
-        url: "/images/picture12.jpg",
+        url: "/images/gallery/picture12.jpg",
         name: "תספורת"
     }
     ]
