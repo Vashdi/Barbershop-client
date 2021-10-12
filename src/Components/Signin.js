@@ -18,6 +18,7 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2'
+import Notify from '../services/Notify';
 
 const theme = createTheme({
     palette: {
@@ -100,10 +101,7 @@ const Signin = (props) => {
             })
             history.push("/");
         } catch (error) {
-            Swal.fire({
-                icon: 'error',
-                title: error.response.data,
-            })
+            Notify.errorHandler(error.message);
         }
     }
 

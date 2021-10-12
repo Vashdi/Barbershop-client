@@ -13,6 +13,7 @@ import Swal from 'sweetalert2'
 import { useDispatch } from 'react-redux';
 import appService from '../services/appointment'
 import { Link, useHistory } from 'react-router-dom';
+import Notify from '../services/Notify';
 
 
 const theme = createTheme({
@@ -87,10 +88,7 @@ const Signup = (props) => {
             })
             history.push('/');
         } catch (error) {
-            Swal.fire({
-                icon: 'error',
-                title: error.response.data,
-            })
+            Notify.errorHandler(error.message);
         }
     }
 

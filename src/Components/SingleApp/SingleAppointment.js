@@ -4,7 +4,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import { useDispatch, useSelector } from 'react-redux';
 import { IconButton, ListItem, ListItemSecondaryAction, ListItemText } from '@material-ui/core';
 import './SingleAppointment.css'
-import Swal from 'sweetalert2';
+import Notify from '../../services/Notify';
 
 const SingleAppointment = ({ appointment, callback }) => {
     const storeData = useSelector(state => state);
@@ -24,10 +24,7 @@ const SingleAppointment = ({ appointment, callback }) => {
             dispatch({ type: "DELETE", payload: idOfApp });
             callback(new Date(year, month - 1, day));
         } catch (error) {
-            Swal.fire({
-                icon: 'error',
-                title: error.response.data,
-            })
+            Notify.errorHandler(error.message);
         }
     }
     return (

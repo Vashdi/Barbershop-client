@@ -9,7 +9,6 @@ import { Button, makeStyles } from '@material-ui/core';
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import { useSelector } from 'react-redux';
 import List from '@material-ui/core/List';
-import Swal from 'sweetalert2';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
@@ -17,6 +16,7 @@ import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import MomentLocaleUtils from 'react-day-picker/moment';
 import 'moment/locale/he';
+import Notify from '../services/Notify';
 
 const useStylesModal = makeStyles((theme) => ({
     modal: {
@@ -116,10 +116,7 @@ const MakeAppointment = (props) => {
                 const closedDaysWithoutID = closedDaysArray.map(closedDay => new Date(closedDay.date));
                 setModifiers({ ...modifiers, closedDays: closedDaysWithoutID });
             } catch (error) {
-                Swal.fire({
-                    icon: 'error',
-                    title: error.response.data,
-                })
+                Notify.errorHandler(error.message);
             }
         }
         const start = async () => {
@@ -139,10 +136,7 @@ const MakeAppointment = (props) => {
                 setHoursToStrict(strictHours);
                 setNewStrict(newStrictsToShow);
             } catch (error) {
-                Swal.fire({
-                    icon: 'error',
-                    title: error.response.data,
-                })
+                Notify.errorHandler(error.message);
             }
         }
         start();
@@ -195,10 +189,7 @@ const MakeAppointment = (props) => {
                 const appointmentsToShowByString = appointmentService.stringAppointments(sortedAppointments);
                 setAppToShow(appointmentsToShowByString);
             } catch (error) {
-                Swal.fire({
-                    icon: 'error',
-                    title: error.message,
-                })
+                Notify.errorHandler(error.message);
             }
         }
         if (!storeData.AuthReducer.user) {
@@ -214,29 +205,22 @@ const MakeAppointment = (props) => {
 
     const addAppointment = async () => {
         if (myHour === "pick a time.." || selectedDay === " ") {
-            Swal.fire({
-                icon: 'error',
-                title: 'Pick An Hour or Date!'
-            })
+            Notify.errorHandler('!בחר יום ושעה');
         } else {
             try {
                 const appointment = { year: selectedDay.getFullYear(), month: selectedDay.getMonth() + 1, day: selectedDay.getDate(), hour: myHour }
                 const resp = await appService.create(appointment, hoursToShow, () => { setModifiers({ ...modifiers, closedDays: modifiers.closedDays.concat([selectedDay]) }) });
                 dispatch({ type: "ADD", payload: resp });
-                Swal.fire({
-                    icon: 'success',
-                    title: " הפגישה נקבעה לתאריך" + appointment.day + "/" + appointment.month + "/" + appointment.year + " בשעה " + appointment.hour + " בהצלחה"
-                })
+                Notify.successHandler(" הפגישה נקבעה לתאריך" + appointment.day + "/" + appointment.month + "/" + appointment.year + " בשעה " + appointment.hour + " בהצלחה");
             } catch (error) {
-                Swal.fire({
-                    icon: 'error',
-                    title: error.message,
-                })
+                Notify.errorHandler(error.message);
             }
         }
     }
 
-    const handleDayClick = async (day, selected) => {
+    const handleDayClick = async (day, modifiers = {}, selected) => {
+        if (modifiers.disabled)
+            return;
         if (selected.disabled) {
             setSelectedDay(" ");
             props.disableCallback(true);
@@ -270,7 +254,7 @@ const MakeAppointment = (props) => {
                 storeData.AppointmentReducer.step === 0 &&
                 <>
                     <DayPicker className="time" disabledDays={newStrict} onDayClick={handleDayClick} selectedDays={selectedDay} localeUtils={MomentLocaleUtils} locale={language}
-                        modifiers={modifiers} modifiersStyles={modifiersStyles} todayButton="חזור להיום" onTodayButtonClick={(day, modifiers) => console.log(day, modifiers)} /><br /><br />
+                        modifiers={modifiers} modifiersStyles={modifiersStyles} todayButton="חזור להיום" onTodayButtonClick={(day, modifiers) => setSelectedDay(new Date())} /><br /><br />
                 </>
             }
             {

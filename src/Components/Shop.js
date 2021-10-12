@@ -101,10 +101,10 @@ const Shop = () => {
                             <CardActionArea>
                                 <CardMedia
                                     component="img"
-                                    alt="Contemplative Reptile"
+                                    alt={image.name}
                                     height="140"
                                     image={image.url}
-                                    title="Contemplative Reptile"
+                                    title={image.name}
                                 />
                                 <CardContent style={{ textAlign: 'center' }}>
                                     <Typography className="titleSize" gutterBottom variant="h3" style={{ color: 'white' }}>

@@ -19,7 +19,7 @@ const About = () => {
                 </div>
                 <div style={{ color: 'white' }} className="bio" data-aos="fade-up">
                     <h1 style={{ color: 'orange' }} >קצת על עצמי</h1>
-                    <p>
+                    <p style={{ paddingLeft: '10px', paddingRight: '10px' }}>
                         .אני שניר ספר מקצועי מראשון לציון<br />
                         ,מהרגע שהתחלתי לעסוק במקצוע התאהבתי<br />
                         ,השתפרתי ולמדתי <br />
@@ -29,10 +29,16 @@ const About = () => {
                     </p>
                 </div>
                 <div data-aos="fade-up" className="bioShop">
-                    <h2 style={{ color: 'orange' }} >קצת על המספרה</h2>
-                    ,המספרה בראשון לציון <br />
-                    אווירה טובה וצעירה<br />
-                    תבואו נדאג לכם
+                    <h1 style={{ color: 'orange' }} >המספרה</h1>
+                    <p style={{ paddingLeft: '10px', paddingRight: '10px' }}>
+                        .שלי ממוקם בראשון לציון מערב Barbershop ה<br />
+                        את המקום הקמתי ועיצבתי בעצמי<br />
+                        מקום מודרני ומהפכני עם אווירה טובה<br />
+                        שכוללת את כל סוגי הפיידים ושיטות גזירה הכי חדשניות<br />
+                        וכמובן הכי חשוב יחס אישי לכל אחד<br /><br />
+                        חבל שתפספס אירוע שכזה<br />
+                        <span role='img' aria-label=''>👌🏻</span>  שריין לעצמך מקום חבר
+                    </p>
                 </div>
                 <div data-aos="flip-up">
                     <img className="barbershop" src={barbershopPic2} alt="" />
