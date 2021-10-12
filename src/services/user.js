@@ -1,9 +1,9 @@
 import axios from 'axios'
-const baseUrl = '/users'
+import urls from './globals';
 
 const getAll = async () => {
     try {
-        const request = await axios.get(baseUrl);
+        const request = await axios.get(urls.users);
         return request.data;
     } catch (error) {
         throw new Error(error.response.data);
@@ -12,7 +12,7 @@ const getAll = async () => {
 
 const getByPhone = async (phone) => {
     try {
-        const request = await axios.get(baseUrl + "/" + phone);
+        const request = await axios.get(urls.users + "/" + phone);
         return request.data;
     } catch (error) {
         throw new Error(error.response.data);

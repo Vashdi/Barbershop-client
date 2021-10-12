@@ -1,9 +1,9 @@
 import axios from 'axios'
-const baseUrl = '/register'
+import urls from './globals'
 
 const register = async (credentials) => {
     try {
-        const response = await axios.post(baseUrl, credentials)
+        const response = await axios.post(urls.register, credentials)
         return response.data
     } catch (error) {
         throw new Error(error.response.data);

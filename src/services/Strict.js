@@ -1,8 +1,9 @@
 import axios from 'axios'
+import urls from './globals';
 
 const getAllStricts = async () => {
     try {
-        const resp = await axios.get("/strict");
+        const resp = await axios.get(urls.strict);
         const allStricts = resp.data;
         return allStricts;
     } catch (error) {
@@ -13,7 +14,7 @@ const getAllStricts = async () => {
 
 const getAllStrictDay = async () => {
     try {
-        const resp = await axios.get("/strictDay");
+        const resp = await axios.get(urls.strictDay);
         const allStricts = resp.data;
         return allStricts;
     } catch (error) {

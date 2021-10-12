@@ -1,6 +1,6 @@
 import axios from 'axios'
 import userService from '../services/user'
-const baseUrl = '/appointments'
+import urls from './globals'
 
 let token = null
 
@@ -10,7 +10,7 @@ const setToken = newToken => {
 
 const getAll = async () => {
     try {
-        const request = await axios.get(baseUrl);
+        const request = await axios.get(urls.appointments);
         return request.data;
     } catch (error) {
         throw new Error(error.response.data);
@@ -19,7 +19,7 @@ const getAll = async () => {
 
 const getByPhone = async (phone) => {
     try {
-        const request = await axios.get(baseUrl + "/" + phone);
+        const request = await axios.get(urls.appointments + "/" + phone);
         return request.data;
     } catch (error) {
         throw new Error(error.response.data);
@@ -28,7 +28,7 @@ const getByPhone = async (phone) => {
 
 const getByDate = async (date) => {
     try {
-        const request = await axios.get(baseUrl);
+        const request = await axios.get(urls.appointments);
         const apps = request.data;
         const toSplit = date.split("/", 3);
         const toSplitAgain = toSplit[2].split(" ", 3);
@@ -51,9 +51,9 @@ const deleteApp = async (id) => {
                 headers: { authorization: token },
             }
         }
-        const request = await axios.delete(baseUrl + "/" + id, config);
+        const request = await axios.delete(urls.appointments + "/" + id, config);
         const dateToDeleteFromClosed = new Date(request.data.year, request.data.month - 1, request.data.day);
-        await axios.delete("/closedDays/" + dateToDeleteFromClosed);
+        await axios.delete(urls.closedDays + "/" + dateToDeleteFromClosed);
         return request.data;
     } catch (error) {
         throw new Error(error.response.data);
@@ -66,10 +66,10 @@ const create = async (newAppointment, hoursToShow, callback) => {
             const config = {
                 headers: { authorization: token },
             }
-            const response = await axios.post(baseUrl, newAppointment, config);
+            const response = await axios.post(urls.appointments, newAppointment, config);
             if (hoursToShow.length === 1) {
                 const newCloseDay = { date: new Date(newAppointment.year, newAppointment.month - 1, newAppointment.day) };
-                await axios.post("/closedDays", newCloseDay);
+                await axios.post(urls.closedDays, newCloseDay);
                 callback();
             }
             return response.data
@@ -100,8 +100,8 @@ const checkHours = async (selectedDay, hours, setHoursToShow, hoursToStrict) => 
                 const endIndex = hours.indexOf(end);
                 newHours = hours.slice(startIndex, endIndex);
             }
-            const resp = await axios.get(`/appointments/day/${ourDay}`);
-            const respAdmin = await axios.get(`/adminAppointment/${ourYear}/${ourMonth}/${ourDay}`);
+            const resp = await axios.get(urls.appointmentsByDay + `/${ourDay}`);
+            const respAdmin = await axios.get(urls.adminAppointments + `/${ourYear}/${ourMonth}/${ourDay}`);
             const appForDay = resp.data;
             const adminAppForDay = respAdmin.data;
             const appForDayAndMonth = appForDay.filter(app => app.month === ourMonth);
@@ -186,7 +186,7 @@ const sortAppointments = (appointments) => {
 
 const getAllAppointments = async (user) => {
     try {
-        const allUsers = await axios.get("/users");
+        const allUsers = await axios.get(urls.users);
         const data = allUsers.data;
         const allApp = data.filter(oneUser => oneUser.phone === user.phone);
         if (allApp.length !== 0) {
@@ -220,7 +220,7 @@ const deleteAppointment = async (userPhone, appointment) => {
 
 const getCloseDays = async () => {
     try {
-        const resp = await axios.get("/closedDays");
+        const resp = await axios.get(urls.closedDays);
         return resp.data;
     } catch (error) {
         throw new Error(error.response.data);
