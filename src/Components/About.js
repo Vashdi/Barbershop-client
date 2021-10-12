@@ -18,10 +18,15 @@ const About = () => {
                     <img src={barbershopPic} alt="" />
                 </div>
                 <div style={{ color: 'white' }} className="bio" data-aos="fade-up">
-                    <h2 style={{ color: 'orange' }} >קצת על עצמי</h2>
-                    ,אני שניר<br />
-                    ספר מראשון לציון<br />
-                    תבואו נדאג לכם
+                    <h1 style={{ color: 'orange' }} >קצת על עצמי</h1>
+                    <p>
+                        .אני שניר ספר מקצועי מראשון לציון<br />
+                        ,מהרגע שהתחלתי לעסוק במקצוע התאהבתי<br />
+                        ,השתפרתי ולמדתי <br />
+                        .והיום אני הבחירה הנכונה בשביל השיער והזקן שלכם<br />
+                        .מזמין אתכם אליי וזמין לכולם תמיד <br /><br /><br />
+                        😉תבואו נדאג לכם<br />
+                    </p>
                 </div>
                 <div data-aos="fade-up" className="bioShop">
                     <h2 style={{ color: 'orange' }} >קצת על המספרה</h2>
