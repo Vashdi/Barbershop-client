@@ -66,7 +66,7 @@ const MakeAppointment = (props) => {
     const dispatch = useDispatch();
     const language = 'he';
     const dense = false;
-    const [newStrict, setNewStrict] = useState([{ before: new Date() }, { after: new Date(new Date().getFullYear(), new Date().getMonth() + 1, new Date().getDate()) }, { daysOfWeek: [1, 6] }]);
+    const [newStrict, setNewStrict] = useState([{ before: new Date() }, { after: new Date(new Date().getFullYear(), new Date().getMonth() + 1, new Date().getDate()) }, { daysOfWeek: [6] }]);
 
     const [modifiers, setModifiers] = useState({
         closedDays: [],
