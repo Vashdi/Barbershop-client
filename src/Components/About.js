@@ -4,8 +4,8 @@ import Aos from 'aos';
 import 'aos/dist/aos.css';
 
 const About = () => {
-    var barbershopPic = "images/aboutMe.jpg";
-    var barbershopPic2 = "images/aboutMe2.jpg";
+    var barbershopPic = "images/aboutMeNew.webp";
+    var barbershopPic2 = "images/aboutMe2.jpeg";
 
     useEffect(() => {
         Aos.init({ duration: 2000, once: true })
@@ -15,7 +15,7 @@ const About = () => {
         <section data-aos="fade-up" id="about">
             <div className="Aboutcontainer">
                 <div data-aos="flip-up" className="aboutImg">
-                    <img src={barbershopPic} alt="" />
+                    <img style={{ borderRadius: '20px' }} src={barbershopPic} alt="" />
                 </div>
                 <div style={{ color: 'white' }} className="bio" data-aos="fade-up">
                     <h1 style={{ color: 'orange' }} >קצת על עצמי</h1>
@@ -31,7 +31,7 @@ const About = () => {
                 <div data-aos="fade-up" className="bioShop">
                     <h1 style={{ color: 'orange' }} >המספרה</h1>
                     <p style={{ paddingLeft: '10px', paddingRight: '10px' }}>
-                        .שלי ממוקם בראשון לציון מערב Barbershop ה<br />
+                        המספרה שלי ממוקמת בראשון לציון מערב <br />
                         את המקום הקמתי ועיצבתי בעצמי<br />
                         מקום מודרני ומהפכני עם אווירה טובה<br />
                         שכוללת את כל סוגי הפיידים ושיטות גזירה הכי חדשניות<br />
@@ -41,7 +41,7 @@ const About = () => {
                     </p>
                 </div>
                 <div data-aos="flip-up">
-                    <img className="barbershop" src={barbershopPic2} alt="" />
+                    <img style={{ borderRadius: '20px' }} className="barbershop" src={barbershopPic2} alt="" />
                 </div>
             </div>
         </section>

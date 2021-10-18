@@ -1,13 +1,13 @@
 const urls = {
-    appointments: "http://localhost:3001/appointments",
-    appointmentsByDay: "http://localhost:3001/appointments/day",
-    login: "http://localhost:3001/login",
-    register: "http://localhost:3001/register",
-    users: "http://localhost:3001/users",
-    adminAppointments: "http://localhost:3001/adminAppointment",
-    closedDays: "http://localhost:3001/closedDays",
-    strict: "http://localhost:3001/strict",
-    strictDay: "http://localhost:3001/strictDay",
+    appointments: "https://snir-barbershop.herokuapp.com/appointments",
+    appointmentsByDay: "https://snir-barbershop.herokuapp.com/appointments/day",
+    login: "https://snir-barbershop.herokuapp.com/login",
+    register: "https://snir-barbershop.herokuapp.com/register",
+    users: "https://snir-barbershop.herokuapp.com/users",
+    adminAppointments: "https://snir-barbershop.herokuapp.com/adminAppointment",
+    closedDays: "https://snir-barbershop.herokuapp.com/closedDays",
+    strict: "https://snir-barbershop.herokuapp.com/strict",
+    strictDay: "https://snir-barbershop.herokuapp.com/strictDay",
 };
 
 export default urls;

@@ -7,7 +7,7 @@ const Price = () => {
         <h1 data-aos="zoom-out-up" className="priceTitle">מחירון&nbsp;מספרה</h1>
         <div className="pricesContainer">
             <div data-aos="fade-right" className="pricePicture">
-                <img src={'images/pricepic.jpg'} alt="" />
+                <img style={{ borderRadius: '50px' }} src={'images/pricePic.png'} alt="" />
             </div>
             <div data-aos="fade-right" className="pricesBoard">
                 <h1 style={{ color: 'white' }}>המחירים שלנו</h1>
