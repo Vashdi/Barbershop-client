@@ -197,11 +197,11 @@ const MakeAppointment = (props) => {
         } else {
             whenLogged();
         }
-    }, [dispatch, storeData.AuthReducer.user])
+    }, [storeData.AuthReducer.user])
 
     useEffect(() => {
         appService.checkHours(selectedDay, hours, setHoursToShow, hoursToStrict);
-    }, [hours, hoursToStrict, selectedDay])
+    }, [selectedDay])
 
     const addAppointment = async () => {
         if (myHour === "pick a time.." || selectedDay === " ") {
