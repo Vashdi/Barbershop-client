@@ -7,8 +7,8 @@ const Contact = () => {
         <section data-aos="fade-up" id="contact">
             <div>
                 <h2 data-aos="fade-up" className="titleContact">צור קשר</h2>
-                <p data-aos="fade-up" className="firstRow">,אם אתה נתקל בבעיה</p>
-                <p data-aos="fade-up" className="secondRow">מוזמן לצור איתי קשר בכל דרך</p>
+                <p data-aos="fade-up" className="firstRow">לכל שאלה ובקשה</p>
+                <p data-aos="fade-up" className="secondRow">מוזמנים לפנות אלי בכל אחת מהדרכים</p>
             </div>
             <div className="contactContainer">
                 <div className="paddingIcons">

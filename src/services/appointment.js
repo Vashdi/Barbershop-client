@@ -79,12 +79,11 @@ const create = async (newAppointment, hoursToShow, callback) => {
     }
 }
 
-const checkHours = async (selectedDay, hours, setHoursToShow, hoursToStrict) => {
+const checkHours = async (selectedDay, setHoursToShow, hoursToStrict) => {
     try {
         if (selectedDay !== " ") {
             let newHours = " ";
             let newHoursToShowAfterAdminStrict = " ";
-            const strictHours = ["10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00"];
             const currDay = new Date().getDate();
             const currMonth = new Date().getMonth() + 1;
             const currYear = new Date().getFullYear();
@@ -92,13 +91,33 @@ const checkHours = async (selectedDay, hours, setHoursToShow, hoursToStrict) => 
             const ourDay = selectedDay.getDate();
             const ourMonth = selectedDay.getMonth() + 1;
             const ourYear = selectedDay.getFullYear();
+            const selectedDayInNumberAtWeek = selectedDay.getDay();
+            let changedHours = [];
+            let hoursForSunday = ["12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00"];
+            let hoursForRest = ["10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00"];
+            let hoursForFriday = ["09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30"];
+            if (selectedDayInNumberAtWeek === 0)
+                changedHours = hoursForSunday;
+            else {
+                if (selectedDayInNumberAtWeek === 5)
+                    changedHours = hoursForFriday;
+                else
+                    changedHours = hoursForRest;
+            }
             const searchForHour = hoursToStrict.find(date => new Date(date.day).getDate() === ourDay && new Date(date.day).getFullYear() === ourYear && new Date(date.day).getMonth() === (ourMonth - 1));
             if (searchForHour !== undefined) {
                 const start = searchForHour.start;
                 const end = searchForHour.end;
-                const startIndex = hours.indexOf(start);
-                const endIndex = hours.indexOf(end);
-                newHours = hours.slice(startIndex, endIndex);
+                const startIndex = changedHours.indexOf(start);
+                const endIndex = changedHours.indexOf(end);
+                if (startIndex === -1)
+                    newHours = changedHours.slice(0, endIndex);
+                else {
+                    if (endIndex === -1)
+                        newHours = changedHours.slice(startIndex);
+                    else
+                        newHours = changedHours.slice(startIndex, endIndex);
+                }
             }
             const resp = await axios.get(urls.appointmentsByDay + `/${ourDay}`);
             const respAdmin = await axios.get(urls.adminAppointments + `/${ourYear}/${ourMonth}/${ourDay}`);
@@ -109,19 +128,9 @@ const checkHours = async (selectedDay, hours, setHoursToShow, hoursToStrict) => 
             let hoursForDate = appForDayAndMonthAndYear.map(appointment => appointment.hour);
             const adminHoursForDate = adminAppForDay.map(appointment => appointment.hour);
             hoursForDate = hoursForDate.concat(adminHoursForDate);
-            if (currDay === ourDay && currMonth === ourMonth && currYear === ourYear && currHour >= 0 && currHour < 8) {
-                const newHoursToShow = strictHours.filter(theHours => !hoursForDate.includes(theHours));
-                newHoursToShowAfterAdminStrict = newHoursToShow;
-                if (newHours !== " ") {
-                    newHoursToShowAfterAdminStrict = newHours.filter(theHours => newHoursToShow.includes(theHours))
-                }
-            }
-            else {
-                newHoursToShowAfterAdminStrict = hours.filter(theHours => !hoursForDate.includes(theHours));
-                if (newHours !== " ") {
-                    newHoursToShowAfterAdminStrict = newHours.filter(theHours => newHoursToShowAfterAdminStrict.includes(theHours));
-                }
-
+            newHoursToShowAfterAdminStrict = changedHours.filter(theHours => !hoursForDate.includes(theHours));
+            if (newHours !== " ") {
+                newHoursToShowAfterAdminStrict = newHours.filter(theHours => newHoursToShowAfterAdminStrict.includes(theHours));
             }
             let newHouresToShowFromCurrHour = newHoursToShowAfterAdminStrict;
             if (currDay === ourDay && currMonth === ourMonth && currYear === ourYear) {
