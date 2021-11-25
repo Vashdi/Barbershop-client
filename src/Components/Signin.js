@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import loginService from '../services/login'
 import appService from '../services/appointment'
 import { Link, useHistory } from 'react-router-dom';
@@ -62,22 +59,10 @@ const Signin = (props) => {
     let history = useHistory();
     const [user, setUser] = useState("");
     const classes = useStyles();
-    const [values, setValues] = useState({
-        password: '',
-        showPassword: false,
-    });
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const storeData = useSelector(state => state);
     const dispatch = useDispatch();
-
-    const handleClickShowPassword = () => {
-        setValues({ ...values, showPassword: !values.showPassword });
-    };
-
-    const handleMouseDownPassword = (event) => {
-        event.preventDefault();
-    };
 
     useEffect(() => {
         if (storeData.user) {
@@ -90,7 +75,7 @@ const Signin = (props) => {
         try {
             const user = await loginService.login({
                 phone: data.phone,
-                password: data.password
+                firstname: data.firstname
             });
             dispatch({ type: "LOGIN", payload: user });
             appService.setToken(user.token)
@@ -126,24 +111,11 @@ const Signin = (props) => {
                 </FormControl>
                 {errors.phone && <span style={{ color: 'red' }}>{errors.phone.message}</span>}
                 <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
-                    <InputLabel style={{ fontSize: 'medium', left: 25 }} htmlFor="outlined-adornment-password">סיסמא</InputLabel>
+                    <InputLabel style={{ fontSize: 'medium', left: 25 }} htmlFor="outlined-adornment-password">שם פרטי</InputLabel>
                     <OutlinedInput style={{ width: '200%', fontSize: 'large', left: 25 }}
                         id="outlined-adornment-password"
-                        type={values.showPassword ? 'text' : 'password'}
-                        endAdornment={
-                            <InputAdornment position="end">
-                                <IconButton
-                                    aria-label="toggle password visibility"
-                                    onClick={handleClickShowPassword}
-                                    onMouseDown={handleMouseDownPassword}
-                                    edge="end"
-                                >
-                                    {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                                </IconButton>
-                            </InputAdornment>
-                        }
-                        labelWidth={45}
-                        {...register("password", { required: { value: true, message: "הכנס סיסמה" } })}
+                        labelWidth={55}
+                        {...register("firstname", { required: { value: true, message: "הכנס סיסמה" } })}
                     />
                 </FormControl>
                 {errors.password && <span style={{ color: 'red' }}>{errors.password.message}</span>}

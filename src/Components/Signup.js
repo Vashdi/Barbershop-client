@@ -56,29 +56,17 @@ const Toast = Swal.mixin({
 
 const Signup = (props) => {
     let history = useHistory();
-    const [values, setValues] = useState({
-        password: '',
-        showPassword: false,
-    });
     const dispatch = useDispatch();
     const classes = useStyles();
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const handleClickShowPassword = () => {
-        setValues({ ...values, showPassword: !values.showPassword });
-    };
-
-    const handleMouseDownPassword = (event) => {
-        event.preventDefault();
-    };
-
 
     const send = async (data) => {
         try {
+            console.log(data);
             const user = await SignupService.register({
                 firstname: data.firstName,
                 lastname: data.lastName,
                 phone: data.phone,
-                password: data.password,
             });
             dispatch({ type: "LOGIN", payload: user });
             appService.setToken(user.token)
@@ -154,32 +142,7 @@ const Signup = (props) => {
                     />
                 </FormControl>
                 {errors.lastName && <span style={{ color: 'red' }}>{errors.lastName.message}</span>}
-                <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
-                    <InputLabel style={{ fontSize: 'medium', left: 25 }} htmlFor="outlined-adornment-password">סיסמא</InputLabel>
-                    <OutlinedInput style={{ width: '200%', fontSize: 'large', left: 25 }}
-                        id="outlined-adornment-password"
-                        type={values.showPassword ? 'text' : 'password'}
-                        endAdornment={
-                            <InputAdornment position="end">
-                                <IconButton
-                                    aria-label="toggle password visibility"
-                                    onClick={handleClickShowPassword}
-                                    onMouseDown={handleMouseDownPassword}
-                                    edge="end"
-                                >
-                                    {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                                </IconButton>
-                            </InputAdornment>
-                        }
-                        labelWidth={45}
-                        {...register("password", {
-                            required: { value: true, message: "הכנס סיסמה" },
-                            maxLength: { value: 25, message: "סיסמה ארוכה מדי" },
-                            minLength: { value: 6, message: "סיסמה קצרה מדי" },
-                        })}
-                    />
-                </FormControl>
-                {errors.password && <span style={{ color: 'red' }}>{errors.password.message}</span>}
+
                 <ThemeProvider theme={theme}>
                     <Button style={{ width: '300%', left: 85 }} type="submit" variant="contained" color="primary" className={classes.margin}>
                         <span style={{ fontSize: "large" }}>הרשם עכשיו</span>
