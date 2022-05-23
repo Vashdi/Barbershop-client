@@ -62,41 +62,38 @@ function App() {
       <Shop />
       <Contact />
       <Footer />
-      <div>
-        <button type="button">react-transition-group</button>
-        <Modal
-          aria-labelledby="transition-modal-title"
-          aria-describedby="transition-modal-description"
-          className={classes.modal}
-          open={openModal}
-          closeAfterTransition
-          BackdropComponent={Backdrop}
-          BackdropProps={{
-            timeout: 500,
-          }}
-        >
-          <Fade in={openModal}>
-            <div className={classes.paper}>
-              <h2 id="transition-modal-title" style={{ textAlign: "center" }}>
-                התראה לגבי אי הגעה לתורים
-              </h2>
-              <p
-                id="transition-modal-description"
-                style={{ textAlign: "center" }}
-              >
-                ,לקוחות יקרים <br />
-                לקוח אשר לא יגיע לתור שקבע ללא ביטולו יחוייב בתשלום התספורת
-              </p>
-              <div
-                style={{ textAlign: "center", cursor: "pointer" }}
-                onClick={closeModal}
-              >
-                סגור
-              </div>
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        className={classes.modal}
+        open={openModal}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={openModal}>
+          <div className={classes.paper}>
+            <h2 id="transition-modal-title" style={{ textAlign: "center" }}>
+              התראה לגבי אי הגעה לתורים
+            </h2>
+            <p
+              id="transition-modal-description"
+              style={{ textAlign: "center" }}
+            >
+              ,לקוחות יקרים <br />
+              לקוח אשר לא יגיע לתור שקבע ללא ביטולו יחוייב בתשלום התספורת
+            </p>
+            <div
+              style={{ textAlign: "center", cursor: "pointer" }}
+              onClick={closeModal}
+            >
+              סגור
             </div>
-          </Fade>
-        </Modal>
-      </div>
+          </div>
+        </Fade>
+      </Modal>
     </div>
   );
 }
